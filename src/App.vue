@@ -2,8 +2,15 @@
   <div class="min-h-screen flex flex-col">
     <header class="sticky top-0 z-50 bg-bg-main py-3 border-b border-border-subtle transition-colors duration-300">
       <div class="relative mx-auto px-6 md:px-8 flex items-center justify-between">
-        <div class="flex items-center  mr-4 text-gray-600">
-          <Menu />
+        <div class="flex items-center mr-8 text-gray-600">
+          <button
+            type="button"
+            @click="toggleDrawer"
+            class="flex items-center justify-center w-8 h-8"
+            aria-label="Toggle menu"
+          >
+            <Menu />
+          </button>
         </div>
         <div
           class="mb-4 md:mb-0 text-accent-primary font-semibold text-[1.25rem] leading-[1.35] tracking-[-0.015em]"
@@ -14,8 +21,42 @@
             dotcom
           </div>
         </div>
-        <div>
-          Search
+        <div class="relative ml-8">
+          <div class="relative">
+            <Search
+              class="absolute left-2 top-1/2 -translate-y-1/2 text-text-secondary"
+              :size="16"
+            />
+            <input
+              v-model="searchQuery"
+              type="text"
+              placeholder="Search…"
+              class="w-56 md:w-72 pl-8 bg-bg-muted border border-border-subtle rounded-md py-1.5 px-2 text-sm focus:outline-none"
+            />
+          </div>
+
+          <ul
+            v-if="searchQuery && filteredLinks.length"
+            class="absolute left-0 mt-2 w-[28rem] max-w-[90vw] bg-bg-main border border-border-subtle rounded-md shadow-lg z-50"
+          >
+            <li
+              v-for="item in filteredLinks"
+              :key="item.url"
+              class="px-4 py-3 hover:bg-bg-muted"
+            >
+              <router-link
+                :to="item.url"
+                class="block"
+              >
+                <div class="text-sm font-medium text-text-primary">
+                  {{ item.label }}
+                </div>
+                <div class="text-xs text-text-secondary mt-0.5">
+                  {{ item.description }}
+                </div>
+              </router-link>
+            </li>
+          </ul>
         </div>
         <nav class="flex items-center ml-auto">
           <ul class="flex flex-wrap gap-x-9 gap-y-3 list-none p-0 m-0 mr-6">
@@ -46,17 +87,114 @@
             <!-- Sun icon (to switch to light) when in dark mode -->
             <Sun v-else :size="20" class="text-text-primary" />
           </button>
+          <div class="flex items-center gap-1 rounded-full border border-border-subtle p-1 text-sm ml-4">
+            <button
+              v-for="lang in ['EN', 'ID', 'JP']"
+              :key="lang"
+              @click="setLanguage(lang)"
+              class="px-2 py-0.5 rounded-full transition-colors"
+              :class="language === lang
+                ? 'bg-bg-muted text-text-primary'
+                : 'text-text-secondary hover:bg-bg-muted'"
+            >
+              {{ lang }}
+            </button>
+          </div>
         </nav>
       </div>
     </header>
 
-    <main class="container flex-grow pt-0 pb-16">
-      <router-view v-slot="{ Component }">
-        <transition name="fade" mode="out-in">
-          <component :is="Component" />
-        </transition>
-      </router-view>
-    </main>
+    <div class="flex flex-grow transition-all duration-300">
+      <aside
+        class="fixed top-[64px] left-0 h-[calc(100vh-64px)] w-64 bg-bg-main border-r border-border-subtle transition-transform duration-300"
+        :class="isDrawerOpen ? 'translate-x-0' : '-translate-x-full'"
+      >
+        <nav class="p-6 pt-12">
+          <ul class="space-y-4">
+            <li class="flex gap-3">
+              <div>
+                <router-link
+                  to="/about"
+                  class="block  font-medium text-text-primary hover:text-accent-primary"
+                >
+                  About
+                </router-link>
+                <p class="text-sm text-text-secondary mt-1">
+                  Background, values, and professional summary
+                </p>
+              </div>
+            </li>
+
+            <li class="flex gap-3">
+              <div>
+                <router-link
+                  to="/writing"
+                  class="block font-medium text-text-primary hover:text-accent-primary"
+                >
+                  Writing
+                </router-link>
+                <p class="text-sm text-text-secondary mt-1">
+                  Essays, notes, and long-form thoughts
+                </p>
+              </div>
+            </li>
+
+            <li class="flex gap-3">
+              <div>
+                <router-link
+                  to="/notes"
+                  class="block font-medium text-text-primary hover:text-accent-primary"
+                >
+                  Notes
+                </router-link>
+                <p class="text-sm text-text-secondary mt-1">
+                  Short ideas, experiments, and drafts
+                </p>
+              </div>
+            </li>
+
+            <li class="flex gap-3">
+              <div>
+                <router-link
+                  to="/uses"
+                  class="block font-medium text-text-primary hover:text-accent-primary"
+                >
+                  Uses
+                </router-link>
+                <p class="text-sm text-text-secondary mt-1">
+                  Tools, hardware, and software I use daily
+                </p>
+              </div>
+            </li>
+
+            <li class="flex gap-3">
+              <div>
+                <router-link
+                  to="/contact"
+                  class="block font-medium text-text-primary hover:text-accent-primary"
+                >
+                  Contact
+                </router-link>
+                <p class="text-sm text-text-secondary mt-1">
+                  Ways to get in touch or collaborate
+                </p>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <main
+        class="container flex-grow pt-0 pb-16 transition-all duration-300"
+        :class="isDrawerOpen ? 'ml-64' : ''"
+      >
+        <router-view v-slot="{ Component }">
+          <transition name="fade" mode="out-in">
+            <component :is="Component" />
+          </transition>
+        </router-view>
+      </main>
+    </div>
 
     <footer class="pt-12 pb-16 border-t border-border-subtle text-sm text-text-secondary mt-18">
       <div class="container">
@@ -71,20 +209,66 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, watch } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useDebounceFn } from '@vueuse/core'
-import { Sun, Moon, Menu } from 'lucide-vue-next'
+import { Sun, Moon, Menu, Search, User, PenLine, Notebook, Laptop, Mail } from 'lucide-vue-next'
 
 const route = useRoute()
 const isDark = ref(false)
 const isRestoring = ref(false)
+const isDrawerOpen = ref(false)
+const language = ref('EN')
+
+const searchQuery = ref('')
+
+const searchLinks = [
+  {
+    label: 'Home',
+    url: '/',
+    description: 'Overview and introduction'
+  },
+  {
+    label: 'Systems',
+    url: '/systems',
+    description: 'Architecture, patterns, and system design notes'
+  },
+  {
+    label: 'Case Studies',
+    url: '/case-studies',
+    description: 'Deep dives into real-world projects'
+  },
+  {
+    label: 'Skills',
+    url: '/skills',
+    description: 'Technical stack and core competencies'
+  },
+  {
+    label: 'Now',
+    url: '/now',
+    description: 'What I am currently focused on'
+  },
+]
+
+const filteredLinks = computed(() =>
+  searchLinks.filter(item =>
+    item.label.toLowerCase().includes(searchQuery.value.toLowerCase())
+  )
+)
 
 // Toggle between light and dark themes by updating a root class
 const toggleTheme = () => {
   isDark.value = !isDark.value
   document.documentElement.classList.toggle('dark', isDark.value)
   localStorage.setItem('theme', isDark.value ? 'dark' : 'light')
+}
+
+const toggleDrawer = () => {
+  isDrawerOpen.value = !isDrawerOpen.value
+}
+
+const setLanguage = (lang: string) => {
+  language.value = lang
 }
 
 const handleScroll = useDebounceFn(() => {
@@ -128,15 +312,3 @@ onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
 })
 </script>
-
-<style>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.2s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-</style>
