@@ -1,9 +1,23 @@
 <template>
   <div class="min-h-screen flex flex-col">
     <header class="sticky top-0 z-50 bg-bg-main py-3 border-b border-border-subtle transition-colors duration-300">
-      <div class="container flex flex-col md:flex-row justify-between items-start md:items-center">
-        <div class="font-semibold text-xl text-text-primary tracking-tight mb-4 md:mb-0">Bayu Aksana</div>
-        <nav class="flex items-center">
+      <div class="relative mx-auto px-6 md:px-8 flex items-center justify-between">
+        <div class="flex items-center  mr-4 text-gray-600">
+          <Menu />
+        </div>
+        <div
+          class="mb-4 md:mb-0 text-accent-primary font-semibold text-[1.25rem] leading-[1.35] tracking-[-0.015em]"
+          style="font-family: Charter, Georgia, 'Times New Roman', serif;"
+        >
+          BayuAksana
+          <div class="text-base">
+            dotcom
+          </div>
+        </div>
+        <div>
+          Search
+        </div>
+        <nav class="flex items-center ml-auto">
           <ul class="flex flex-wrap gap-x-9 gap-y-3 list-none p-0 m-0 mr-6">
             <li>
               <router-link to="/" class="text-base text-text-secondary hover:text-text-primary hover:no-underline" active-class="text-text-primary font-semibold">Home</router-link>
@@ -28,13 +42,9 @@
             aria-label="Toggle theme"
           >
             <!-- Moon icon (to switch to dark) when in light mode -->
-            <svg v-if="!isDark" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-            </svg>
+            <Moon v-if="!isDark" :size="20" class="text-text-primary" />
             <!-- Sun icon (to switch to light) when in dark mode -->
-            <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-            </svg>
+            <Sun v-else :size="20" class="text-text-primary" />
           </button>
         </nav>
       </div>
@@ -64,6 +74,7 @@
 import { ref, onMounted, onUnmounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useDebounceFn } from '@vueuse/core'
+import { Sun, Moon, Menu } from 'lucide-vue-next'
 
 const route = useRoute()
 const isDark = ref(false)

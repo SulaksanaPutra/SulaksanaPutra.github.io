@@ -23,7 +23,8 @@
 
   body {
     @apply bg-bg-main text-text-primary font-sans antialiased;
-    line-height: 1.65;
+    font-size: 1.125rem; /* ~20px: slightly larger than default UI text */
+    line-height: 1.7; /* prioritize reading comfort */
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -53,6 +54,6 @@
   }
 
   .label-mono {
-    @apply font-mono text-sm uppercase tracking-wider text-text-secondary block mb-3;
+    @apply font-sans text-sm uppercase tracking-wider text-text-secondary block mb-3;
   }
 }

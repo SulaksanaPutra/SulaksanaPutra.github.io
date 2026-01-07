@@ -17,7 +17,7 @@
     </section>
 
     <section class="content-narrow py-8" id="principles">
-      <h2 class="label-mono mb-3">How I think about engineering</h2>
+      <p class="label-mono mb-4">How I think about engineering</p>
       <ul class="list-none p-0 m-0">
         <li class="mb-8 pb-8 border-b border-border-subtle last:border-0 last:mb-0 last:pb-0">
           <strong>Reliability</strong><br>
