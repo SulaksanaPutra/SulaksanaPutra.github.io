@@ -4,7 +4,7 @@
       <!-- LAAS -->
       <article
           id="system-laas"
-          class="mb-16 pb-8"
+          class="mb-16 pb-8 border-b border-border-subtle last:border-b-0"
       >
         <h2 class="text-xl  text-left text-text-primary mb-2">
           LAAS — Logistics as a Service
@@ -83,7 +83,7 @@
       <!-- Twin v2 WMS -->
       <article
           id="system-twin-v2-wms"
-          class="6 pb-8 border-b border-border-subtle last:border-0"
+          class="mb-16 pb-8 border-b border-border-subtle last:border-b-0"
       >
         <h2 class="text-xl text-left text-text-primary mb-2">
           Twin <span class="text-base font-bold">V2</span> — Warehouse Management System
@@ -155,7 +155,7 @@
       <!-- Twin v2 Fleet -->
       <article
           id="system-twin-v2-fleet"
-          class="6 pb-8 border-b border-border-subtle last:border-0"
+          class="mb-16 pb-8 border-b border-border-subtle last:border-b-0"
       >
         <h2 class="text-xl  text-left text-text-primary mb-2">
           Twin <span class="text-base font-bold">V2</span> — Fleet Management System
@@ -232,7 +232,7 @@
       <!-- Twin v1 -->
       <article
           id="system-twin-v1"
-          class="6 pb-8 border-b border-border-subtle last:border-0"
+          class="mb-16 pb-8 border-b border-border-subtle last:border-b-0"
       >
         <h2 class="text-xl text-left text-text-primary mb-2">
           Twin — In-house Distributor System
