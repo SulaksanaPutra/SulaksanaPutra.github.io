@@ -269,8 +269,9 @@
             <li class="flex gap-3">
               <div>
                 <router-link
-                  to="/about"
+                  to="/"
                   class="block  font-medium text-text-primary hover:text-accent-primary"
+                  active-class="text-accent-primary"
                 >
                   About
                 </router-link>
@@ -285,6 +286,7 @@
                 <router-link
                   to="/writing"
                   class="block font-medium text-text-primary hover:text-accent-primary"
+                  active-class="text-accent-primary"
                 >
                   Writing
                 </router-link>
@@ -297,8 +299,9 @@
             <li class="flex gap-3">
               <div>
                 <router-link
-                  to="/notes"
+                  to="/projects"
                   class="block font-medium text-text-primary hover:text-accent-primary"
+                  active-class="text-accent-primary"
                 >
                   Projects
                 </router-link>
@@ -313,6 +316,7 @@
                 <router-link
                   to="/uses"
                   class="block font-medium text-text-primary hover:text-accent-primary"
+                  active-class="text-accent-primary"
                 >
                   Uses
                 </router-link>
@@ -327,6 +331,7 @@
                 <router-link
                   to="/contact"
                   class="block font-medium text-text-primary hover:text-accent-primary"
+                  active-class="text-accent-primary"
                 >
                   Contact
                 </router-link>
@@ -343,9 +348,9 @@
         class="container flex-grow pt-0 pb-16 transition-all duration-300"
         :class="isDrawerOpen ? 'md:ml-64' : ''"
       >
-        <router-view v-slot="{ Component }">
-          <transition name="fade" mode="out-in">
-            <component :is="Component" />
+        <router-view v-slot="{ Component, route }">
+          <transition :name="shouldTransition(route) ? 'fade' : ''" mode="out-in">
+            <component :is="Component" :key="getRouteKey(route)" />
           </transition>
         </router-view>
       </main>
@@ -365,13 +370,11 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
-import { useRoute } from 'vue-router'
-import { useDebounceFn } from '@vueuse/core'
+import { useRoute, RouteLocationNormalized } from 'vue-router'
 import { Sun, Moon, Menu, Search } from 'lucide-vue-next'
 
 const route = useRoute()
 const isDark = ref(false)
-const isRestoring = ref(false)
 
 // Drawer State Logic
 const isDrawerOpen = ref(false)
@@ -464,48 +467,6 @@ const updateScrollProgress = () => {
   }
 }
 
-const handleScroll = useDebounceFn(() => {
-  if (route.fullPath && !isRestoring.value) {
-    sessionStorage.setItem(`scroll-pos-${route.fullPath}`, window.scrollY.toString())
-  }
-}, 100)
-
-// --- Scroll Snapping Logic ---
-const snapToLine = useDebounceFn(() => {
-  if (isRestoring.value) return
-
-  const bodyStyle = getComputedStyle(document.body)
-  const lineHeight = parseFloat(bodyStyle.lineHeight)
-
-  if (!lineHeight || isNaN(lineHeight)) return
-
-  const currentScroll = window.scrollY
-  const targetScroll = Math.round(currentScroll / lineHeight) * lineHeight
-
-  if (Math.abs(currentScroll - targetScroll) > 1) {
-    window.scrollTo({
-      top: targetScroll,
-      behavior: 'smooth'
-    })
-  }
-}, 150)
-
-
-// Watch for route changes to handle smooth scroll restoration
-watch(() => route.fullPath, (newPath) => {
-  isRestoring.value = true
-  const savedScroll = sessionStorage.getItem(`scroll-pos-${newPath}`)
-  if (savedScroll) {
-    const y = parseInt(savedScroll, 10)
-    window.scrollTo({ top: y, behavior: 'smooth' })
-  } else {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
-  setTimeout(() => {
-    isRestoring.value = false
-  }, 500) // ensure restoration period covers transition
-})
-
 const handleKeydown = (e: KeyboardEvent) => {
   // Cmd+K or Ctrl+K to focus search
   if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
@@ -546,8 +507,6 @@ const scrollToSection = (id: string) => {
   const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
   const offsetPosition = elementPosition - headerOffset - 24 // 24px padding
 
-  // Disable snap temporarily
-  isRestoring.value = true
   window.scrollTo({
     top: offsetPosition,
     behavior: 'smooth'
@@ -555,10 +514,6 @@ const scrollToSection = (id: string) => {
 
   // Update active section immediately
   activeSection.value = id
-
-  setTimeout(() => {
-    isRestoring.value = false
-  }, 1000)
 }
 
 watch(() => route.path, (newPath) => {
@@ -586,13 +541,6 @@ onMounted(() => {
     document.documentElement.classList.toggle('dark', prefersDark)
   }
 
-  isRestoring.value = true
-  setTimeout(() => {
-    isRestoring.value = false
-  }, 500)
-
-  window.addEventListener('scroll', handleScroll)
-  window.addEventListener('scroll', snapToLine)
   window.addEventListener('scroll', updateScrollProgress, { passive: true })
   window.addEventListener('keydown', handleKeydown)
 
@@ -601,8 +549,6 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll)
-  window.removeEventListener('scroll', snapToLine)
   window.removeEventListener('scroll', updateScrollProgress)
   window.removeEventListener('keydown', handleKeydown)
   if (sectionObserver) sectionObserver.disconnect()
@@ -633,4 +579,18 @@ onMounted(() => {
 })
 
 onUnmounted(() => window.removeEventListener('resize', updateDrawerTop))
+
+// --- Route Transition Logic ---
+const sectionRoutes = ['About', 'Writing', 'Projects', 'Uses', 'Contact']
+
+const shouldTransition = (route: RouteLocationNormalized) => {
+  return !sectionRoutes.includes(route.name as string)
+}
+
+const getRouteKey = (route: RouteLocationNormalized) => {
+  if (sectionRoutes.includes(route.name as string)) {
+    return 'section-container'
+  }
+  return route.path
+}
 </script>

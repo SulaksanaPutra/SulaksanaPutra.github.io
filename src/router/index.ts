@@ -1,16 +1,16 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import Home from '../views/home.vue'
 import Systems from '../views/systems.vue'
 import CaseStudies from '../views/case-studies.vue'
 import VatChangeCase from '../views/case-studies/twin-v1/vat-change-case.vue'
 import Skills from '../views/skills.vue'
 import Now from '../views/now.vue'
+import SectionContainer from '../views/section-container.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'About',
+    component: SectionContainer
   },
   {
     path: '/systems',
@@ -36,6 +36,26 @@ const routes: Array<RouteRecordRaw> = [
     path: '/now',
     name: 'Now',
     component: Now
+  },
+  {
+    path: '/writing',
+    name: 'Writing',
+    component: SectionContainer
+  },
+  {
+    path: '/projects',
+    name: 'Projects',
+    component: SectionContainer
+  },
+  {
+    path: '/uses',
+    name: 'Uses',
+    component: SectionContainer
+  },
+  {
+    path: '/contact',
+    name: 'Contact',
+    component: SectionContainer
   }
 ]
 
@@ -43,34 +63,27 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
   scrollBehavior(to, from, savedPosition) {
+    // If navigating between section routes, let the component handle scrolling
+    const sectionRoutes = ['About', 'Writing', 'Projects', 'Uses', 'Contact']
+    if (to.name && from.name && sectionRoutes.includes(to.name as string) && sectionRoutes.includes(from.name as string)) {
+      return false
+    }
+
     return new Promise((resolve) => {
       // Wait for the page transition (fade out-in) to complete before scrolling
       // The transition duration is 0.2s, so we wait slightly longer
       setTimeout(() => {
-        const savedScroll = sessionStorage.getItem(`scroll-pos-${to.fullPath}`)
-        if (savedScroll && !to.hash) {
-          resolve({ top: parseInt(savedScroll, 10) })
-        } else if (savedPosition) {
-          resolve(savedPosition)
-        } else if (to.hash) {
+        if (to.hash) {
           resolve({
             el: to.hash,
             behavior: 'smooth',
           })
         } else {
-          resolve({ top: 0 })
+          resolve({ top: 0, behavior: 'auto' })
         }
-      }, 250)
+      }, 300)
     })
   },
-})
-
-router.beforeEach((to, from, next) => {
-  // Save scroll position of the current page before leaving
-  if (from.name) {
-    sessionStorage.setItem(`scroll-pos-${from.fullPath}`, window.scrollY.toString())
-  }
-  next()
 })
 
 export default router
