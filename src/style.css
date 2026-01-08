@@ -27,8 +27,8 @@
 
   body {
     @apply bg-bg-main text-text-primary font-sans antialiased;
-    /*font-size: 1.125rem; !* ~20px: slightly larger than default UI text *!*/
-    /*line-height: 1.7; !* prioritize reading comfort *!*/
+    /*font-size: 1.125rem; !* ~18px *!*/
+    line-height: 1.75;   /* ~31.5px - Explicit for scroll snapping */
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -60,4 +60,36 @@
   .label-overline {
     @apply font-sans text-sm font-semibold uppercase tracking-wider text-text-secondary block mb-3;
   }
+}
+
+@media print {
+  /* Hide UI elements */
+  header, aside, button, .no-print {
+    display: none !important;
+  }
+
+  /* Reset layout for paper */
+  body {
+    background-color: white !important;
+    color: black !important;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+
+  .container, .content-narrow {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+
+  /* Ensure links are visible but not blue/underlined in a distracting way */
+  a {
+    text-decoration: none;
+    color: black !important;
+    font-weight: 600;
+  }
+
+  /* Optional: Show URL after links for reference in printed docs */
+  /* a[href^="http"]:after { content: " (" attr(href) ")"; font-size: 0.8em; color: #666; } */
 }
