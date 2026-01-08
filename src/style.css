@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scrollbar-gutter: stable;
+  }
+
   :root {
     --bg-main: #FCFBF9;
     --bg-muted: #F3F1ED;
@@ -13,18 +17,18 @@
   }
 
   .dark {
-    --bg-main: #12110F;
-    --bg-muted: #1A1916;
-    --text-primary: #EDEBE7;
-    --text-secondary: #A8A29E;
-    --border-subtle: #2A2824;
-    --accent-primary: #B08968;
+    --bg-main: #12110F;          /* deep dark background */
+    --bg-muted: #1A1916;         /* subtle secondary background */
+    --text-primary: #E0DED9;     /* softer off-white for readability */
+    --text-secondary: #A8A29E;   /* secondary text, unchanged */
+    --border-subtle: #2A2824;    /* subtle divider */
+    --accent-primary: #8C715B;   /* softer warm accent for elegance */
   }
 
   body {
     @apply bg-bg-main text-text-primary font-sans antialiased;
-    font-size: 1.125rem; /* ~20px: slightly larger than default UI text */
-    line-height: 1.7; /* prioritize reading comfort */
+    /*font-size: 1.125rem; !* ~20px: slightly larger than default UI text *!*/
+    /*line-height: 1.7; !* prioritize reading comfort *!*/
   }
 
   h1, h2, h3, h4, h5, h6 {
