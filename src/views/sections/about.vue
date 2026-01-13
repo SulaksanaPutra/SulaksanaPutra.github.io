@@ -1,5 +1,5 @@
 <template>
-  <div class="text-justify hyphens-auto leading-relaxed snap-y snap-mandatory overflow-y-auto">
+  <div v-if="about" class="text-justify hyphens-auto leading-relaxed snap-y snap-mandatory overflow-y-auto">
     <section class="content-narrow pt-8 pb-4" id="context">
       <p v-for="(paragraph, index) in about.intro" :key="index">
         {{ paragraph }}
@@ -29,7 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import aboutData from '../../data/home/about.json'
+import { useI18n } from '../../composables/useI18n'
 
-const about = aboutData
+const { data: about } = useI18n('home/about')
 </script>

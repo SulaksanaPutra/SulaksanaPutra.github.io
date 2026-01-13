@@ -109,18 +109,20 @@ import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { Sun, Moon, Menu, Search } from 'lucide-vue-next'
 import { isDark, language, scrollProgress, isDrawerOpen, headerComponentRef } from '../store'
-import headerData from '../data/common/header.json'
+import { useI18n } from '../composables/useI18n'
+
+const { data: headerData } = useI18n('common/header')
 
 const route = useRoute()
 const headerRef = ref<HTMLElement | null>(null)
 const searchInputRef = ref<HTMLInputElement | null>(null)
 const searchQuery = ref('')
 
-const searchLinks = headerData.searchLinks
-const navLinks = headerData.navLinks
+const searchLinks = computed(() => headerData.value?.searchLinks || [])
+const navLinks = computed(() => headerData.value?.navLinks || [])
 
 const filteredLinks = computed(() =>
-  searchLinks.filter(item =>
+  searchLinks.value.filter(item =>
     item.label.toLowerCase().includes(searchQuery.value.toLowerCase())
   )
 )

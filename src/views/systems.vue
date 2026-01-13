@@ -50,7 +50,7 @@
 </template>
 
 <script setup lang="ts">
-import systemsData from '../data/systems/systems.json'
+import { useI18n } from '../composables/useI18n'
 
-const systems = systemsData
+const { data: systems } = useI18n('systems/systems')
 </script>

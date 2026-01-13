@@ -1,12 +1,12 @@
 <template>
-  <div class="content-narrow py-8">
+  <div v-if="skills" class="content-narrow py-8">
     <h1 class="text-2xl font-semibold mb-6">{{ skills.title }}</h1>
     <p>{{ skills.description }}</p>
   </div>
 </template>
 
 <script setup lang="ts">
-import skillsData from '../data/skills/skills.json'
+import { useI18n } from '../composables/useI18n'
 
-const skills = skillsData
+const { data: skills } = useI18n('skills/skills')
 </script>

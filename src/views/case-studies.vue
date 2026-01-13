@@ -34,7 +34,7 @@
 </template>
 
 <script setup lang="ts">
-import caseStudiesData from '../data/case-studies/case-studies.json'
+import { useI18n } from '../composables/useI18n'
 
-const caseStudies = caseStudiesData
+const { data: caseStudies } = useI18n('case-studies/case-studies')
 </script>

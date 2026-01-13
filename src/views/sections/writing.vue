@@ -1,5 +1,5 @@
 <template>
-  <section class="content-narrow py-8 min-h-screen">
+  <section v-if="writing" class="content-narrow py-8 min-h-screen">
     <h1 class="text-3xl font-bold mb-6">{{ writing.title }}</h1>
     <div class="text-justify hyphens-auto leading-relaxed space-y-4">
       <p v-for="(paragraph, index) in writing.paragraphs" :key="index">
@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import writingData from '../../data/home/sections/writing.json'
+import { useI18n } from '../../composables/useI18n'
 
-const writing = writingData
+const { data: writing } = useI18n('home/sections/writing')
 </script>
