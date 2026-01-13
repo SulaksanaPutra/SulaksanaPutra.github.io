@@ -69,15 +69,21 @@ const getDrawerStateKey = () => drawerStateKeys[route.path] || 'drawerOpen'
 watch(
   () => route.path,
   () => {
+    // On mobile, always start with the drawer closed.
+    if (window.innerWidth < 768) {
+      isDrawerOpen.value = false
+      return
+    }
+
     const key = getDrawerStateKey()
     const savedState = localStorage.getItem(key)
 
-    // Restore route-specific drawer state; default to open on desktop, closed on mobile
+    // On desktop, restore previous state or default to open.
     if (savedState !== null) {
       isDrawerOpen.value = savedState === 'true'
     } else {
-      isDrawerOpen.value = window.innerWidth >= 768
-      localStorage.setItem(key, isDrawerOpen.value.toString())
+      isDrawerOpen.value = true
+      localStorage.setItem(key, 'true')
     }
   },
   { immediate: true }
@@ -85,7 +91,9 @@ watch(
 
 const toggleDrawer = () => {
   isDrawerOpen.value = !isDrawerOpen.value
-  localStorage.setItem(getDrawerStateKey(), isDrawerOpen.value.toString())
+  if (window.innerWidth >= 768) {
+    localStorage.setItem(getDrawerStateKey(), isDrawerOpen.value.toString())
+  }
 }
 
 const scrollToSection = (id: string) => {
@@ -105,7 +113,6 @@ const scrollToSection = (id: string) => {
 
   if (window.innerWidth < 768) {
     isDrawerOpen.value = false
-    localStorage.setItem(getDrawerStateKey(), 'false')
   }
 }
 
@@ -120,7 +127,6 @@ const handleItemClick = (item: DrawerItemData) => {
 const handleDrawerLinkClick = () => {
   if (window.innerWidth < 768) {
     isDrawerOpen.value = false
-    localStorage.setItem(getDrawerStateKey(), 'false')
   }
 }
 </script>
