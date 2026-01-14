@@ -15,7 +15,8 @@
 </template>
 
 <script setup lang="ts">
-import { useI18n } from '../../composables/useI18n'
+import { useI18n } from '@/composables/useI18n.ts'
+import {Uses} from "@/data/types.ts";
 
-const { data: uses } = useI18n('home/sections/uses')
+const { data: uses } = useI18n<Uses>('home/sections/uses')
 </script>

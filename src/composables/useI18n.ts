@@ -1,7 +1,7 @@
 import { ref, watch } from 'vue'
 import { language } from '@/store'
 
-const dataFiles = import.meta.glob('@/data/**/*.json')
+const dataFiles = import.meta.glob('../data/**/*.json')
 
 export function useI18n<T>(basePath: string) {
   const data = ref<T | null>(null)

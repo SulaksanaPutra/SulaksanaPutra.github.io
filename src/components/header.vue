@@ -1,27 +1,44 @@
 <template>
   <header ref="headerRef" class="sticky top-0 z-[70] bg-bg-main py-3 border-b border-border-subtle transition-colors duration-300">
     <div class="relative mx-auto px-6 md:px-8 flex items-center justify-between flex-wrap">
-      <div class="flex items-center">
+      <div class="flex items-center w-full md:w-auto">
         <div class="flex items-center mr-4 md:mr-8 text-text-primary">
           <button
             type="button"
             @click="toggleDrawer"
             class="flex items-center justify-center w-8 h-8"
+            :class="{ 'text-bg-main': isDrawerEmpty }"
+            :disabled="isDrawerEmpty"
             aria-label="Toggle menu"
           >
             <Menu />
           </button>
         </div>
-        <div
-          class="mb-4 md:mb-0 text-accent-primary font-semibold text-[1.125rem] leading-[1.35] tracking-[-0.015em]"
-          style="font-family: Zalando Sans, sans-serif;"
-        >
-          BayuAksana
-          <div class="text-base">
-            dotcom
+        <div class="flex items-center justify-between w-full">
+          <div
+              class="mb-4 md:mb-0 text-accent-primary font-semibold text-[1.125rem] leading-[1.35] tracking-[-0.015em]"
+              style="font-family: Zalando Sans, sans-serif;"
+          >
+            BayuAksana
+            <div class="text-base">
+              dotcom
+            </div>
+          </div>
+          <div class="md:hidden items-center gap-1 rounded-full border border-border-subtle p-1 text-sm ml-4">
+            <button
+                v-for="lang in ['EN', 'ID', 'JP']"
+                :key="lang"
+                @click="setLanguage(lang)"
+                class="px-2 py-0.5 rounded-full transition-colors"
+                :class="language === lang
+              ? 'bg-bg-muted text-text-primary'
+              : 'text-text-secondary hover:bg-bg-muted'"
+            >
+              {{ lang }}
+            </button>
           </div>
         </div>
-      </div>
+       </div>
       <div class="relative ml-8 hidden md:block">
         <div class="relative">
           <Search
@@ -111,6 +128,11 @@ import { Sun, Moon, Menu, Search } from 'lucide-vue-next'
 import { isDark, language, scrollProgress, isDrawerOpen, headerComponentRef } from '@/store'
 import { useI18n } from '@/composables/useI18n'
 import type { Header } from '@/data/types'
+import systemsItems from '@/data/systems/systems-drawer.json'
+import caseStudiesItems from '@/data/case-studies/case-studies-drawer.json'
+import skillsItems from '@/data/skills/skills-drawer.json'
+import contactItems from '@/data/contact/contact-drawer.json'
+import homeItems from '@/data/home/home-drawer.json'
 
 const { data: headerData } = useI18n<Header>('common/header')
 
@@ -127,6 +149,22 @@ const filteredLinks = computed(() =>
     item.label.toLowerCase().includes(searchQuery.value.toLowerCase())
   )
 )
+
+const routeLists: Record<string, any[]> = {
+  '/systems': systemsItems,
+  '/case-studies': caseStudiesItems,
+  '/skills': skillsItems,
+  '/contact': contactItems,
+  '/': homeItems,
+  '/writing': homeItems,
+  '/projects': homeItems,
+  '/uses': homeItems,
+}
+
+const isDrawerEmpty = computed(() => {
+  const list = routeLists[route.path] || []
+  return list.length === 0
+})
 
 const getDrawerStateKey = () => route.path === '/systems' ? 'systemsDrawerOpen' : 'drawerOpen'
 

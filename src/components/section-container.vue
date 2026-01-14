@@ -7,14 +7,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, onMounted, nextTick, defineAsyncComponent } from 'vue'
+import { ref, watch, onMounted, nextTick, defineAsyncComponent, markRaw } from 'vue'
 import { useRoute } from 'vue-router'
 
 const components = {
-  about: defineAsyncComponent(() => import('@/views/sections/about.vue')),
-  writing: defineAsyncComponent(() => import('@/views/sections/writing.vue')),
-  projects: defineAsyncComponent(() => import('@/views/sections/projects.vue')),
-  uses: defineAsyncComponent(() => import('@/views/sections/uses.vue')),
+  about: markRaw(defineAsyncComponent(() => import('@/views/sections/about.vue'))),
+  writing: markRaw(defineAsyncComponent(() => import('@/views/sections/writing.vue'))),
+  projects: markRaw(defineAsyncComponent(() => import('@/views/sections/projects.vue'))),
+  uses: markRaw(defineAsyncComponent(() => import('@/views/sections/uses.vue'))),
 }
 
 const route = useRoute()

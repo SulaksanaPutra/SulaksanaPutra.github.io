@@ -22,14 +22,15 @@
 
     <section class="content-narrow mt-9 pt-9 border-t border-border-subtle" id="orientation">
       <p v-for="(link, index) in about.links" :key="index">
-        <router-link :to="link.to">{{ link.text }}</router-link>
+        <router-link :to="link.to">{{ link.label }}</router-link>
       </p>
     </section>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useI18n } from '../../composables/useI18n'
+import { useI18n } from '@/composables/useI18n.ts'
+import {About} from "@/data/types.ts";
 
-const { data: about } = useI18n('home/about')
+const { data: about } = useI18n<About>('home/about')
 </script>
