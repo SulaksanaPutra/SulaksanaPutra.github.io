@@ -1,11 +1,5 @@
 {
-  "title": "Uses",
-  "paragraphs": [
-    "A list of tools, hardware, and software that I use on a daily basis."
-  ],
-  "items": [
-    "Editor: VS Code / IntelliJ IDEA",
-    "Terminal: iTerm2 / Warp",
-    "Font: JetBrains Mono"
-  ]
+    "title": "Uses",
+    "paragraphs": ["A list of tools, hardware, and software that I use on a daily basis."],
+    "items": ["Editor: VS Code / IntelliJ IDEA", "Terminal: iTerm2 / Warp", "Font: JetBrains Mono"]
 }

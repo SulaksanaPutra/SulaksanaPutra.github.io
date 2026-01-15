@@ -1,9 +1,9 @@
 [
-  {
-    "id": "twin-v1-vat",
-    "title": "Handling a VAT Increase in a Legacy, Real-Time System",
-    "subtitle": "Twin v1 — Regulatory change under production and architectural constraints",
-    "description": "How I managed a critical regulatory update in a legacy system with hardcoded tax logic, ensuring zero downtime and data integrity.",
-    "link": "/case-studies/twin-v1/handling-a-vat-increase-in-a-legacy-real-time-system"
-  }
+    {
+        "id": "twin-v1-vat",
+        "title": "Handling a VAT Increase in a Legacy, Real-Time System",
+        "subtitle": "Twin v1 — Regulatory change under production and architectural constraints",
+        "description": "How I managed a critical regulatory update in a legacy system with hardcoded tax logic, ensuring zero downtime and data integrity.",
+        "link": "/case-studies/twin-v1/handling-a-vat-increase-in-a-legacy-real-time-system"
+    }
 ]

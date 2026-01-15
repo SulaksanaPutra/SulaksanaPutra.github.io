@@ -1,37 +1,37 @@
 [
-  {
-    "id" : "about",
-    "to": "/",
-    "label": "About",
-    "description": "Background, values, and professional summary",
-    "isActive": false
-  },
-  {
-    "id" : "writing",
-    "to": "/writing",
-    "label": "Writing",
-    "description": "Essays, notes, and long-form thoughts",
-    "isActive": false
-  },
-  {
-    "id" : "projects",
-    "to": "/projects",
-    "label": "Projects",
-    "description": "Short ideas, experiments, and drafts",
-    "isActive": false
-  },
-  {
-    "id" : "uses",
-    "to": "/uses",
-    "label": "Uses",
-    "description": "Tools, hardware, and software I use daily",
-    "isActive": false
-  },
-  {
-    "id" : "hobbies",
-    "to": "/hobbies",
-    "label": "Hobbies",
-    "description": "Things I enjoy doing",
-    "isActive": false
-  }
+    {
+        "id": "about",
+        "to": "/",
+        "label": "About",
+        "description": "Background, values, and professional summary",
+        "isActive": false
+    },
+    {
+        "id": "writing",
+        "to": "/writing",
+        "label": "Writing",
+        "description": "Essays, notes, and long-form thoughts",
+        "isActive": false
+    },
+    {
+        "id": "projects",
+        "to": "/projects",
+        "label": "Projects",
+        "description": "Short ideas, experiments, and drafts",
+        "isActive": false
+    },
+    {
+        "id": "uses",
+        "to": "/uses",
+        "label": "Uses",
+        "description": "Tools, hardware, and software I use daily",
+        "isActive": false
+    },
+    {
+        "id": "hobbies",
+        "to": "/hobbies",
+        "label": "Hobbies",
+        "description": "Things I enjoy doing",
+        "isActive": false
+    }
 ]

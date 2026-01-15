@@ -1,12 +1,15 @@
 [
-  {
-    "id": "skill-backend-systems",
-    "label": "Backend Systems",
-    "description": "Core competencies in building scalable backend systems.",
-    "details": [
-      { "label": "Stack", "text": "Go, Laravel, distributed systems." },
-      { "label": "Strength", "text": "Consistency, reliability, and clear domain boundaries." }
-    ],
-    "tags": ["Backend", "Scalability"]
-  }
+    {
+        "id": "skill-backend-systems",
+        "label": "Backend Systems",
+        "description": "Core competencies in building scalable backend systems.",
+        "details": [
+            { "label": "Stack", "text": "Go, Laravel, distributed systems." },
+            {
+                "label": "Strength",
+                "text": "Consistency, reliability, and clear domain boundaries."
+            }
+        ],
+        "tags": ["Backend", "Scalability"]
+    }
 ]

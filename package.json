@@ -11,7 +11,11 @@
     "test:e2e": "playwright test",
     "test:unit": "vitest run",
     "test:unit:watch": "vitest",
-    "test:unit:ui": "vitest --ui"
+    "test:unit:ui": "vitest --ui",
+    "lint": "eslint . --ext .js,.ts,.vue",
+    "lint:fix": "npm run lint -- --fix",
+    "format": "prettier \"src/**/*.{js,ts,vue,css,md,json}\" --write",
+    "format:check": "prettier \"src/**/*.{js,ts,vue,css,md,json}\" --check"
   },
   "dependencies": {
     "@vueuse/core": "^10.7.0",
@@ -22,13 +26,20 @@
   "devDependencies": {
     "@playwright/test": "^1.40.0",
     "@types/node": "^20.10.0",
+    "@typescript-eslint/eslint-plugin": "^8.53.0",
+    "@typescript-eslint/parser": "^8.53.0",
     "@vitejs/plugin-vue": "^6.0.3",
     "@vitest/ui": "^4.0.17",
     "@vue/test-utils": "^2.4.6",
     "autoprefixer": "^10.4.16",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "eslint-plugin-vue": "^10.6.2",
     "happy-dom": "^20.3.0",
     "jsdom": "^27.4.0",
     "postcss": "^8.4.32",
+    "prettier": "^3.8.0",
     "tailwindcss": "^3.4.0",
     "typescript": "^5.2.2",
     "vite": "^7.3.0",

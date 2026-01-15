@@ -3,125 +3,139 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    scrollbar-gutter: stable;
-    scroll-behavior: smooth;
-  }
+    html {
+        scrollbar-gutter: stable;
+        scroll-behavior: smooth;
+    }
 
-  :root {
-    --bg-main: #FCFBF9;
-    --bg-muted: #F3F1ED;
-    --text-primary: #1A1A1A;
-    --text-secondary: #5C5C5C;
-    --border-subtle: #E2DED8;
-    --accent-primary: #6F4E37;
-  }
+    :root {
+        --bg-main: #fcfbf9;
+        --bg-muted: #f3f1ed;
+        --text-primary: #1a1a1a;
+        --text-secondary: #5c5c5c;
+        --border-subtle: #e2ded8;
+        --accent-primary: #6f4e37;
+    }
 
-  .dark {
-    --bg-main: #12110F;          /* deep dark background */
-    --bg-muted: #1A1916;         /* subtle secondary background */
-    --text-primary: #E0DED9;     /* softer off-white for readability */
-    --text-secondary: #A8A29E;   /* secondary text, unchanged */
-    --border-subtle: #2A2824;    /* subtle divider */
-    --accent-primary: #8C715B;   /* softer warm accent for elegance */
-  }
+    .dark {
+        --bg-main: #12110f; /* deep dark background */
+        --bg-muted: #1a1916; /* subtle secondary background */
+        --text-primary: #e0ded9; /* softer off-white for readability */
+        --text-secondary: #a8a29e; /* secondary text, unchanged */
+        --border-subtle: #2a2824; /* subtle divider */
+        --accent-primary: #8c715b; /* softer warm accent for elegance */
+    }
 
-  body {
-    @apply bg-bg-main text-text-primary font-sans antialiased;
-    /*font-size: 1.125rem; !* ~18px *!*/
-    line-height: 1.75;   /* ~31.5px - Explicit for scroll snapping */
-  }
+    body {
+        @apply bg-bg-main text-text-primary font-sans antialiased;
+        /*font-size: 1.125rem; !* ~18px *!*/
+        line-height: 1.75; /* ~31.5px - Explicit for scroll snapping */
+    }
 
-  /* Custom Scrollbar */
-  ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-  }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
 
-  ::-webkit-scrollbar-track {
-    background: var(--bg-main);
-  }
+    ::-webkit-scrollbar-track {
+        background: var(--bg-main);
+    }
 
-  ::-webkit-scrollbar-thumb {
-    background-color: var(--border-subtle);
-    border-radius: 9999px;
-    border: 2px solid var(--bg-main); /* Creates padding effect */
-  }
+    ::-webkit-scrollbar-thumb {
+        background-color: var(--border-subtle);
+        border-radius: 9999px;
+        border: 2px solid var(--bg-main); /* Creates padding effect */
+    }
 
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: var(--accent-primary);
-  }
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: var(--accent-primary);
+    }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold mt-0 mb-6 leading-tight;
-  }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-semibold mt-0 mb-6 leading-tight;
+    }
 
-  p, ul, ol, dl, pre, blockquote {
-    @apply mt-0 mb-6;
-  }
+    p,
+    ul,
+    ol,
+    dl,
+    pre,
+    blockquote {
+        @apply mt-0 mb-6;
+    }
 
-  a {
-    @apply text-accent-primary no-underline transition-colors duration-200;
-  }
+    a {
+        @apply text-accent-primary no-underline transition-colors duration-200;
+    }
 
-  a:hover {
-    @apply text-text-primary underline;
-  }
+    a:hover {
+        @apply text-text-primary underline;
+    }
 }
 
 @layer components {
-  .container {
-    @apply max-w-container mx-auto px-6 md:px-16;
-  }
+    .container {
+        @apply max-w-container mx-auto px-6 md:px-16;
+    }
 
-  .content-narrow {
-    @apply max-w-narrow;
-  }
+    .content-narrow {
+        @apply max-w-narrow;
+    }
 
-  .label-overline {
-    @apply font-sans text-sm font-semibold uppercase tracking-wider text-text-secondary block mb-3;
-  }
+    .label-overline {
+        @apply font-sans text-sm font-semibold uppercase tracking-wider text-text-secondary block mb-3;
+    }
 }
 
 /* Transitions */
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease;
 }
 
 .fade-enter-from,
 .fade-leave-to {
-  opacity: 0;
+    opacity: 0;
 }
 
 @media print {
-  /* Hide UI elements */
-  header, aside, button, .no-print {
-    display: none !important;
-  }
+    /* Hide UI elements */
+    header,
+    aside,
+    button,
+    .no-print {
+        display: none !important;
+    }
 
-  /* Reset layout for paper */
-  body {
-    background-color: white !important;
-    color: black !important;
-    font-size: 12pt;
-    line-height: 1.5;
-  }
+    /* Reset layout for paper */
+    body {
+        background-color: white !important;
+        color: black !important;
+        font-size: 12pt;
+        line-height: 1.5;
+    }
 
-  .container, .content-narrow {
-    max-width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    width: 100% !important;
-  }
+    .container,
+    .content-narrow {
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+    }
 
-  /* Ensure links are visible but not blue/underlined in a distracting way */
-  a {
-    text-decoration: none;
-    color: black !important;
-    font-weight: 600;
-  }
+    /* Ensure links are visible but not blue/underlined in a distracting way */
+    a {
+        text-decoration: none;
+        color: black !important;
+        font-weight: 600;
+    }
 
-  /* Optional: Show URL after links for reference in printed docs */
-  /* a[href^="http"]:after { content: " (" attr(href) ")"; font-size: 0.8em; color: #666; } */
+    /* Optional: Show URL after links for reference in printed docs */
+    /* a[href^="http"]:after { content: " (" attr(href) ")"; font-size: 0.8em; color: #666; } */
 }

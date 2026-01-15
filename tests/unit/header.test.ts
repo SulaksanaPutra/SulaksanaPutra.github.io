@@ -14,7 +14,7 @@ vi.mock('lucide-vue-next', () => {
   return { Sun: Stub, Moon: Stub, Menu: Stub, Search: Stub }
 })
 
-vi.mock('@/composables/useI18n', () => {
+vi.mock('@/composables/use-i18n', () => {
   return {
     useI18n: () => ({
       data: ref({

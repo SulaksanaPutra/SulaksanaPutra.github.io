@@ -1,11 +1,9 @@
 [
-  {
-    "id": "contact-info",
-    "label": "Contact Info",
-    "description": "How to reach me.",
-    "details": [
-      { "label": "Email", "text": "info@bayuaksana.com" }
-    ],
-    "tags": ["Contact"]
-  }
+    {
+        "id": "contact-info",
+        "label": "Contact Info",
+        "description": "How to reach me.",
+        "details": [{ "label": "Email", "text": "info@bayuaksana.com" }],
+        "tags": ["Contact"]
+    }
 ]
