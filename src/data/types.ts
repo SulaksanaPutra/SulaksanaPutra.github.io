@@ -15,7 +15,6 @@ type DetailItem = {
 };
 
 type DrawerBase = {
-  type: string;
   id: string;
   label: string;
   description: string;
@@ -104,6 +103,12 @@ export interface Writing {
 }
 
 export interface Uses {
+  title: string;
+  paragraphs: string[];
+  items: string[];
+}
+
+export interface Hobbies {
   title: string;
   paragraphs: string[];
   items: string[];

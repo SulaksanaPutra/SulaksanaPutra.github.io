@@ -41,6 +41,7 @@ const drawerMap: Record<string, Component> = {
   '/writing': HomeDrawer,
   '/projects': HomeDrawer,
   '/uses': HomeDrawer,
+  '/hobbies': HomeDrawer,
   '/systems': SystemsDrawer,
   '/case-studies': CaseStudiesDrawer,
   '/skills': SkillsDrawer,
@@ -158,7 +159,7 @@ watch(() => route.path, (newPath) => {
 
 
 // --- Route Transition Logic ---
-const sectionRoutes = ['About', 'Writing', 'Projects', 'Uses']
+const sectionRoutes = ['About', 'Writing', 'Projects', 'Uses', 'Hobbies']
 
 const previousRouteName = ref<string | null>(null)
 watch(

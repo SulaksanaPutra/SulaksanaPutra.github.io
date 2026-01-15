@@ -35,7 +35,7 @@
                   >
                     {{ item.label }}
                   </a>
-                  <p class="text-sm text-text-secondary mt-1 leading-relaxed">
+                  <p class="text-sm text-text-secondary mt-1 leading-relaxed hyphens-auto snap-y snap-mandatory">
                     {{ item.description }}
                   </p>
                 </div>

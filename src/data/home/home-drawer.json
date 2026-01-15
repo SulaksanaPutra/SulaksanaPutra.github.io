@@ -1,7 +1,6 @@
 [
   {
     "id" : "about",
-    "type": "link",
     "to": "/",
     "label": "About",
     "description": "Background, values, and professional summary",
@@ -9,7 +8,6 @@
   },
   {
     "id" : "writing",
-    "type": "link",
     "to": "/writing",
     "label": "Writing",
     "description": "Essays, notes, and long-form thoughts",
@@ -17,7 +15,6 @@
   },
   {
     "id" : "projects",
-    "type": "link",
     "to": "/projects",
     "label": "Projects",
     "description": "Short ideas, experiments, and drafts",
@@ -25,10 +22,16 @@
   },
   {
     "id" : "uses",
-    "type": "link",
     "to": "/uses",
     "label": "Uses",
     "description": "Tools, hardware, and software I use daily",
+    "isActive": false
+  },
+  {
+    "id" : "hobbies",
+    "to": "/hobbies",
+    "label": "Hobbies",
+    "description": "Things I enjoy doing",
     "isActive": false
   }
 ]

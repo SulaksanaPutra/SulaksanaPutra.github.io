@@ -15,11 +15,12 @@ const components = {
   writing: markRaw(defineAsyncComponent(() => import('@/views/sections/writing.vue'))),
   projects: markRaw(defineAsyncComponent(() => import('@/views/sections/projects.vue'))),
   uses: markRaw(defineAsyncComponent(() => import('@/views/sections/uses.vue'))),
+  hobbies: markRaw(defineAsyncComponent(() => import('@/views/sections/hobbies.vue')))
 }
 
 const route = useRoute()
 
-const sectionOrder = ['about', 'writing', 'projects', 'uses']
+const sectionOrder = ['about', 'writing', 'projects', 'uses', 'hobbies']
 
 interface MountedSection {
   name: string

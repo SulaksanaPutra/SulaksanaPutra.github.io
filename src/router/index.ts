@@ -52,13 +52,18 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Uses',
     component: SectionContainer
   },
+  {
+    path: '/hobbies',
+    name: 'Hobbies',
+    component: SectionContainer
+  },
 ]
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
   scrollBehavior(to, from, savedPosition) {
-    const sectionRoutes = ['About', 'Writing', 'Projects', 'Uses'];
+    const sectionRoutes = ['About', 'Writing', 'Projects', 'Uses', 'Hobbies'];
     if (to.name && from.name && sectionRoutes.includes(to.name as string) && sectionRoutes.includes(from.name as string)) {
       return false;
     }
