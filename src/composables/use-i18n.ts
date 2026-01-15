@@ -18,7 +18,7 @@ export function useI18n<T>(basePath: string) {
                     if (module.default && Object.keys(module.default).length > 0) {
                         loadedData = module.default;
                     }
-                } catch (_error) {
+                } catch {
                     // File not found will fallback to default
                 }
             }

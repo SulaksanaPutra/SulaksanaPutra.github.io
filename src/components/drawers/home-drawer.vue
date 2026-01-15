@@ -8,17 +8,27 @@
         <nav class="p-6 pt-10 relative">
             <button
                 type="button"
-                @click="toggleDrawer"
                 class="absolute top-4 right-4 md:hidden flex items-center justify-center w-8 h-8 rounded-full hover:bg-bg-muted"
                 aria-label="Close menu"
+                @click="toggleDrawer"
             >
                 <X />
             </button>
 
             <ul>
-                <template v-for="(item, _index) in homeItems" :key="_index">
-                    <router-link :to="item.to || '/'" custom v-slot="{ href, navigate }">
-                        <li class="flex gap-3" v-show="!item.isActive">
+                <template
+                    v-for="(item, _index) in homeItems"
+                    :key="_index"
+                >
+                    <router-link
+                        v-slot="{ href, navigate }"
+                        :to="item.to || '/'"
+                        custom
+                    >
+                        <li
+                            v-show="!item.isActive"
+                            class="flex gap-3"
+                        >
                             <div class="w-full">
                                 <a
                                     :href="href"

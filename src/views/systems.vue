@@ -3,8 +3,8 @@
         <section class="content-narrow pt-8">
             <article
                 v-for="system in systems"
-                :key="system.id"
                 :id="system.id"
+                :key="system.id"
                 class="mb-16 pb-8 border-b border-border-subtle last:border-b-0"
             >
                 <h2 class="text-xl text-left text-text-primary mb-2">
@@ -33,8 +33,13 @@
                 </div>
 
                 <div class="space-y-6">
-                    <div v-for="(section, index) in system.sections" :key="index">
-                        <p class="label-overline">{{ section.label }}</p>
+                    <div
+                        v-for="(section, index) in system.sections"
+                        :key="index"
+                    >
+                        <p class="label-overline">
+                            {{ section.label }}
+                        </p>
                         <p>{{ section.content }}</p>
                     </div>
 

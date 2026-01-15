@@ -7,25 +7,29 @@
         <nav class="p-6 pt-10 relative">
             <button
                 type="button"
-                @click="toggleDrawer"
                 class="absolute top-4 right-4 md:hidden flex items-center justify-center w-8 h-8 rounded-full hover:bg-bg-muted"
                 aria-label="Close menu"
+                @click="toggleDrawer"
             >
                 ✕
             </button>
 
             <ul class="space-y-6">
-                <li v-for="item in contactItems" :key="item.id" class="flex gap-3">
+                <li
+                    v-for="item in contactItems"
+                    :key="item.id"
+                    class="flex gap-3"
+                >
                     <div class="w-full">
                         <a
                             :href="`#${item.id}`"
-                            @click.prevent="scrollToSection(item.id)"
                             class="block font-medium text-base transition-colors duration-200"
                             :class="
                                 activeSection === item.id
                                     ? 'text-accent-primary'
                                     : 'text-text-primary hover:text-accent-primary'
                             "
+                            @click.prevent="scrollToSection(item.id)"
                         >
                             {{ item.label }}
                         </a>
@@ -41,9 +45,7 @@
                                 :key="index"
                                 class="text-xs text-text-secondary"
                             >
-                                <span class="text-text-primary font-medium"
-                                    >{{ detail.label }}:</span
-                                >
+                                <span class="text-text-primary font-medium">{{ detail.label }}:</span>
                                 {{ detail.text }}
                             </p>
                         </div>
@@ -69,8 +71,11 @@
 <script setup lang="ts">
 import { watch } from 'vue';
 import { useRoute } from 'vue-router';
-import { isDrawerOpen, activeSection, headerComponentRef, drawerTop } from '@/store';
-import contactItems from '@/data/contact/contact-drawer.json';
+import { activeSection, drawerTop, headerComponentRef, isDrawerOpen } from '@/store';
+import rawContactItems from '@/data/contact/contact-drawer.json';
+import { ContactDrawer } from '@/data/types.ts';
+
+const contactItems = rawContactItems as ContactDrawer[];
 
 const route = useRoute();
 

@@ -24,7 +24,9 @@
                         {{ study.description }}
                     </p>
 
-                    <router-link :to="study.link"> Read case study → </router-link>
+                    <router-link :to="study.link">
+                        Read case study →
+                    </router-link>
                 </article>
             </div>
         </section>

@@ -1,7 +1,9 @@
 <template>
     <footer class="pt-12 pb-16 border-t border-border-subtle text-sm text-text-secondary mt-18">
         <div class="container">
-            <p class="mb-1">{{ footer.copyright }}</p>
+            <p class="mb-1">
+                {{ footer.copyright }}
+            </p>
             <p class="text-text-secondary">
                 {{ footer.availability }}
                 <a :href="`mailto:${footer.email}`">{{ footer.email }}</a>

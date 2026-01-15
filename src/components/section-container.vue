@@ -2,8 +2,8 @@
     <div class="section-container relative">
         <div
             v-for="section in mountedSections"
-            :key="section.name"
             :id="`section-${section.name}`"
+            :key="section.name"
             class="section-wrapper"
         >
             <component :is="section.component" />

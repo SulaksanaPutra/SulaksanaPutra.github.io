@@ -8,13 +8,22 @@
                 :class="isDrawerOpen ? 'md:ml-64' : ''"
             >
                 <router-view v-slot="{ Component, route }">
-                    <transition :name="shouldTransition(route) ? 'fade' : ''" mode="out-in">
-                        <component :is="Component" :key="getRouteKey(route)" />
+                    <transition
+                        :name="shouldTransition(route) ? 'fade' : ''"
+                        mode="out-in"
+                    >
+                        <component
+                            :is="Component"
+                            :key="getRouteKey(route)"
+                        />
                     </transition>
                 </router-view>
             </main>
         </div>
-        <Footer class="transition-all duration-30" :class="isDrawerOpen ? 'md:ml-32' : ''" />
+        <Footer
+            class="transition-all duration-30"
+            :class="isDrawerOpen ? 'md:ml-32' : ''"
+        />
     </div>
 </template>
 

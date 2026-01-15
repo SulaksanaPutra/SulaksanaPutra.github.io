@@ -13,7 +13,7 @@ function setInnerWidth(width: number) {
   })
 }
 
-function makeRouter(_initialPath = '/systems') {
+function makeRouter() {
   return createRouter({
     history: createMemoryHistory(),
     routes: [{ path: '/systems', component: { template: '<div />' } }],
@@ -30,7 +30,7 @@ describe('systems-drawer.vue', () => {
 
   it('opens by default on desktop and persists state', async () => {
     setInnerWidth(1024)
-    const router = makeRouter('/systems')
+    const router = makeRouter()
     await router.push('/systems')
     await router.isReady()
 
@@ -43,7 +43,7 @@ describe('systems-drawer.vue', () => {
 
   it('is closed by default on mobile', async () => {
     setInnerWidth(375)
-    const router = makeRouter('/systems')
+    const router = makeRouter()
     await router.push('/systems')
     await router.isReady()
 
@@ -55,7 +55,7 @@ describe('systems-drawer.vue', () => {
 
   it('scroll link sets active section and closes drawer on mobile', async () => {
     setInnerWidth(375)
-    const router = makeRouter('/systems')
+    const router = makeRouter()
     await router.push('/systems')
     await router.isReady()
 

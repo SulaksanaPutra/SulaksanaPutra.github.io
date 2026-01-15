@@ -8,11 +8,11 @@
                 <div class="flex items-center mr-4 md:mr-8 text-text-primary">
                     <button
                         type="button"
-                        @click="toggleDrawer"
                         class="flex items-center justify-center w-8 h-8"
                         :class="{ 'text-bg-main': isDrawerEmpty }"
                         :disabled="isDrawerEmpty"
                         aria-label="Toggle menu"
+                        @click="toggleDrawer"
                     >
                         <Menu />
                     </button>
@@ -27,7 +27,9 @@
                         "
                     >
                         BayuAksana
-                        <div class="text-base">dotcom</div>
+                        <div class="text-base">
+                            dotcom
+                        </div>
                     </div>
                     <div
                         class="md:hidden items-center gap-1 rounded-full border border-border-subtle p-1 text-sm ml-4"
@@ -35,13 +37,13 @@
                         <button
                             v-for="lang in ['EN', 'ID', 'JP']"
                             :key="lang"
-                            @click="setLanguage(lang)"
                             class="px-2 py-0.5 rounded-full transition-colors"
                             :class="
                                 language === lang
                                     ? 'bg-bg-muted text-text-primary'
                                     : 'text-text-secondary hover:bg-bg-muted'
                             "
+                            @click="setLanguage(lang)"
                         >
                             {{ lang }}
                         </button>
@@ -55,12 +57,12 @@
                         :size="16"
                     />
                     <input
+                        ref="searchInputRef"
                         v-model="searchQuery"
                         type="text"
                         placeholder="Search…"
-                        ref="searchInputRef"
                         class="w-56 md:w-72 pl-8 bg-bg-muted border border-border-subtle rounded-md py-1.5 px-2 text-sm focus:outline-none"
-                    />
+                    >
                 </div>
                 <ul
                     v-if="searchQuery && filteredLinks.length"
@@ -71,7 +73,11 @@
                         :key="item.url"
                         class="px-4 py-3 hover:bg-bg-muted"
                     >
-                        <router-link :to="item.url" class="block" @click="searchQuery = ''">
+                        <router-link
+                            :to="item.url"
+                            class="block"
+                            @click="searchQuery = ''"
+                        >
                             <div class="text-sm font-medium text-text-primary">
                                 {{ item.label }}
                             </div>
@@ -101,13 +107,21 @@
                     </li>
                 </ul>
                 <button
-                    @click="toggleTheme"
                     type="button"
                     class="hidden md:flex items-center justify-center w-10 h-10 rounded-full border border-border-subtle transition-all duration-300 ease-out hover:scale-105 active:scale-95 hover:bg-bg-muted ml-auto md:ml-6"
                     aria-label="Toggle theme"
+                    @click="toggleTheme"
                 >
-                    <Moon v-if="!isDark" :size="20" class="text-text-primary" />
-                    <Sun v-else :size="20" class="text-text-primary" />
+                    <Moon
+                        v-if="!isDark"
+                        :size="20"
+                        class="text-text-primary"
+                    />
+                    <Sun
+                        v-else
+                        :size="20"
+                        class="text-text-primary"
+                    />
                 </button>
                 <div
                     class="hidden md:flex items-center gap-1 rounded-full border border-border-subtle p-1 text-sm ml-4"
@@ -115,13 +129,13 @@
                     <button
                         v-for="lang in ['EN', 'ID', 'JP']"
                         :key="lang"
-                        @click="setLanguage(lang)"
                         class="px-2 py-0.5 rounded-full transition-colors"
                         :class="
                             language === lang
                                 ? 'bg-bg-muted text-text-primary'
                                 : 'text-text-secondary hover:bg-bg-muted'
                         "
+                        @click="setLanguage(lang)"
                     >
                         {{ lang }}
                     </button>

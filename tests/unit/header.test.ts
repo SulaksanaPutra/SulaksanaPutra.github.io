@@ -32,7 +32,7 @@ vi.mock('@/composables/use-i18n', () => {
   }
 })
 
-function makeRouter(_initialPath = '/') {
+function makeRouter() {
   return createRouter({
     history: createMemoryHistory(),
     routes: [
@@ -53,7 +53,7 @@ describe('header.vue', () => {
   })
 
   it('renders navigation links from i18n data', async () => {
-    const router = makeRouter('/')
+    const router = makeRouter()
     await router.push('/')
     await router.isReady()
 
@@ -64,7 +64,7 @@ describe('header.vue', () => {
   })
 
   it('toggles theme and persists to localStorage', async () => {
-    const router = makeRouter('/')
+    const router = makeRouter()
     await router.push('/')
     await router.isReady()
 
@@ -77,7 +77,7 @@ describe('header.vue', () => {
   })
 
   it('toggles drawer and uses per-route storage key', async () => {
-    const router = makeRouter('/systems')
+    const router = makeRouter()
     await router.push('/systems')
     await router.isReady()
 
@@ -89,7 +89,7 @@ describe('header.vue', () => {
   })
 
   it('Ctrl/Cmd+K focuses search input', async () => {
-    const router = makeRouter('/')
+    const router = makeRouter()
     await router.push('/')
     await router.isReady()
 
