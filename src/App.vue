@@ -8,42 +8,31 @@
                 :class="isDrawerOpen ? 'md:ml-64' : ''"
             >
                 <router-view v-slot="{ Component: RoutedComponent, route: routedRoute }">
-                    <transition
-                        :name="shouldTransition(routedRoute) ? 'fade' : ''"
-                        mode="out-in"
-                    >
-                        <component
-                            :is="RoutedComponent"
-                            :key="getRouteKey(routedRoute)"
-                        />
+                    <transition :name="shouldTransition(routedRoute) ? 'fade' : ''" mode="out-in">
+                        <component :is="RoutedComponent" :key="getRouteKey(routedRoute)" />
                     </transition>
                 </router-view>
             </main>
         </div>
-        <Footer
-            class="transition-all duration-30"
-            :class="isDrawerOpen ? 'md:ml-32' : ''"
-        />
+        <Footer class="transition-all duration-30" :class="isDrawerOpen ? 'md:ml-32' : ''" />
     </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, watch, computed, ref, type Component } from 'vue';
+import { type Component, computed, onMounted, onUnmounted, ref, watch } from 'vue';
 import { RouteLocationNormalized, useRoute } from 'vue-router';
 import Header from '@/components/header.vue';
 import Footer from '@/components/footer.vue';
 import HomeDrawer from '@/components/drawers/home-drawer.vue';
 import SystemsDrawer from '@/components/drawers/systems-drawer.vue';
 import CaseStudiesDrawer from '@/components/drawers/case-studies-drawer.vue';
-import SkillsDrawer from '@/components/drawers/skills-drawer.vue';
-import ContactDrawer from '@/components/drawers/contact-drawer.vue';
 import {
+    activeSection,
+    drawerTop,
+    headerComponentRef,
     isDark,
     isDrawerOpen,
     scrollProgress,
-    activeSection,
-    headerComponentRef,
-    drawerTop,
 } from '@/store';
 import systemsData from '@/data/systems/systems.json';
 
@@ -57,8 +46,6 @@ const drawerMap: Record<string, Component> = {
     '/hobbies': HomeDrawer,
     '/systems': SystemsDrawer,
     '/case-studies': CaseStudiesDrawer,
-    '/skills': SkillsDrawer,
-    '/contact': ContactDrawer,
 };
 
 const currentDrawer = computed(() => drawerMap[route.path] || null);

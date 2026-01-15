@@ -27,9 +27,7 @@
                         "
                     >
                         BayuAksana
-                        <div class="text-base">
-                            dotcom
-                        </div>
+                        <div class="text-base">dotcom</div>
                     </div>
                     <div
                         class="md:hidden items-center gap-1 rounded-full border border-border-subtle p-1 text-sm ml-4"
@@ -62,7 +60,7 @@
                         type="text"
                         placeholder="Search…"
                         class="w-56 md:w-72 pl-8 bg-bg-muted border border-border-subtle rounded-md py-1.5 px-2 text-sm focus:outline-none"
-                    >
+                    />
                 </div>
                 <ul
                     v-if="searchQuery && filteredLinks.length"
@@ -73,11 +71,7 @@
                         :key="item.url"
                         class="px-4 py-3 hover:bg-bg-muted"
                     >
-                        <router-link
-                            :to="item.url"
-                            class="block"
-                            @click="searchQuery = ''"
-                        >
+                        <router-link :to="item.url" class="block" @click="searchQuery = ''">
                             <div class="text-sm font-medium text-text-primary">
                                 {{ item.label }}
                             </div>
@@ -112,16 +106,8 @@
                     aria-label="Toggle theme"
                     @click="toggleTheme"
                 >
-                    <Moon
-                        v-if="!isDark"
-                        :size="20"
-                        class="text-text-primary"
-                    />
-                    <Sun
-                        v-else
-                        :size="20"
-                        class="text-text-primary"
-                    />
+                    <Moon v-if="!isDark" :size="20" class="text-text-primary" />
+                    <Sun v-else :size="20" class="text-text-primary" />
                 </button>
                 <div
                     class="hidden md:flex items-center gap-1 rounded-full border border-border-subtle p-1 text-sm ml-4"
@@ -150,16 +136,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue';
+import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
-import { Sun, Moon, Menu, Search } from 'lucide-vue-next';
-import { isDark, language, scrollProgress, isDrawerOpen, headerComponentRef } from '@/store';
+import { Menu, Moon, Search, Sun } from 'lucide-vue-next';
+import { headerComponentRef, isDark, isDrawerOpen, language, scrollProgress } from '@/store';
 import { useI18n } from '@/composables/use-i18n';
 import type { Header } from '@/data/types';
 import systemsItems from '@/data/systems/systems-drawer.json';
 import caseStudiesItems from '@/data/case-studies/case-studies-drawer.json';
-import skillsItems from '@/data/skills/skills-drawer.json';
-import contactItems from '@/data/contact/contact-drawer.json';
 import homeItems from '@/data/home/home-drawer.json';
 
 const { data: headerData } = useI18n<Header>('common/header');
@@ -181,8 +165,6 @@ const filteredLinks = computed(() =>
 const routeLists: Record<string, any[]> = {
     '/systems': systemsItems,
     '/case-studies': caseStudiesItems,
-    '/skills': skillsItems,
-    '/contact': contactItems,
     '/': homeItems,
     '/writing': homeItems,
     '/projects': homeItems,

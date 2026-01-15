@@ -1,15 +1,56 @@
 [
     {
-        "id": "case-growth-platform",
-        "label": "Growth Platform Migration",
-        "description": "A case study on migrating a legacy growth platform to a modular architecture.",
-        "details": [
+        "systemId": "system-laas",
+        "systemTitle": "LAAS — Logistics as a Service",
+        "cases": [
             {
-                "label": "Focus",
-                "text": "Reducing coupling while maintaining business continuity."
+                "id": "laas-public-api",
+                "title": "Exposing Logistics as a Public API",
+                "to": "/case-studies/laas-public-api"
             },
-            { "label": "Result", "text": "Improved deployment speed and team autonomy." }
-        ],
-        "tags": ["Case Study", "Architecture", "Migration"]
+            {
+                "id": "laas-async-observability",
+                "title": "Designing Observability for Async Systems",
+                "to": "/case-studies/laas-async-observability"
+            }
+        ]
+    },
+    {
+        "systemId": "system-twin-v2-wms",
+        "systemTitle": "Twin V2 — Warehouse Management System",
+        "cases": [
+            {
+                "id": "wms-legacy-migration",
+                "title": "Migrating Stock Logic from a Legacy Core",
+                "to": "/case-studies/wms-legacy-migration"
+            },
+            {
+                "id": "wms-service-boundaries",
+                "title": "Defining Service Boundaries in Go",
+                "to": "/case-studies/wms-service-boundaries"
+            }
+        ]
+    },
+    {
+        "systemId": "system-twin-v2-fleet",
+        "systemTitle": "Twin V2 — Fleet Management System",
+        "cases": [
+            {
+                "id": "fleet-settlement-correctness",
+                "title": "Building Correctness into Settlement Workflows",
+                "to": "/case-studies/fleet-settlement-correctness"
+            }
+        ]
+    },
+    {
+        "systemId": "system-twin-v1",
+        "systemTitle": "Twin — In-house Distributor System",
+        "cases": [
+            {
+                "id": "twin-v1-stabilization",
+                "title": "Stabilizing a Business-Critical Monolith",
+                "to": "/case-studies/twin-v1-stabilization"
+            }
+        ]
     }
 ]

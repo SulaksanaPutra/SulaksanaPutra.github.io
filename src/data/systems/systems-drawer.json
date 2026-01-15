@@ -1,66 +1,42 @@
 [
     {
         "id": "system-laas",
-        "label": "LAAS — Logistics as a Service",
-        "description": "A customer-facing platform exposing logistics capabilities to external clients.",
-        "details": [
-            {
-                "label": "Architecture",
-                "text": "Asynchronous proxy using queues to decouple external traffic from internal operations."
-            },
-            {
-                "label": "Outcome",
-                "text": "Enabled new B2B/B2C business models while shielding internal systems."
-            }
-        ],
-        "tags": ["Customer-facing", "B2B", "B2C"]
+        "title": "LAAS",
+        "subtitle": "Logistics as a Service",
+        "oneLiner": "External access to logistics capabilities without exposing internal systems.",
+        "link": {
+            "to": "/case-studies#laas",
+            "text": "View system →"
+        }
     },
     {
         "id": "system-twin-v2-wms",
-        "label": "Twin V2 — WMS",
-        "description": "A standalone warehouse management system replacing legacy stock handling.",
-        "details": [
-            {
-                "label": "Architecture",
-                "text": "Independent Go services with separate databases for correctness and scalability."
-            },
-            {
-                "label": "Outcome",
-                "text": "Delivered a reliable SaaS foundation with safer data migration and improved accuracy."
-            }
-        ],
-        "tags": ["Warehouse Management", "Distribution", "Logistics"]
+        "title": "Twin V2 WMS",
+        "subtitle": "Warehouse Management System",
+        "oneLiner": "A clean-slate WMS built to replace a fragile legacy core.",
+        "link": {
+            "to": "/case-studies#twin-v2-wms",
+            "text": "View system →"
+        }
     },
     {
         "id": "system-twin-v2-fleet",
-        "label": "Twin V2 — Fleet",
-        "description": "A dedicated delivery domain isolating fleet and settlement workflows.",
-        "details": [
-            {
-                "label": "Architecture",
-                "text": "Saga-style coordination and strict consistency checks for transaction safety."
-            },
-            {
-                "label": "Outcome",
-                "text": "Reliable delivery execution with accurate settlement and safe upstream integration."
-            }
-        ],
-        "tags": ["Logistics", "Delivery Operations"]
+        "title": "Twin V2 FMS",
+        "subtitle": "Fleet Management System",
+        "oneLiner": "Delivery and settlement isolated into a correctness-first domain.",
+        "link": {
+            "to": "/case-studies#twin-v2-fms",
+            "text": "View system →"
+        }
     },
     {
         "id": "system-twin-v1",
-        "label": "Twin V1 — Legacy",
-        "description": "The business-critical legacy monolith that unified fragmented distributor operations.",
-        "details": [
-            {
-                "label": "Context",
-                "text": "Centralized operational backbone replacing paper-based workflows."
-            },
-            {
-                "label": "Outcome",
-                "text": "Improved data consistency and enabled real-time visibility across the network."
-            }
-        ],
-        "tags": ["Distribution", "Inventory", "Sales Operations"]
+        "title": "Twin V1",
+        "subtitle": "In-house Distributor System",
+        "oneLiner": "A legacy monolith that powered daily distributor operations.",
+        "link": {
+            "to": "/case-studies#twin-v1",
+            "text": "View system →"
+        }
     }
 ]

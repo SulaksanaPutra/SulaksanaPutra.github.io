@@ -69,7 +69,17 @@ export interface Systems {
     };
 }
 
-export type SystemsDrawer = DrawerBase;
+export interface SystemsDrawer {
+    id: string;
+    title: string;
+    subtitle: string;
+    oneLiner: string;
+    signal: string[];
+    link: {
+        to: string;
+        text: string;
+    };
+}
 
 export interface CaseStudies {
     id: string;

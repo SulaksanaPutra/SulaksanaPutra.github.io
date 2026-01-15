@@ -31,30 +31,17 @@
                             "
                             @click.prevent="scrollToSection(item.id)"
                         >
-                            {{ item.label }}
+                            {{ item.title }}
                         </a>
                         <p class="text-sm text-text-secondary mt-1 leading-relaxed">
-                            {{ item.description }}
+                            {{ item.oneLiner }}
                         </p>
                         <div
-                            v-if="item.details && item.details.length"
-                            class="mt-2 space-y-1.5 border-l-2 border-border-subtle pl-3"
-                        >
-                            <p
-                                v-for="(detail, index) in item.details"
-                                :key="index"
-                                class="text-xs text-text-secondary"
-                            >
-                                <span class="text-text-primary font-medium">{{ detail.label }}:</span>
-                                {{ detail.text }}
-                            </p>
-                        </div>
-                        <div
-                            v-if="item.tags && item.tags.length"
+                            v-if="item.signal && item.signal.length"
                             class="flex flex-wrap gap-1.5 mt-2"
                         >
                             <span
-                                v-for="tag in item.tags"
+                                v-for="tag in item.signal"
                                 :key="tag"
                                 class="text-[10px] px-1.5 py-0.5 rounded border border-border-subtle text-text-secondary uppercase tracking-wider bg-bg-muted/50"
                             >
