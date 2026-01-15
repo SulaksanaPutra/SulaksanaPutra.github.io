@@ -7,14 +7,14 @@
                 class="container flex-grow pt-0 pb-16 transition-all duration-300"
                 :class="isDrawerOpen ? 'md:ml-64' : ''"
             >
-                <router-view v-slot="{ Component, route }">
+                <router-view v-slot="{ Component: RoutedComponent, route: routedRoute }">
                     <transition
-                        :name="shouldTransition(route) ? 'fade' : ''"
+                        :name="shouldTransition(routedRoute) ? 'fade' : ''"
                         mode="out-in"
                     >
                         <component
-                            :is="Component"
-                            :key="getRouteKey(route)"
+                            :is="RoutedComponent"
+                            :key="getRouteKey(routedRoute)"
                         />
                     </transition>
                 </router-view>

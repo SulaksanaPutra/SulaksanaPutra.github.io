@@ -1,12 +1,6 @@
 <template>
-    <div
-        v-if="contact"
-        class="content-narrow py-8"
-    >
-        <section
-            id="contact-info"
-            class="content-narrow"
-        >
+    <div v-if="contact" class="content-narrow py-8">
+        <section id="contact-info" class="content-narrow">
             <h1 class="text-3xl font-bold mb-6">
                 {{ contact.title }}
             </h1>
