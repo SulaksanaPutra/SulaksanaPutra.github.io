@@ -176,7 +176,11 @@ const isDrawerEmpty = computed(() => {
     return list.length === 0;
 });
 
-const getDrawerStateKey = () => (route.path === '/systems' ? 'systemsDrawerOpen' : 'drawerOpen');
+const getDrawerStateKey = () => {
+    if (route.path === '/systems') return 'systemsDrawerOpen';
+    if (route.path === '/case-studies') return 'caseStudiesDrawerOpen';
+    return 'drawerOpen';
+};
 
 const toggleDrawer = () => {
     isDrawerOpen.value = !isDrawerOpen.value;

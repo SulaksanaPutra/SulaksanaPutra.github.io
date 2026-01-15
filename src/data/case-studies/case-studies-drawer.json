@@ -1,7 +1,7 @@
 [
     {
         "systemId": "system-laas",
-        "systemTitle": "LAAS — Logistics as a Service",
+        "systemTitle": "LAAS",
         "cases": [
             {
                 "id": "laas-public-api",
@@ -17,7 +17,7 @@
     },
     {
         "systemId": "system-twin-v2-wms",
-        "systemTitle": "Twin V2 — Warehouse Management System",
+        "systemTitle": "Twin V2 WMS",
         "cases": [
             {
                 "id": "wms-legacy-migration",
@@ -33,7 +33,7 @@
     },
     {
         "systemId": "system-twin-v2-fleet",
-        "systemTitle": "Twin V2 — Fleet Management System",
+        "systemTitle": "Twin V2 FMS",
         "cases": [
             {
                 "id": "fleet-settlement-correctness",
@@ -44,7 +44,7 @@
     },
     {
         "systemId": "system-twin-v1",
-        "systemTitle": "Twin — In-house Distributor System",
+        "systemTitle": "Twin V1",
         "cases": [
             {
                 "id": "twin-v1-stabilization",

@@ -11,57 +11,56 @@
                 aria-label="Close menu"
                 @click="toggleDrawer"
             >
-                ✕
+                <X />
             </button>
 
             <ul class="space-y-6">
                 <li
-                    v-for="item in caseStudiesItems"
-                    :key="item.id"
-                    class="flex gap-3"
+                    v-for="system in caseStudiesItems"
+                    :key="system.systemId"
+                    class="space-y-2"
+                    :class="openSystems.includes(system.systemId) && 'pb-6'"
                 >
-                    <div class="w-full">
-                        <a
-                            :href="`#${item.id}`"
-                            class="block font-medium text-base transition-colors duration-200"
-                            :class="
-                                activeSection === item.id
-                                    ? 'text-accent-primary'
-                                    : 'text-text-primary hover:text-accent-primary'
-                            "
-                            @click.prevent="scrollToSection(item.id)"
+                    <button
+                        type="button"
+                        class="flex items-center justify-between w-full text-left font-medium text-base text-text-primary hover:text-accent-primary transition-colors duration-200"
+                        @click="toggleSystem(system.systemId)"
+                    >
+                        <span>{{ system.systemTitle }}</span>
+                        <ChevronDown
+                            class="w-4 h-4 text-text-secondary transition-transform duration-200 flex-shrink-0"
+                            :class="openSystems.includes(system.systemId) ? 'rotate-180' : ''"
+                        />
+                    </button>
+
+                    <ul
+                        v-show="openSystems.includes(system.systemId)"
+                        class="ml-0.5 space-y-2 relative"
+                    >
+                        <li
+                            v-for="(caseStudy, index) in system.cases"
+                            :key="caseStudy.id"
+                            class="relative pl-3"
                         >
-                            {{ item.label }}
-                        </a>
-                        <p class="text-sm text-text-secondary mt-1 leading-relaxed">
-                            {{ item.description }}
-                        </p>
-                        <div
-                            v-if="item.details && item.details.length"
-                            class="mt-2 space-y-1.5 border-l-2 border-border-subtle pl-3"
-                        >
-                            <p
-                                v-for="(detail, index) in item.details"
-                                :key="index"
-                                class="text-xs text-text-secondary"
+                            <div
+                                class="absolute left-0 top-0 bottom-0 w-px bg-border-subtle"
+                                :class="index === system.cases.length - 1 ? 'h-3' : 'h-full'"
+                            ></div>
+                            <div class="absolute left-0 top-3 w-3 h-px bg-border-subtle"></div>
+                            <a
+                                :href="`#${caseStudy.id}`"
+                                class="block text-sm transition-colors duration-200 relative"
+                                :class="
+                                    activeSection === caseStudy.id
+                                        ? 'text-accent-primary font-medium'
+                                        : 'text-text-secondary hover:text-text-primary'
+                                "
+                                @click.prevent="scrollToSection(caseStudy.id)"
                             >
-                                <span class="text-text-primary font-medium">{{ detail.label }}:</span>
-                                {{ detail.text }}
-                            </p>
-                        </div>
-                        <div
-                            v-if="item.tags && item.tags.length"
-                            class="flex flex-wrap gap-1.5 mt-2"
-                        >
-                            <span
-                                v-for="tag in item.tags"
-                                :key="tag"
-                                class="text-[10px] px-1.5 py-0.5 rounded border border-border-subtle text-text-secondary uppercase tracking-wider bg-bg-muted/50"
-                            >
-                                {{ tag }}
-                            </span>
-                        </div>
-                    </div>
+                                {{ caseStudy.title }}
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </nav>
@@ -69,14 +68,28 @@
 </template>
 
 <script setup lang="ts">
-import { watch } from 'vue';
+import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { activeSection, drawerTop, headerComponentRef, isDrawerOpen } from '@/store';
 import { CaseStudiesDrawer } from '@/data/types.ts';
 import rawCaseStudiesItems from '@/data/case-studies/case-studies-drawer.json';
+import { ChevronDown, X } from 'lucide-vue-next';
 
 const caseStudiesItems = rawCaseStudiesItems as CaseStudiesDrawer[];
 const route = useRoute();
+const openSystems = ref<string[]>([]);
+
+// Initialize open systems (all open by default or based on logic)
+openSystems.value = caseStudiesItems.map((s) => s.systemId);
+
+const toggleSystem = (systemId: string) => {
+    const index = openSystems.value.indexOf(systemId);
+    if (index === -1) {
+        openSystems.value.push(systemId);
+    } else {
+        openSystems.value.splice(index, 1);
+    }
+};
 
 watch(
     () => route.path,

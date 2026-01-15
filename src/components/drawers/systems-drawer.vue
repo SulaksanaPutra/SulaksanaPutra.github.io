@@ -11,15 +11,11 @@
                 aria-label="Close menu"
                 @click="toggleDrawer"
             >
-                ✕
+                <X />
             </button>
 
             <ul class="space-y-6">
-                <li
-                    v-for="item in systemsItems"
-                    :key="item.id"
-                    class="flex gap-3"
-                >
+                <li v-for="item in systemsItems" :key="item.id" class="flex gap-3">
                     <div class="w-full">
                         <a
                             :href="`#${item.id}`"
@@ -61,6 +57,7 @@ import { useRoute } from 'vue-router';
 import { activeSection, drawerTop, headerComponentRef, isDrawerOpen } from '@/store';
 import rawSystemsItems from '@/data/systems/systems-drawer.json';
 import { SystemsDrawer } from '@/data/types.ts';
+import { X } from 'lucide-vue-next';
 
 const systemsItems = rawSystemsItems as SystemsDrawer[];
 

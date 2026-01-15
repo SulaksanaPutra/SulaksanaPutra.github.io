@@ -40,17 +40,11 @@ export interface Skills {
     title: string;
     description: string;
 }
-
-export type SkillsDrawer = DrawerBase;
-
 export interface Contact {
     title: string;
     paragraphs: string[];
     email: string;
 }
-
-export type ContactDrawer = DrawerBase;
-
 type ContentSection = {
     label: string;
     content: string;
@@ -89,7 +83,17 @@ export interface CaseStudies {
     link: string;
 }
 
-export type CaseStudiesDrawer = DrawerBase;
+export interface CaseStudyItem {
+    id: string;
+    title: string;
+    to: string;
+}
+
+export interface CaseStudiesDrawer {
+    systemId: string;
+    systemTitle: string;
+    cases: CaseStudyItem[];
+}
 
 export interface VatChangeCase {
     backLink: {

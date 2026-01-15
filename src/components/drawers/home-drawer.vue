@@ -15,7 +15,7 @@
                 <X />
             </button>
 
-            <ul>
+            <ul class="space-y-6">
                 <template
                     v-for="(item, _index) in homeItems"
                     :key="_index"
@@ -32,7 +32,7 @@
                             <div class="w-full">
                                 <a
                                     :href="href"
-                                    class="block font-medium text-text-primary hover:text-accent-primary transition-opacity duration-300"
+                                    class="block font-medium text-base text-text-primary hover:text-accent-primary transition-opacity duration-300"
                                     @click="
                                         ($event) => {
                                             navigate($event);
