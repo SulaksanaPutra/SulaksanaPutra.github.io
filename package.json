@@ -5,9 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
-    "build:en": "VITE_LOCALE=en vite build",
-    "build:id": "VITE_LOCALE=id vite build",
-    "build": "vue-tsc -b && npm run build:en && npm run build:id",
+    "build": "vue-tsc -b && vite build",
     "preview": "vite preview",
     "test": "npm run test:unit && npm run test:e2e",
     "test:e2e": "playwright test",
