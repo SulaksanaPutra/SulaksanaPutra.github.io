@@ -1,7 +1,7 @@
 import { ref, watch } from 'vue';
 import { language } from '@/store';
 
-const dataFiles = import.meta.glob('../data/**/*.json');
+const dataFiles = import.meta.glob('../data/**/*.ts');
 
 export function useI18n<T>(basePath: string) {
     const data = ref<T | null>(null);
@@ -11,11 +11,12 @@ export function useI18n<T>(basePath: string) {
         let loadedData: T | null = null;
 
         if (lang !== 'en') {
-            const key = `../data/${basePath}.${lang}.json`;
+            const key = `../data/${basePath}.${lang}.ts`;
             if (key in dataFiles) {
                 try {
                     const module = (await dataFiles[key]()) as any;
-                    if (module.default && Object.keys(module.default).length > 0) {
+                    // TS modules export default
+                    if (module.default) {
                         loadedData = module.default;
                     }
                 } catch {
@@ -25,7 +26,7 @@ export function useI18n<T>(basePath: string) {
         }
 
         if (!loadedData) {
-            const key = `../data/${basePath}.json`;
+            const key = `../data/${basePath}.ts`;
             if (key in dataFiles) {
                 try {
                     const module = (await dataFiles[key]()) as any;

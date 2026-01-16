@@ -8,16 +8,11 @@
                 class="mb-16 pb-8 border-b border-border-subtle last:border-b-0"
             >
                 <h2 class="text-xl text-left text-text-primary mb-2">
-                    <template v-if="system.highlight">
-                        {{ system.highlight }}
-                    </template>
-                    <template v-else>
-                        {{ system.title }}
-                    </template>
+                    {{ system.title }}
                 </h2>
 
                 <p class="text-text-secondary mb-4">
-                    {{ system.description }}
+                    {{ system.highlight }}
                 </p>
 
                 <div class="flex flex-wrap gap-2 mb-6">
@@ -38,7 +33,7 @@
                         <p>{{ section.description }}</p>
                     </div>
 
-                    <p v-if="system.link">
+                    <p v-if="system.link && system.link.label">
                         <router-link :to="system.link.href">
                             {{ system.link.label }}
                         </router-link>

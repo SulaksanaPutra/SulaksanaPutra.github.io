@@ -142,9 +142,9 @@ import { useRoute } from 'vue-router';
 import { Menu, Moon, Search, Sun } from 'lucide-vue-next';
 import { headerComponentRef, isDark, isDrawerOpen, language, scrollProgress } from '@/store';
 import { useI18n } from '@/composables/use-i18n';
-import systemsItems from '@/data/systems/systems-drawer.json';
-import caseStudiesItems from '@/data/case-studies/case-studies-drawer.json';
-import homeItems from '@/data/home/home-drawer.json';
+import systemsItems from '@/data/systems/systems-drawer';
+import caseStudiesItems from '@/data/case-studies/case-studies-drawer';
+import homeItems from '@/data/home/home-drawer';
 import { Header } from '@/types/header.ts';
 
 const { data: headerData } = useI18n<Header>('common/header');

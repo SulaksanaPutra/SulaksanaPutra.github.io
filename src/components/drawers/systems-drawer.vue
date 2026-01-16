@@ -43,7 +43,7 @@
 import { watch } from 'vue';
 import { type RouteLocationNormalizedLoaded, useRoute } from 'vue-router';
 import { activeSection, drawerTop, headerComponentRef, isDrawerOpen } from '@/store';
-import rawSystemsItems from '@/data/systems/systems-drawer.json';
+import rawSystemsItems from '@/data/systems/systems-drawer';
 import { X } from 'lucide-vue-next';
 import { SystemsDrawerItem } from '@/types/drawer.ts';
 

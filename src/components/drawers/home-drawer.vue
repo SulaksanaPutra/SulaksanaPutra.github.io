@@ -51,7 +51,7 @@
 import { onMounted, ref, type Ref, watch } from 'vue';
 import { type RouteLocationNormalizedLoaded, useRoute } from 'vue-router';
 import { drawerTop, isDrawerOpen } from '@/store';
-import rawHomeDrawerItems from '@/data/home/home-drawer.json';
+import rawHomeDrawerItems from '@/data/home/home-drawer';
 import { X } from 'lucide-vue-next';
 import { HomeDrawerItem } from '@/types/drawer.ts';
 

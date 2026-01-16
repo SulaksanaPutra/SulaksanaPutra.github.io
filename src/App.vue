@@ -34,7 +34,7 @@ import {
     isDrawerOpen,
     scrollProgress,
 } from '@/store';
-import systemsData from '@/data/systems/systems.json';
+import systemsData from '@/data/systems/systems';
 
 const route = useRoute();
 
@@ -180,10 +180,12 @@ watch(
 const shouldTransition = (route: RouteLocationNormalized) => {
     const toName = route.name as string | undefined;
     const fromName = previousRouteName.value ?? undefined;
-    if (toName && fromName && sectionRoutes.includes(toName) && sectionRoutes.includes(fromName)) {
-        return false;
-    }
-    return true;
+    return !(
+        toName &&
+        fromName &&
+        sectionRoutes.includes(toName) &&
+        sectionRoutes.includes(fromName)
+    );
 };
 
 const getRouteKey = (route: RouteLocationNormalized) => {

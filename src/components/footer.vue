@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import rawFooter from '@/data/common/footer.json';
+import rawFooter from '@/data/common/footer';
 import { Footer } from '@/types/footer.ts';
 
 const footer: Footer = rawFooter;

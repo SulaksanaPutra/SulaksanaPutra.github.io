@@ -25,7 +25,7 @@
                     </p>
 
                     <router-link :id="caseStudy.link.id" :to="caseStudy.link.href">
-                        {{ caseStudy.link.label }}}
+                        {{ caseStudy.link.label }}
                     </router-link>
                 </article>
             </div>

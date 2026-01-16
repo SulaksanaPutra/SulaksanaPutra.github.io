@@ -68,7 +68,7 @@
 import { ref, watch, type Ref } from 'vue';
 import { useRoute, type RouteLocationNormalizedLoaded } from 'vue-router';
 import { activeSection, drawerTop, headerComponentRef, isDrawerOpen } from '@/store';
-import rawCaseStudiesDrawerItems from '@/data/case-studies/case-studies-drawer.json';
+import rawCaseStudiesDrawerItems from '@/data/case-studies/case-studies-drawer';
 import { ChevronDown, X } from 'lucide-vue-next';
 import { CaseStudiesDrawerItem } from '@/types/drawer.ts';
 
