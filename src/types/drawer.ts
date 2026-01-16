@@ -8,10 +8,10 @@ type BaseDrawerItem = {
     isActive?: boolean;
 };
 
-export interface SystemsDrawerItem extends BaseDrawerItem {}
+export type SystemsDrawerItem = BaseDrawerItem;
 
 export interface CaseStudiesDrawerItem extends BaseDrawerItem {
     cases: Link[];
 }
 
-export interface HomeDrawerItem extends BaseDrawerItem {}
+export type HomeDrawerItem = BaseDrawerItem;

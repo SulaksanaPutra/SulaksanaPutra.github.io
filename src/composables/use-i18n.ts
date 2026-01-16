@@ -1,36 +1,40 @@
-import { computed, ref, watch } from 'vue';
-import { language } from '@/store';
+import { computed, ref } from 'vue';
 
 const dataFiles = import.meta.glob('../data/**/*.ts');
+const buildLocale = (import.meta.env.VITE_LOCALE || 'en').toLowerCase();
 
 export function useI18n<T>(basePath: string) {
     const data = ref<T | null>(null);
     const value = computed(() => data.value);
 
     const loadData = async () => {
-        const lang = language.value.toLowerCase();
+        const lang = buildLocale;
         let loadedData: T | null = null;
 
         if (lang !== 'en') {
-            const key = `../data/${basePath}.${lang}.ts`;
-            if (key in dataFiles) {
+            const localizedKey = `../data/${basePath}.${lang}.ts`;
+            if (localizedKey in dataFiles) {
                 try {
-                    const module = (await dataFiles[key]()) as any;
-                    // TS modules export default
+                    const module = (await dataFiles[localizedKey]()) as any;
                     if (module.default) {
                         loadedData = module.default;
                     }
-                } catch {
-                    // File not found will fallback to default
+                } catch (error) {
+                    console.error(
+                        `Could not load localized data for ${basePath} and locale ${lang}`,
+                        error,
+                    );
                 }
+            } else {
+                console.error(
+                    `Localized data file not found for locale ${lang} and path ${basePath}`,
+                );
             }
-        }
-
-        if (!loadedData) {
-            const key = `../data/${basePath}.ts`;
-            if (key in dataFiles) {
+        } else {
+            const defaultKey = `../data/${basePath}.ts`;
+            if (defaultKey in dataFiles) {
                 try {
-                    const module = (await dataFiles[key]()) as any;
+                    const module = (await dataFiles[defaultKey]()) as any;
                     loadedData = module.default;
                 } catch (error) {
                     console.error(`Could not load data for ${basePath}`, error);
@@ -43,7 +47,7 @@ export function useI18n<T>(basePath: string) {
         data.value = loadedData;
     };
 
-    watch(language, loadData, { immediate: true });
+    loadData();
 
     return { data: value };
 }

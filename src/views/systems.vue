@@ -45,9 +45,12 @@
 </template>
 
 <script setup lang="ts">
-import type { Ref } from 'vue';
+import { computed, type Ref } from 'vue';
 import { useI18n } from '@/composables/use-i18n';
 import type { System } from '@/types/system.ts';
+import defaultSystems from '@/data/systems/systems-page';
 
-const { data: systems }: { data: Ref<System[] | null> } = useI18n<System[]>('systems/systems-page');
+const { data }: { data: Ref<System[] | null> } = useI18n<System[]>('systems/systems-page');
+
+const systems = computed<System[]>(() => data.value ?? (defaultSystems as System[]));
 </script>

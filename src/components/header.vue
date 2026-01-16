@@ -34,7 +34,7 @@
                         class="md:hidden items-center gap-1 rounded-full border border-border-subtle p-1 text-sm ml-4"
                     >
                         <button
-                            v-for="lang in ['EN', 'ID', 'JP']"
+                            v-for="lang in ['EN', 'ID']"
                             :key="lang"
                             class="px-2 py-0.5 rounded-full transition-colors"
                             :class="
@@ -114,7 +114,7 @@
                     class="hidden md:flex items-center gap-1 rounded-full border border-border-subtle p-1 text-sm ml-4"
                 >
                     <button
-                        v-for="lang in ['EN', 'ID', 'JP']"
+                        v-for="lang in ['EN', 'ID']"
                         :key="lang"
                         class="px-2 py-0.5 rounded-full transition-colors"
                         :class="
@@ -137,7 +137,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref } from 'vue';
+import { computed, onMounted, onUnmounted, type Ref, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { Menu, Moon, Search, Sun } from 'lucide-vue-next';
 import { headerComponentRef, isDark, isDrawerOpen, language, scrollProgress } from '@/store';
@@ -146,8 +146,10 @@ import systemsItems from '@/data/systems/systems-drawer';
 import caseStudiesItems from '@/data/case-studies/case-studies-drawer';
 import homeItems from '@/data/home/home-drawer';
 import { Header } from '@/types/header.ts';
+import defaultHeader from '@/data/common/header.ts';
 
-const { data: headerData } = useI18n<Header>('common/header');
+const { data }: { data: Ref<Header | null> } = useI18n<Header>('common/header');
+const page = computed<Header>(() => data.value ?? (defaultHeader as Header));
 
 const route = useRoute();
 const headerRef = ref<HTMLElement | null>(null);
@@ -155,11 +157,9 @@ const searchInputRef = ref<HTMLInputElement | null>(null);
 const searchQuery = ref<string>('');
 
 const searchLinks = computed<NonNullable<Header['searchLinks']>>(
-    () => headerData.value?.searchLinks || [],
+    () => page.value?.searchLinks || [],
 );
-const navLinks = computed<NonNullable<Header['navigations']>>(
-    () => headerData.value?.navigations || [],
-);
+const navLinks = computed<NonNullable<Header['navigations']>>(() => page.value?.navigations || []);
 
 const filteredLinks = computed<NonNullable<Header['searchLinks']>>(() =>
     searchLinks.value.filter((item) =>

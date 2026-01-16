@@ -19,7 +19,10 @@
 <script setup lang="ts">
 import { useI18n } from '@/composables/use-i18n';
 import { Uses } from '@/types/uses.ts';
-import type { Ref } from 'vue';
+import defaultUses from '@/data/home/sections/uses-page';
+import { computed, type Ref } from 'vue';
 
-const { data: page }: { data: Ref<Uses | null> } = useI18n<Uses>('home/sections/uses-page');
+const { data }: { data: Ref<Uses | null> } = useI18n<Uses>('home/sections/uses-page');
+
+const page = computed<Uses>(() => data.value ?? (defaultUses as Uses));
 </script>

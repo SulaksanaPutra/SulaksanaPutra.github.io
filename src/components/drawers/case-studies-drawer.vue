@@ -65,18 +65,25 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, type Ref } from 'vue';
-import { useRoute, type RouteLocationNormalizedLoaded } from 'vue-router';
+import { computed, ref, watch } from 'vue';
+import { type RouteLocationNormalizedLoaded, useRoute } from 'vue-router';
 import { activeSection, drawerTop, headerComponentRef, isDrawerOpen } from '@/store';
-import rawCaseStudiesDrawerItems from '@/data/case-studies/case-studies-drawer';
+import defaultCaseStudiesDrawerItems from '@/data/case-studies/case-studies-drawer';
 import { ChevronDown, X } from 'lucide-vue-next';
 import { CaseStudiesDrawerItem } from '@/types/drawer.ts';
+import { useI18n } from '@/composables/use-i18n.ts';
 
-const caseStudiesDrawerItems: CaseStudiesDrawerItem[] = rawCaseStudiesDrawerItems;
+const { data } = useI18n<CaseStudiesDrawerItem[]>('/case-studies/case-studies-drawer');
+
+const caseStudiesDrawerItems = computed<CaseStudiesDrawerItem[]>(
+    () => data.value ?? defaultCaseStudiesDrawerItems,
+);
+
 const route: RouteLocationNormalizedLoaded = useRoute();
-const openSystems: Ref<string[]> = ref<string[]>([]);
 
-openSystems.value = caseStudiesDrawerItems.map((s) => s.id);
+const allSystemIds = computed<string[]>(() => caseStudiesDrawerItems.value.map((s) => s.id));
+
+const openSystems = ref<string[]>(allSystemIds.value);
 
 const toggleSystem = (id: string) => {
     const index = openSystems.value.indexOf(id);

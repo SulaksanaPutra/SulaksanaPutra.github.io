@@ -40,14 +40,21 @@
 </template>
 
 <script setup lang="ts">
-import { watch } from 'vue';
+import { computed, type Ref, watch } from 'vue';
 import { type RouteLocationNormalizedLoaded, useRoute } from 'vue-router';
 import { activeSection, drawerTop, headerComponentRef, isDrawerOpen } from '@/store';
-import rawSystemsItems from '@/data/systems/systems-drawer';
+import defaultSystemsItems from '@/data/systems/systems-drawer';
 import { X } from 'lucide-vue-next';
 import { SystemsDrawerItem } from '@/types/drawer.ts';
+import { useI18n } from '@/composables/use-i18n.ts';
 
-const systemsItems: SystemsDrawerItem[] = rawSystemsItems;
+const { data }: { data: Ref<SystemsDrawerItem[] | null> } =
+    useI18n<SystemsDrawerItem[]>('/systems/systems-drawer');
+
+const systemsItems = computed<SystemsDrawerItem[]>(
+    () => data.value ?? (defaultSystemsItems as SystemsDrawerItem[]),
+);
+
 const route: RouteLocationNormalizedLoaded = useRoute();
 
 watch(

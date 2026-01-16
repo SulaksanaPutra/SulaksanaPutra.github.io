@@ -48,16 +48,21 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, type Ref, watch } from 'vue';
+import { computed, onMounted, ref, type Ref, watch } from 'vue';
 import { type RouteLocationNormalizedLoaded, useRoute } from 'vue-router';
 import { drawerTop, isDrawerOpen } from '@/store';
-import rawHomeDrawerItems from '@/data/home/home-drawer';
+import defaultHomeDrawerItems from '@/data/home/home-drawer';
 import { X } from 'lucide-vue-next';
 import { HomeDrawerItem } from '@/types/drawer.ts';
+import { useI18n } from '@/composables/use-i18n.ts';
 
 const route: RouteLocationNormalizedLoaded = useRoute();
-const homeDrawerItems: Ref<HomeDrawerItem[]> = ref<HomeDrawerItem[]>(
-    rawHomeDrawerItems as HomeDrawerItem[],
+
+const { data }: { data: Ref<HomeDrawerItem[] | null> } =
+    useI18n<HomeDrawerItem[]>('/home/home-drawer');
+
+const homeDrawerItems = computed<HomeDrawerItem[]>(
+    () => data.value ?? (defaultHomeDrawerItems as HomeDrawerItem[]),
 );
 
 onMounted(() => {
@@ -99,7 +104,7 @@ const handleDrawerLinkClick = () => {
     }
 };
 
-const pendingActiveItem: Ref<HomeDrawerItem | null> = ref<HomeDrawerItem | null>(null);
+const pendingActiveItem = ref<HomeDrawerItem | null>(null);
 
 const onItemClicked = (item: HomeDrawerItem, _event: MouseEvent) => {
     pendingActiveItem.value = item;

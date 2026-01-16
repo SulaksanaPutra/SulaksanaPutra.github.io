@@ -14,9 +14,10 @@
 <script setup lang="ts">
 import { useI18n } from '@/composables/use-i18n';
 import { Hobbies } from '@/types/hobbies.ts';
-import type { Ref } from 'vue';
+import defaultHobbies from '@/data/home/sections/hobbies-page';
+import { computed, type Ref } from 'vue';
 
-const { data: page }: { data: Ref<Hobbies | null> } = useI18n<Hobbies>(
-    'home/sections/hobbies-page',
-);
+const { data }: { data: Ref<Hobbies | null> } = useI18n<Hobbies>('home/sections/hobbies-page');
+
+const page = computed<Hobbies>(() => data.value ?? (defaultHobbies as Hobbies));
 </script>

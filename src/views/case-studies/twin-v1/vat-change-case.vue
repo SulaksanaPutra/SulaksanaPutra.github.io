@@ -41,8 +41,16 @@
 </template>
 
 <script setup lang="ts">
-import rawVatChangeCase from '@/data/case-studies/articles/twin-v1/vat-change-case';
+import defaultVatChangeCase from '@/data/case-studies/articles/twin-v1/vat-change-case';
 import { VatChangeCase } from '@/types/case-study.ts';
+import { useI18n } from '@/composables/use-i18n';
+import { computed, type Ref } from 'vue';
 
-const vatChangeCase: VatChangeCase = rawVatChangeCase;
+const { data }: { data: Ref<VatChangeCase | null> } = useI18n<VatChangeCase>(
+    'case-studies/articles/twin-v1/vat-change-case',
+);
+
+const vatChangeCase = computed<VatChangeCase>(
+    () => data.value ?? (defaultVatChangeCase as VatChangeCase),
+);
 </script>

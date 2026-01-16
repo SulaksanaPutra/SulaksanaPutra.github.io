@@ -10,7 +10,10 @@
 <script setup lang="ts">
 import { useI18n } from '@/composables/use-i18n';
 import { Skills } from '@/types/skills.ts';
-import type { Ref } from 'vue';
+import defaultSkills from '@/data/skills/skills-page';
+import { computed, type Ref } from 'vue';
 
-const { data: page }: { data: Ref<Skills | null> } = useI18n<Skills>('skills/skills-page');
+const { data }: { data: Ref<Skills | null> } = useI18n<Skills>('skills/skills-page');
+
+const page = computed<Skills>(() => data.value ?? (defaultSkills as Skills));
 </script>

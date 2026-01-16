@@ -36,9 +36,12 @@
 <script setup lang="ts">
 import { useI18n } from '@/composables/use-i18n';
 import { CaseStudy } from '@/types/case-study.ts';
-import type { Ref } from 'vue';
+import defaultCaseStudies from '@/data/case-studies/case-studies-page';
+import { computed, type Ref } from 'vue';
 
-const { data: caseStudies }: { data: Ref<CaseStudy[] | null> } = useI18n<CaseStudy[]>(
+const { data }: { data: Ref<CaseStudy[] | null> } = useI18n<CaseStudy[]>(
     'case-studies/case-studies-page',
 );
+
+const caseStudies = computed<CaseStudy[]>(() => data.value ?? (defaultCaseStudies as CaseStudy[]));
 </script>

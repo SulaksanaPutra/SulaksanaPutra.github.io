@@ -14,9 +14,10 @@
 <script setup lang="ts">
 import { useI18n } from '@/composables/use-i18n';
 import { Projects } from '@/types/projects.ts';
-import type { Ref } from 'vue';
+import defaultProjects from '@/data/home/sections/projects-page';
+import { computed, type Ref } from 'vue';
 
-const { data: page }: { data: Ref<Projects | null> } = useI18n<Projects>(
-    'home/sections/projects-page',
-);
+const { data }: { data: Ref<Projects | null> } = useI18n<Projects>('home/sections/projects-page');
+
+const page = computed<Projects>(() => data.value ?? (defaultProjects as Projects));
 </script>

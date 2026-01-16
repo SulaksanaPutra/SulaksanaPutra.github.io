@@ -14,9 +14,10 @@
 <script setup lang="ts">
 import { useI18n } from '@/composables/use-i18n';
 import { Writing } from '@/types/writing.ts';
-import type { Ref } from 'vue';
+import defaultWriting from '@/data/home/sections/writing-page';
+import { computed, type Ref } from 'vue';
 
-const { data: page }: { data: Ref<Writing | null> } = useI18n<Writing>(
-    'home/sections/writing-page',
-);
+const { data }: { data: Ref<Writing | null> } = useI18n<Writing>('home/sections/writing-page');
+
+const page = computed<Writing>(() => data.value ?? (defaultWriting as Writing));
 </script>
