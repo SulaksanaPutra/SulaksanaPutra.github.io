@@ -47,7 +47,7 @@
 <script setup lang="ts">
 import type { Ref } from 'vue';
 import { useI18n } from '@/composables/use-i18n';
-import type { Systems } from '@/types/systems';
+import type { System } from '@/types/system.ts';
 
-const { data: systems }: { data: Ref<Systems[] | null> } = useI18n<Systems[]>('systems/systems');
+const { data: systems }: { data: Ref<System[] | null> } = useI18n<System[]>('systems/systems-page');
 </script>

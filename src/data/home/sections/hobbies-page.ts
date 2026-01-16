@@ -1,9 +1,9 @@
 import { Hobbies } from '@/types/hobbies';
 
-const hobbies: Hobbies = {
+const hobbiesPage: Hobbies = {
     title: 'Hobbies',
     descriptions: ['What I enjoy doing'],
     items: [],
 };
 
-export default hobbies;
+export default hobbiesPage;

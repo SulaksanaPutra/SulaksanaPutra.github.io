@@ -1,6 +1,6 @@
 import { Link } from '@/types/link.ts';
 
-export interface Systems {
+export interface System {
     id: string;
     title: string;
     highlight: string;

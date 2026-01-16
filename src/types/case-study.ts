@@ -1,6 +1,6 @@
 import { Link } from '@/types/link.ts';
 
-export interface CaseStudies {
+export interface CaseStudy {
     id: string;
     title: string;
     highlight: string;

@@ -1,6 +1,6 @@
-import { CaseStudies } from '@/types/case-studies';
+import { CaseStudy } from '@/types/case-study.ts';
 
-const caseStudies: CaseStudies[] = [
+const caseStudiesPage: CaseStudy[] = [
     {
         id: 'twin-v1-vat',
         title: 'Handling a VAT Increase in a Legacy, Real-Time System',
@@ -15,4 +15,4 @@ const caseStudies: CaseStudies[] = [
     },
 ];
 
-export default caseStudies;
+export default caseStudiesPage;

@@ -28,12 +28,12 @@ const routes: RouteRecordRaw[] = [
         component: VatChangeCase,
     },
     {
-        path: '/skills',
+        path: '/skillsPage',
         name: 'Skills',
         component: Skills,
     },
     {
-        path: '/contact',
+        path: '/contactPage',
         name: 'Contact',
         component: Contact,
     },

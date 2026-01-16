@@ -4,7 +4,8 @@ const systemsDrawer: SystemsDrawerItem[] = [
     {
         id: 'system-laas',
         label: 'LAAS',
-        description: 'External access to logistics capabilities without exposing internal systems.',
+        description:
+            'External access to logistics capabilities without exposing internal systemsPage.',
         href: '/case-studies#laas',
     },
     {

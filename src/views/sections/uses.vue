@@ -1,14 +1,14 @@
 <template>
-    <section v-if="uses" class="content-narrow py-8 min-h-screen">
+    <section v-if="page" class="content-narrow py-8 min-h-screen">
         <h1 class="text-3xl font-bold mb-6">
-            {{ uses.title }}
+            {{ page.title }}
         </h1>
         <div class="text-justify hyphens-auto leading-relaxed space-y-4">
-            <p v-for="(paragraph, index) in uses.descriptions" :key="index">
+            <p v-for="(paragraph, index) in page.descriptions" :key="index">
                 {{ paragraph }}
             </p>
             <ul class="list-disc pl-5 space-y-2">
-                <li v-for="(item, index) in uses.items" :key="index">
+                <li v-for="(item, index) in page.items" :key="index">
                     {{ item }}
                 </li>
             </ul>
@@ -19,6 +19,7 @@
 <script setup lang="ts">
 import { useI18n } from '@/composables/use-i18n';
 import { Uses } from '@/types/uses.ts';
+import type { Ref } from 'vue';
 
-const { data: uses } = useI18n<Uses>('home/sections/uses');
+const { data: page }: { data: Ref<Uses | null> } = useI18n<Uses>('home/sections/uses-page');
 </script>

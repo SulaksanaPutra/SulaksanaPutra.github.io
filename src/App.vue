@@ -34,7 +34,7 @@ import {
     isDrawerOpen,
     scrollProgress,
 } from '@/store';
-import systemsData from '@/data/systems/systems';
+import systemsData from '@/data/systems/systems-page.ts';
 
 const route = useRoute();
 
@@ -53,8 +53,8 @@ const currentDrawer = computed(() => drawerMap[route.path] || null);
 const getDrawerStateKey = () => {
     if (route.path === '/systems') return 'systemsDrawerOpen';
     if (route.path === '/case-studies') return 'caseStudiesDrawerOpen';
-    if (route.path === '/skills') return 'skillsDrawerOpen';
-    if (route.path === '/contact') return 'contactDrawerOpen';
+    if (route.path === '/skillsPage') return 'skillsDrawerOpen';
+    if (route.path === '/contactPage') return 'contactDrawerOpen';
     return 'drawerOpen';
 };
 
@@ -63,7 +63,7 @@ const syncDrawerState = () => {
     const stored = localStorage.getItem(key);
 
     if (
-        ['/systems', '/case-studies', '/skills', '/contact'].includes(route.path) &&
+        ['/systems', '/case-studies', '/skillsPage', '/contactPage'].includes(route.path) &&
         stored === null
     ) {
         isDrawerOpen.value = true;

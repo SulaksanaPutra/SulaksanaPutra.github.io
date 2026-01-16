@@ -35,7 +35,10 @@
 
 <script setup lang="ts">
 import { useI18n } from '@/composables/use-i18n';
-import { CaseStudies } from '@/types/case-studies.ts';
+import { CaseStudy } from '@/types/case-study.ts';
+import type { Ref } from 'vue';
 
-const { data: caseStudies } = useI18n<CaseStudies[]>('case-studies/case-studies');
+const { data: caseStudies }: { data: Ref<CaseStudy[] | null> } = useI18n<CaseStudy[]>(
+    'case-studies/case-studies-page',
+);
 </script>

@@ -1,17 +1,17 @@
-import { Systems } from '@/types/systems';
+import { System } from '@/types/system.ts';
 
-const systems: Systems[] = [
+const systemsPage: System[] = [
     {
         id: 'system-laas',
         title: 'LAAS — Logistics as a Service',
         highlight:
-            'A customer-facing platform exposing logistics capabilities to external clients while protecting internal operational systems.',
+            'A customer-facing platform exposing logistics capabilities to external clients while protecting internal operational systemsPage.',
         tags: ['Customer-facing', 'B2B', 'B2C'],
         sections: [
             {
                 label: 'Design intent',
                 description:
-                    'Designed to support a new business model where warehouse capacity and logistics services could be rented to external customers. Acts as a controlled access layer that exposes logistics operations without coupling clients to internal systems.',
+                    'Designed to support a new business model where warehouse capacity and logistics services could be rented to external customers. Acts as a controlled access layer that exposes logistics operations without coupling clients to internal systemsPage.',
             },
             {
                 label: 'Architecture',
@@ -21,7 +21,7 @@ const systems: Systems[] = [
             {
                 label: 'My role',
                 description:
-                    'Sole designer and technical decision-maker. Led development with support from two other developers, selecting architecture, patterns, and trade-offs based on lessons learned from earlier systems.',
+                    'Sole designer and technical decision-maker. Led development with support from two other developers, selecting architecture, patterns, and trade-offs based on lessons learned from earlier systemsPage.',
             },
             {
                 label: 'Trade-offs',
@@ -31,7 +31,7 @@ const systems: Systems[] = [
             {
                 label: 'Outcome',
                 description:
-                    'Enabled a new logistics business model by giving customers real-time access to logistics capabilities while shielding internal systems from direct external interaction.',
+                    'Enabled a new logistics business model by giving customers real-time access to logistics capabilities while shielding internal systemsPage from direct external interaction.',
             },
         ],
         link: {
@@ -55,7 +55,7 @@ const systems: Systems[] = [
             {
                 label: 'Trade-offs',
                 description:
-                    'Chose Go despite a slower development pace to improve correctness and long-term operability. Accepted limited modularity in certain workflows due to tight coupling with legacy sales systems, deferring full SaaS generalization to later phases.',
+                    'Chose Go despite a slower development pace to improve correctness and long-term operability. Accepted limited modularity in certain workflows due to tight coupling with legacy sales systemsPage, deferring full SaaS generalization to later phases.',
             },
             {
                 label: 'My role',
@@ -89,17 +89,17 @@ const systems: Systems[] = [
             {
                 label: 'Reliability approach',
                 description:
-                    'Integration safety was critical. Failures in communication with WMS or Sales systems could cascade into financial impact, so consistency checks and saga-style coordination were implemented to protect transaction settlement.',
+                    'Integration safety was critical. Failures in communication with WMS or Sales systemsPage could cascade into financial impact, so consistency checks and saga-style coordination were implemented to protect transaction settlement.',
             },
             {
                 label: 'My role',
                 description:
-                    'Designed the system boundaries and core domain model, implemented critical correctness safeguards, and owned integration reliability across dependent systems.',
+                    'Designed the system boundaries and core domain model, implemented critical correctness safeguards, and owned integration reliability across dependent systemsPage.',
             },
             {
                 label: 'Outcome',
                 description:
-                    'Delivered a reliable delivery execution platform with improved correctness in settlement and measurement handling, while maintaining safe integration with upstream and downstream systems.',
+                    'Delivered a reliable delivery execution platform with improved correctness in settlement and measurement handling, while maintaining safe integration with upstream and downstream systemsPage.',
             },
             {
                 label: 'What I would change today',
@@ -144,4 +144,4 @@ const systems: Systems[] = [
     },
 ];
 
-export default systems;
+export default systemsPage;

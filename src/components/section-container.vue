@@ -12,7 +12,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, onMounted, nextTick, defineAsyncComponent, markRaw, type Component } from 'vue';
+import {
+    type Component,
+    defineAsyncComponent,
+    markRaw,
+    nextTick,
+    onMounted,
+    ref,
+    watch,
+} from 'vue';
 import { useRoute } from 'vue-router';
 
 const components: Record<string, Component> = {
@@ -37,14 +45,14 @@ const isTransitioning = ref<boolean>(false);
 let previousSectionName: string | null = null;
 let scrollEndTimeout: ReturnType<typeof window.setTimeout> | undefined;
 
-const scrollToSection = async (targetSectionName: string, direction: 'up' | 'down'): Promise<void> => {
+const scrollToSection = async (
+    targetSectionName: string,
+    direction: 'up' | 'down',
+): Promise<void> => {
     await nextTick();
 
     const targetElement = document.getElementById(`section-${targetSectionName}`);
     if (!targetElement) return;
-
-    // FIX: For upward scrolls, instantly jump to the old section's new position
-    // to counteract the layout shift before the smooth animation begins.
     if (direction === 'up' && previousSectionName) {
         const previousElement = document.getElementById(`section-${previousSectionName}`);
         if (previousElement) {
@@ -56,7 +64,6 @@ const scrollToSection = async (targetSectionName: string, direction: 'up' | 'dow
     const scrollBehavior = prefersReducedMotion ? 'instant' : 'smooth';
     const targetOffsetTop = targetElement.offsetTop;
 
-    // If already in view, end transition immediately.
     if (Math.abs(window.scrollY - targetOffsetTop) < 1) {
         if (previousSectionName) {
             mountedSections.value = mountedSections.value.filter(
@@ -70,7 +77,6 @@ const scrollToSection = async (targetSectionName: string, direction: 'up' | 'dow
     isTransitioning.value = true;
     document.body.style.overflow = 'hidden';
 
-    // Use requestAnimationFrame to ensure the instant scroll (if any) is painted first.
     requestAnimationFrame(() => {
         window.scrollTo({
             top: targetOffsetTop,
@@ -103,11 +109,10 @@ const scrollToSection = async (targetSectionName: string, direction: 'up' | 'dow
 
 const updateSection = async (newSectionName: string): Promise<void> => {
     if (isTransitioning.value) {
-        window.stop(); // Stop any active smooth scroll
+        window.stop();
         if (scrollEndTimeout) clearTimeout(scrollEndTimeout);
         isTransitioning.value = false;
         document.body.style.overflow = '';
-        // Immediately remove the old section to prepare for the new transition
         if (previousSectionName) {
             mountedSections.value = mountedSections.value.filter(
                 (s) => s.name !== previousSectionName,

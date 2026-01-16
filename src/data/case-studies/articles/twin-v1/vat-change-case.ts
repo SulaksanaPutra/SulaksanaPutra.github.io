@@ -1,4 +1,4 @@
-import { VatChangeCase } from '@/types/case-studies';
+import { VatChangeCase } from '@/types/case-study.ts';
 
 const vatChangeCase: VatChangeCase = {
     backLink: {
@@ -58,7 +58,7 @@ const vatChangeCase: VatChangeCase = {
             label: 'Reflection',
             paragraphs: [
                 'This change did not improve Twin v1’s overall architecture. Due to the lack of centralized logic, the solution required defensive additions across multiple APIs. In practice, this was a controlled patch rather than a structural refactor.',
-                'However, this experience strongly influenced how I designed later systems—especially LAAS—where tax and pricing logic are treated as versioned, auditable data rather than dynamically recomputed values.',
+                'However, this experience strongly influenced how I designed later systemsPage—especially LAAS—where tax and pricing logic are treated as versioned, auditable data rather than dynamically recomputed values.',
             ],
         },
     ],

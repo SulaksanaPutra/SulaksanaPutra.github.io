@@ -1,8 +1,8 @@
 import { Skills } from '@/types/skills';
 
-const skills: Skills = {
+const skillsPage: Skills = {
     title: 'Skills',
     description: 'This page is under construction.',
 };
 
-export default skills;
+export default skillsPage;

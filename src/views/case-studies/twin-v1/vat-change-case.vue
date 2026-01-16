@@ -42,7 +42,7 @@
 
 <script setup lang="ts">
 import rawVatChangeCase from '@/data/case-studies/articles/twin-v1/vat-change-case';
-import { VatChangeCase } from '@/types/case-studies.ts';
+import { VatChangeCase } from '@/types/case-study.ts';
 
 const vatChangeCase: VatChangeCase = rawVatChangeCase;
 </script>
