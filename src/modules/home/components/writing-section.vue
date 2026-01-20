@@ -12,10 +12,10 @@
 </template>
 
 <script setup lang="ts">
-import { useI18n } from '@/composables/use-i18n';
-import { Writing } from '@/types/writing.ts';
-import defaultWriting from '@/data/home/sections/writing-page';
+import defaultWriting from '@/modules/home/data/writing.data';
 import { computed, type Ref } from 'vue';
+import { Writing } from '@/modules/home/types/writing.types.ts';
+import { useI18n } from '@/core/composables/use-i18n.ts';
 
 const { data }: { data: Ref<Writing | null> } = useI18n<Writing>('home/sections/writing-page');
 

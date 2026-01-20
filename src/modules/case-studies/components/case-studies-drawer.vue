@@ -68,15 +68,15 @@
 import { computed, ref, watch } from 'vue';
 import { type RouteLocationNormalizedLoaded, useRoute } from 'vue-router';
 import { activeSection, drawerTop, headerComponentRef, isDrawerOpen } from '@/store';
-import defaultCaseStudiesDrawerItems from '@/data/case-studies/case-studies-drawer';
 import { ChevronDown, X } from 'lucide-vue-next';
-import { CaseStudiesDrawerItem } from '@/types/drawer.ts';
-import { useI18n } from '@/composables/use-i18n.ts';
+import { useI18n } from '@/core/composables/use-i18n.ts';
+import { CaseStudiesDrawer } from '@/modules/case-studies/case-studies.types.ts';
+import defaultCaseStudiesDrawer from '@/modules/case-studies/data/case-studies-drawer.data.ts';
 
-const { data } = useI18n<CaseStudiesDrawerItem[]>('case-studies/case-studies-drawer');
+const { data } = useI18n<CaseStudiesDrawer>('case-studies/case-studies-drawer');
 
-const caseStudiesDrawerItems = computed<CaseStudiesDrawerItem[]>(
-    () => data.value ?? defaultCaseStudiesDrawerItems,
+const caseStudiesDrawerItems = computed<CaseStudiesDrawer>(
+    () => data.value ?? defaultCaseStudiesDrawer,
 );
 
 const route: RouteLocationNormalizedLoaded = useRoute();

@@ -17,10 +17,10 @@
 </template>
 
 <script setup lang="ts">
-import { useI18n } from '@/composables/use-i18n';
-import { Uses } from '@/types/uses.ts';
-import defaultUses from '@/data/home/sections/uses-page';
+import defaultUses from '@/modules/home/data/uses.data.ts';
 import { computed, type Ref } from 'vue';
+import { Uses } from '@/modules/home/types/uses.types.ts';
+import { useI18n } from '@/core/composables/use-i18n.ts';
 
 const { data }: { data: Ref<Uses | null> } = useI18n<Uses>('home/sections/uses-page');
 

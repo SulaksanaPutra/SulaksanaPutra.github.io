@@ -43,17 +43,16 @@
 import { computed, type Ref, watch } from 'vue';
 import { type RouteLocationNormalizedLoaded, useRoute } from 'vue-router';
 import { activeSection, drawerTop, headerComponentRef, isDrawerOpen } from '@/store.ts';
-import defaultVatChangeCaseDrawerItem from '@/data/case-studies/articles/twin-v1/vat-change-case-drawer.ts';
 import { X } from 'lucide-vue-next';
-import { ArticleCaseStudyDrawerItem } from '@/types/drawer.ts';
-import { useI18n } from '@/composables/use-i18n.ts';
+import { useI18n } from '@/core/composables/use-i18n.ts';
+import { CaseStudyArticleDrawer } from '@/modules/case-studies/case-studies.types.ts';
 
-const { data }: { data: Ref<ArticleCaseStudyDrawerItem[] | null> } = useI18n<
-    ArticleCaseStudyDrawerItem[]
->('case-studies/articles/twin-v1/vat-change-case-drawer');
+const { data }: { data: Ref<CaseStudyArticleDrawer | null> } = useI18n<CaseStudyArticleDrawer>(
+    'case-studies/articles/twin-v1/vat-change-case-drawer',
+);
 
-const systemsItems = computed<ArticleCaseStudyDrawerItem[]>(
-    () => data.value ?? (defaultVatChangeCaseDrawerItem as ArticleCaseStudyDrawerItem[]),
+const systemsItems = computed<CaseStudyArticleDrawer>(
+    () => data.value ?? (defaultCaseStudyArticleDrawer as CaseStudyArticleDrawer),
 );
 
 const route: RouteLocationNormalizedLoaded = useRoute();

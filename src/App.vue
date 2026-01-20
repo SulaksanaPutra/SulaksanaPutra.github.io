@@ -21,19 +21,13 @@
 <script setup lang="ts">
 import { type Component, computed, onMounted, onUnmounted, ref, watch } from 'vue';
 import { RouteLocationNormalized, useRoute } from 'vue-router';
-import Header from '@/components/header.vue';
-import Footer from '@/components/footer.vue';
+import Header from '@/core/components/header.vue';
+import Footer from '@/core/components/footer.vue';
 import HomeDrawer from '@/components/drawers/home-drawer.vue';
 import SystemsDrawer from '@/components/drawers/systems-drawer.vue';
 import CaseStudiesDrawer from '@/components/drawers/case-studies-drawer.vue';
 import VatChangeCaseDrawer from '@/components/drawers/case-studies/vat-change-case-drawer.vue';
-import {
-    drawerTop,
-    headerComponentRef,
-    isDark,
-    isDrawerOpen,
-    scrollProgress,
-} from '@/store';
+import { drawerTop, headerComponentRef, isDark, isDrawerOpen, scrollProgress } from '@/store';
 
 const route = useRoute();
 

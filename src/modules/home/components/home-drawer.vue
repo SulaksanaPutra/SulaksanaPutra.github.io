@@ -51,19 +51,16 @@
 import { computed, onMounted, ref, type Ref, watch } from 'vue';
 import { type RouteLocationNormalizedLoaded, useRoute } from 'vue-router';
 import { drawerTop, isDrawerOpen } from '@/store';
-import defaultHomeDrawerItems from '@/data/home/home-drawer';
 import { X } from 'lucide-vue-next';
-import { HomeDrawerItem } from '@/types/drawer.ts';
-import { useI18n } from '@/composables/use-i18n.ts';
+import { HomeDrawer, HomeDrawerItem } from '@/modules/home/types/home.types.ts';
+import { useI18n } from '@/core/composables/use-i18n.ts';
+import defaultHomeDrawer from '@/modules/home/data/home-drawer.data.ts';
 
 const route: RouteLocationNormalizedLoaded = useRoute();
 
-const { data }: { data: Ref<HomeDrawerItem[] | null> } =
-    useI18n<HomeDrawerItem[]>('home/home-drawer');
+const { data }: { data: Ref<HomeDrawer | null> } = useI18n<HomeDrawer>('home/home-drawer');
 
-const homeDrawerItems = computed<HomeDrawerItem[]>(
-    () => data.value ?? (defaultHomeDrawerItems as HomeDrawerItem[]),
-);
+const homeDrawerItems = computed<HomeDrawer>(() => data.value ?? (defaultHomeDrawer as HomeDrawer));
 
 onMounted(() => {
     const path = route.path;

@@ -12,10 +12,10 @@
 </template>
 
 <script setup lang="ts">
-import { useI18n } from '@/composables/use-i18n';
-import { Projects } from '@/types/projects.ts';
-import defaultProjects from '@/data/home/sections/projects-page';
+import defaultProjects from '@/modules/home/data/projects.data.ts';
 import { computed, type Ref } from 'vue';
+import { useI18n } from '@/core/composables/use-i18n.ts';
+import { Projects } from '@/modules/home/types/projects.types.ts';
 
 const { data }: { data: Ref<Projects | null> } = useI18n<Projects>('home/sections/projects-page');
 
