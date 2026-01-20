@@ -1,6 +1,6 @@
 <template>
     <div class="">
-        <section class="py-8">
+        <section class="py-8" v-if="article">
             <div class="mb-8">
                 <router-link
                     :to="article.backLink.href"
@@ -65,10 +65,21 @@
 
 <script setup lang="ts">
 import { CaseStudyArticle } from '@/modules/case-studies/case-studies.types.ts';
+import { computed, ComputedRef } from 'vue';
 
 const props = defineProps<{
-    defaultContent: CaseStudyArticle;
+    defaultContent?: CaseStudyArticle;
+    useArticleData?: () => ComputedRef<CaseStudyArticle | null>;
 }>();
+
+const dynamicData = props.useArticleData ? props.useArticleData() : null;
+
+const article = computed(() => {
+    if (dynamicData?.value) {
+        return dynamicData.value;
+    }
+    return props.defaultContent;
+});
 
 const scrollToSection = (id: string) => {
     const element = document.getElementById(id);

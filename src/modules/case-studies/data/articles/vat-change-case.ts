@@ -1,6 +1,8 @@
 import { CaseStudyArticle } from '@/modules/case-studies/case-studies.types.ts';
+import { useI18n } from '@/core/composables/use-i18n.ts';
+import { computed } from 'vue';
 
-const VAT_CHANGE_CASE_BY_LOCALE: Record<'en' | 'id', CaseStudyArticle | null> = {
+export const VAT_CHANGE_CASE_BY_LOCALE: Record<'en' | 'id', CaseStudyArticle | null> = {
     en: {
         backLink: {
             id: 'case-studies',
@@ -74,3 +76,13 @@ const VAT_CHANGE_CASE_BY_LOCALE: Record<'en' | 'id', CaseStudyArticle | null> = 
     },
     id: null,
 };
+
+export function useVatChangeCaseData() {
+    const { locale } = useI18n();
+
+    return computed<CaseStudyArticle | null>(
+        () => VAT_CHANGE_CASE_BY_LOCALE[locale.value] ?? VAT_CHANGE_CASE_BY_LOCALE.en,
+    );
+}
+
+export default VAT_CHANGE_CASE_BY_LOCALE.en;
