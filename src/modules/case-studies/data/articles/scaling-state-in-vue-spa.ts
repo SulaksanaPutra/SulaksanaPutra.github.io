@@ -13,9 +13,9 @@ export const SCALING_STATE_IN_VUE_SPA_BY_LOCALE: Record<'en' | 'id', CaseStudyAr
         title: 'Front-end State Management at Scale (Vue → Vuex)',
         heading: 'State Management at Scale',
         subtitle:
-            'An incremental approach to scaling a large, long-lived Vue 2 single-page application by moving from deeply nested prop-based state to predictable, centralized state management with Vuex',
+            'An incremental approach to scaling a large, long-lived Vue single-page application by moving from deeply nested prop-based state to predictable, centralized state management with Vuex',
         highlight:
-            'Improving maintainability in a large Vue 2 SPA by centralizing shared state with Vuex.',
+            'Improving maintainability in a large Vue SPA by centralizing shared state with Vuex.',
         description:
             'Twin v1 is a long-lived single-page application. As it grew, prop-based state management became unsustainable. This case study shows how Vuex was introduced incrementally to improve maintainability, predictability, and team onboarding.',
         systemId: 'system-twin-v1',
@@ -24,92 +24,89 @@ export const SCALING_STATE_IN_VUE_SPA_BY_LOCALE: Record<'en' | 'id', CaseStudyAr
                 id: 'context',
                 label: 'Context',
                 paragraphs: [
-                    'Twin v1 is a large, long-lived single-page application built with Vue 2. In its early stages, state was managed through component props and callbacks, with parent components passing data down and handling business logic centrally.',
-                    'This approach worked when the application was small. As features accumulated and the UI became more complex, the front end started to show clear signs of architectural strain.',
+                    'Twin v1 used Vue for its front end. In the early stages, state was managed entirely through props and callbacks. Parent components passed data down, and child components emitted events back up. This approach worked fine when features were small and pages were simple.',
+                    'As the system grew, however, the front end became a large single-page application with complex workflows. Many pages represented complete business processes and combined multiple APIs, calculations, and UI states in a single flow.',
                 ],
             },
             {
                 id: 'problem',
                 label: 'The Problem',
+                paragraphs: [
+                    'As complexity increased, the component tree became difficult to reason about. A single page could contain 9 to 15 nested components, all coordinated through a central parent component that held most of the business logic.',
+                    'State changes often needed to travel from child to parent and then back down to another child. When communication was no longer strictly parent–child but child–child, data flow became hard to trace. Small changes in one part of the UI could unexpectedly affect others.',
+                    'Over time, several symptoms appeared:',
+                ],
                 items: [
-                    'State was passed through props across deep component trees, with child components communicating changes back to parents via callbacks and events.',
-                    'Over time, one complex page could contain 9 to 15 nested components.',
-                    'Business logic accumulated in parent components.',
-                    'Child-to-child communication required routing state through parents first.',
-                    'Data flow became difficult to trace and reason about.',
-                    'Bugs caused by stale props became common.',
-                    'Debugging required understanding long, implicit data chains.',
-                    'Although each component was designed for a specific business process and API, forcing business logic to live in parent components added complexity instead of clarity.',
-                    'Adding or adjusting features became slow and risky, especially for developers unfamiliar with the original design.',
+                    'Debugging required tracing long chains of props and events',
+                    'Stale props caused subtle bugs',
+                    'Adding new features became slow and risky',
+                    'Developers hesitated to touch existing components out of fear of breaking something',
+                ],
+            },
+            {
+                id: 'problem-conclusion',
+                paragraphs: [
+                    'At this point, the issue wasn’t just “messy code.” The structure itself made change expensive.',
                 ],
             },
             {
                 id: 'trigger',
-                label: 'Trigger Moment',
+                label: 'Trigger',
                 paragraphs: [
-                    'The breaking point came during a company-wide reshuffle when new developers joined the team. They struggled to understand and safely modify the front-end codebase.',
-                    'The UI was already complex, but the lack of clear state boundaries made onboarding and maintenance significantly harder. At that point, the cost of not addressing state management became higher than the cost of change.',
+                    'The turning point came when new developers joined the team after a company reshuffle. Even experienced developers struggled to understand the flow of data in complex pages. Explaining how a single feature worked required walking through multiple components and callback chains.',
+                    'That was the moment it became clear that the problem wasn’t individual code quality—it was the absence of a shared, predictable state model.',
                 ],
             },
             {
                 id: 'constraints',
                 label: 'Constraints',
-                items: [
-                    'This was a live production system (Twin v1).',
-                    'A full front-end rewrite was not realistic due to the number of pages.',
-                    'The system was still actively receiving feature requests.',
-                    'Refactoring had to be done incrementally.',
-                    'The work was shared between me and another developer.',
-                    'There was no hard deadline; this was a medium-priority, long-running improvement.',
-                    'The challenge was improving maintainability without disrupting ongoing development.',
+                paragraphs: [
+                    'This was a live production system. Rewriting the entire front end was not realistic due to the number of pages and ongoing feature requests. Other developers were working on the same UI, and improvements had to be made incrementally, without blocking delivery.',
+                    'There was no strict deadline, but the pressure came from constant requests for feature changes on existing screens.',
                 ],
             },
             {
                 id: 'decision',
                 label: 'Decision',
                 paragraphs: [
-                    'We chose to introduce Vuex as a centralized state management solution. At the time, this system was built on Vue 2, before Vue introduced built-in global state patterns. Vuex was the officially recommended solution and provided shared global state, predictable data flow, strong debugging support via browser extensions, and a clear mental model for growing SPAs. Alternative approaches were limited, and continuing with props-based state was no longer sustainable.',
+                    'We chose Vuex as the state management solution. At that time, no built-in global state options existed. Vuex was the officially recommended approach and provided exactly what we were missing: shared state, predictable data flow, and proper debugging tools.',
+                    'Not using Vuex wasn’t a serious option. The problem was already structural, and continuing with props and callbacks would only increase long-term complexity.',
                 ],
             },
             {
-                id: 'migration',
-                label: 'Migration Strategy',
-                items: [
-                    'Vuex was introduced incrementally, feature by feature.',
-                    'We prioritized frequently changed and operationally critical features, such as calculation-heavy and operational pages.',
-                    'Existing prop-based logic continued to coexist during the transition.',
-                    'Over time, most complex pages adopted Vuex, while lower-risk or rarely touched areas remained unchanged.',
-                    'This minimized disruption while delivering immediate value.',
+                id: 'Approach',
+                label: 'Approach',
+                paragraphs: [
+                    'The migration was incremental. We did not attempt a full rewrite. Instead, we focused on high-impact features—especially operational and calculation-heavy pages that frequently required changes.',
+                    'For a long time, prop-based logic and Vuex coexisted. Less complex pages were left untouched, while the most problematic parts were gradually migrated. This allowed us to improve stability without stopping development.',
                 ],
             },
             {
                 id: 'implementation',
-                label: 'Implementation Highlights',
+                label: 'Implementation',
                 paragraphs: [
-                    'The Vuex store was organized into modules, aligned with major business areas. Only state shared across multiple components was moved into Vuex, while local, component-specific state remained inside components. All shared state mutations were handled exclusively through Vuex mutations and actions. Component-specific logic stayed decoupled and local, keeping the store minimal and focused. This avoided overengineering while still providing structure and clarity.',
-                ],
-            },
-            {
-                id: 'risk',
-                label: 'Risk Management',
-                paragraphs: [
-                    'Migration was done feature by feature to carefully manage complexity. Each migrated feature underwent manual testing and user acceptance testing since no UI automation was available at the time. Changes were carefully scoped and refactoring was scheduled to avoid conflicts with concurrent feature requests targeting the same areas. Because each feature migration was isolated, rollbacks were straightforward, minimizing risk during the transition.',
+                    'The Vuex store was structured by modules, aligned with business domains rather than UI structure. Only state that needed to be shared across components was moved into Vuex.',
+                    'Local UI state stayed inside components. Mutations and actions were the only way to change global state, while component-specific logic remained decoupled. This kept the store relatively small and avoided unnecessary boilerplate.',
+                    'The goal was not to centralize everything, but to centralize only what truly needed to be shared.',
                 ],
             },
             {
                 id: 'outcome',
                 label: 'Outcome',
                 paragraphs: [
-                    'Development speed improved significantly, with changes that previously took three to four days now completed in one to two days. Debugging became easier due to the predictable data flow and enhanced tooling, leading to a decrease in UI-related bugs. New developers were able to understand and modify the system more confidently. The improvement was behavioral and structural, rather than merely cosmetic.',
+                    'After introducing Vuex, development speed improved noticeably. Tasks that previously took three to four days could often be completed in one or two. Debugging became easier thanks to predictable state transitions and better tooling.',
+                    'Bugs related to stale or out-of-sync state decreased, and new developers found it easier to understand how data moved through the application. The system felt less fragile, and changes no longer required mental mapping of the entire component tree.',
+                    'That said, this was not a performance optimization. The main gain was cognitive clarity—for both the system and the people working on it.',
                 ],
             },
             {
                 id: 'reflection',
                 label: 'Reflection',
                 paragraphs: [
-                    'Today, I would not automatically choose Vuex for every project. With modern frameworks like Vue 3, built-in global state patterns often provide sufficient structure without an additional dependency.',
-                    'What this experience reinforced, however, is that shared state in SPAs should be treated as a first-class architectural concern from the start. Explicitly defining how data flows between components, centralizing only truly shared state, and keeping component-specific logic local reduces complexity as the application grows, improves maintainability, and supports safer onboarding.',
-                    'Scalable UI systems are not about frameworks—they are about making data flow predictable and understandable as complexity increases.',
+                    'Looking back, I would not choose Vuex for a new project today. With Vue 3 and built-in global state options, I prefer lighter solutions that avoid additional dependencies.',
+                    'However, this case taught me an important lesson: state management is not an optimization—it’s a design decision. Even small SPAs benefit from early, intentional state structure. Introducing it late is far more painful than introducing it early.',
+                    'I also learned that centralization needs restraint. Not everything belongs in a global store. Global state should remain global; behavior and specialized logic should stay close to the components that use them.',
+                    'Since this experience, I almost always introduce some form of state management early in SPA development. Done carefully, it reduces long-term complexity rather than adding to it.',
                 ],
             },
         ],

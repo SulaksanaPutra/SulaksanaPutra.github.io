@@ -23,7 +23,7 @@ export interface CaseStudyArticle {
     systemId: string;
     sections: {
         id: string;
-        label: string;
+        label?: string;
         paragraphs?: string[];
         items?: string[];
     }[];

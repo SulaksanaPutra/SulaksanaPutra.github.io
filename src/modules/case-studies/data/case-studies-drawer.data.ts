@@ -16,7 +16,6 @@ const CASE_STUDIES_DRAWER_BY_LOCALE: Record<'en' | 'id', CaseStudiesDrawer> = {
         systems = SYSTEMS_BY_LOCALE.en;
     }
 
-    // Group case studies by systemsId
     const grouped = caseStudies.reduce(
         (acc, study) => {
             const key = study.systemId;
@@ -29,7 +28,6 @@ const CASE_STUDIES_DRAWER_BY_LOCALE: Record<'en' | 'id', CaseStudiesDrawer> = {
         {} as Record<string, typeof caseStudies>,
     );
 
-    // Map to drawer items
     CASE_STUDIES_DRAWER_BY_LOCALE[locale] = Object.entries(grouped).map(([systemId, studies]) => {
         const system = systems.find((s) => s.id === systemId);
 

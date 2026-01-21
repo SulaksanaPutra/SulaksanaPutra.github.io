@@ -43,7 +43,7 @@
 
                 <article class="text-justify hyphens-auto leading-relaxed space-y-8 flex-1 min-w-0">
                     <section v-for="section in article.sections" :id="section.id" :key="section.id">
-                        <p class="label-overline">
+                        <p class="label-overline" v-if="section.label">
                             {{ section.label }}
                         </p>
                         <div v-if="section.paragraphs" class="space-y-4">

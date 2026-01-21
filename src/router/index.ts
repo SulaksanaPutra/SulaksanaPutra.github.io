@@ -15,6 +15,10 @@ import {
 } from '@/modules/case-studies/data/articles/scaling-state-in-vue-spa.ts';
 import NotFoundPage from '@/modules/error/views/NotFoundPage.vue';
 import ServerErrorPage from '@/modules/error/views/ServerErrorPage.vue';
+import {
+    OPTIMIZING_QUERY_PERFORMANCE_BY_LOCALE,
+    useOptimizingQueryPerformanceData,
+} from '@/modules/case-studies/data/articles/optimizing-query-performance.ts';
 
 const routes: RouteRecordRaw[] = [
     {
@@ -48,6 +52,15 @@ const routes: RouteRecordRaw[] = [
         props: {
             useArticleData: useScalingStateInVueSpaData,
             defaultContent: SCALING_STATE_IN_VUE_SPA_BY_LOCALE.en,
+        },
+    },
+    {
+        path: '/case-studies/system-twin-v1/optimizing-query-performance-in-a-monolithic-erp',
+        name: 'optimizing-query-performance-in-a-monolithic-erp',
+        component: CaseStudyArticlePage,
+        props: {
+            useArticleData: useOptimizingQueryPerformanceData,
+            defaultContent: OPTIMIZING_QUERY_PERFORMANCE_BY_LOCALE.en,
         },
     },
     {
