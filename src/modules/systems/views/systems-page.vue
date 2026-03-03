@@ -47,11 +47,19 @@
 </template>
 
 <script setup lang="ts">
-import { nextTick, onMounted, onUnmounted, watch } from 'vue';
+import { computed, nextTick, onMounted, onUnmounted, watch } from 'vue';
 import { activeSection } from '@/store';
 import { useSystemsData } from '@/modules/systems/data/systems.data.ts';
+import { useSeo } from '@/core/composables/use-seo';
 
 const systems = useSystemsData();
+
+useSeo(
+    computed(() => ({
+        title: 'System Architecture',
+        description: 'Deep dive into the architecture and systems I have built.',
+    })),
+);
 
 let sectionObserver: IntersectionObserver | null = null;
 

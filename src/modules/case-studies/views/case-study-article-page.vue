@@ -137,12 +137,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
+import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { useWindowScroll } from '@vueuse/core';
 import { useCaseStudyArticle } from '@/modules/case-studies/data/case-studies.data.ts';
 import { headerComponentRef } from '@/store.ts';
 import { ArrowLeft, ArrowUp, BookOpen, Clock, FileQuestion } from 'lucide-vue-next';
+
+import { useSeo } from '@/core/composables/use-seo';
 
 const route = useRoute();
 const articleId = typeof route.params.articleId === 'string' ? route.params.articleId : '';
@@ -150,6 +152,18 @@ const article = useCaseStudyArticle(articleId);
 
 const { y } = useWindowScroll();
 const currentActiveSection = ref<string>('');
+
+// Sync SEO
+useSeo(
+    computed(() => {
+        if (!article.value) return null;
+        return {
+            title: article.value.title,
+            description: article.value.highlight,
+            ogType: 'article',
+        };
+    }),
+);
 
 // Calculate Reading Time
 const readingTime = computed(() => {
@@ -165,44 +179,6 @@ const readingTime = computed(() => {
     const words = text.trim().split(/\s+/).length;
     return Math.ceil(words / 200); // 200 WPM baseline
 });
-
-// Update Meta Tags & SEO
-watch(
-    article,
-    (newArticle) => {
-        if (newArticle) {
-            document.title = `${newArticle.title} | Bayu Aksana Portfolio`;
-
-            // Simple Meta Update (In a real app use @vueuse/head or Nuxt)
-            const updateMeta = (name: string, content: string) => {
-                let el = document.querySelector(`meta[name="${name}"]`);
-                if (!el) {
-                    el = document.createElement('meta');
-                    el.setAttribute('name', name);
-                    document.head.appendChild(el);
-                }
-                el.setAttribute('content', content);
-            };
-
-            const updateOG = (property: string, content: string) => {
-                let el = document.querySelector(`meta[property="${property}"]`);
-                if (!el) {
-                    el = document.createElement('meta');
-                    el.setAttribute('property', property);
-                    document.head.appendChild(el);
-                }
-                el.setAttribute('content', content);
-            };
-
-            updateMeta('description', newArticle.highlight);
-            updateOG('og:title', newArticle.title);
-            updateOG('og:description', newArticle.highlight);
-            updateOG('og:type', 'article');
-            // If we had image assets: updateOG('og:image', ...);
-        }
-    },
-    { immediate: true },
-);
 
 // Scroll to Top
 const scrollToTop = () => {

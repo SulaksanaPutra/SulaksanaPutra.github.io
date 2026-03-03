@@ -52,8 +52,16 @@
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { useCaseStudiesData } from '@/modules/case-studies/data/case-studies.data.ts';
+import { useSeo } from '@/core/composables/use-seo';
 
 const route = useRoute();
+
+useSeo(
+    computed(() => ({
+        title: 'Case Studies',
+        description: 'Selected projects and deep dives into engineering challenges.',
+    })),
+);
 
 const systemId = computed(() => {
     const value = route.query.systemId;

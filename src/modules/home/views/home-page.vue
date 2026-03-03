@@ -14,6 +14,7 @@
 <script setup lang="ts">
 import {
     type Component,
+    computed,
     defineAsyncComponent,
     markRaw,
     nextTick,
@@ -22,6 +23,7 @@ import {
     watch,
 } from 'vue';
 import { useRoute } from 'vue-router';
+import { useSeo } from '@/core/composables/use-seo';
 
 const components: Record<string, Component> = {
     about: markRaw(
@@ -40,6 +42,17 @@ const components: Record<string, Component> = {
 };
 
 const route = useRoute();
+
+useSeo(
+    computed(() => {
+        const sectionName =
+            (route.name as string)?.charAt(0).toUpperCase() + (route.name as string)?.slice(1);
+        return {
+            title: sectionName || 'Fullstack Engineer',
+            description: 'Bayu Aksana - Fullstack Software Engineer portfolio and case studies.',
+        };
+    }),
+);
 
 const sectionOrder: string[] = ['about', 'writing', 'projects', 'uses', 'hobbies'];
 
