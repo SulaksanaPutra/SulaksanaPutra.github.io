@@ -73,23 +73,13 @@
 </template>
 
 <script setup lang="ts">
-import { CaseStudyArticle } from '@/modules/case-studies/case-studies.types.ts';
-import { computed, ComputedRef } from 'vue';
+import { useRoute } from 'vue-router';
+import { useCaseStudyArticle } from '@/modules/case-studies/data/case-studies.data.ts';
 import { headerComponentRef } from '@/store.ts';
 
-const props = defineProps<{
-    defaultContent?: CaseStudyArticle;
-    useArticleData?: () => ComputedRef<CaseStudyArticle | null>;
-}>();
-
-const dynamicData = props.useArticleData ? props.useArticleData() : null;
-
-const article = computed(() => {
-    if (dynamicData?.value) {
-        return dynamicData.value;
-    }
-    return props.defaultContent;
-});
+const route = useRoute();
+const articleId = typeof route.params.articleId === 'string' ? route.params.articleId : '';
+const article = useCaseStudyArticle(articleId);
 
 const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -106,4 +96,5 @@ const scrollToSection = (id: string) => {
     }
 };
 </script>
+
 

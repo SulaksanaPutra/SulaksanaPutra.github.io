@@ -9,7 +9,17 @@
             >
                 <router-view v-slot="{ Component: RoutedComponent, route: routedRoute }">
                     <transition :name="shouldTransition(routedRoute) ? 'fade' : ''" mode="out-in">
-                        <component :is="RoutedComponent" :key="getRouteKey(routedRoute)" />
+                        <Suspense :timeout="0">
+                            <component :is="RoutedComponent" :key="getRouteKey(routedRoute)" />
+                            <template #fallback>
+                                <div class="w-full animate-pulse space-y-8 pt-8">
+                                    <div class="h-10 bg-bg-muted rounded w-3/4" />
+                                    <div class="h-4 bg-bg-muted rounded w-full" />
+                                    <div class="h-4 bg-bg-muted rounded w-5/6" />
+                                    <div class="h-64 bg-bg-muted rounded w-full" />
+                                </div>
+                            </template>
+                        </Suspense>
                     </transition>
                 </router-view>
             </main>

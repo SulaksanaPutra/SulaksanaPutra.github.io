@@ -1,28 +1,12 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router';
-import SystemsPage from '@/modules/systems/views/systems-page.vue';
-import CaseStudiesPage from '@/modules/case-studies/views/case-studies-page.vue';
-import SkillsPage from '@/modules/skills/views/skills-page.vue';
-import ContactPage from '@/modules/contact/views/contact-page.vue';
-import HomePage from '@/modules/home/views/home-page.vue';
-import CaseStudyArticlePage from '@/modules/case-studies/views/case-study-article-page.vue';
-import {
-    useVatChangeCaseData,
-    VAT_CHANGE_CASE_BY_LOCALE,
-} from '@/modules/case-studies/data/articles/vat-change-case.ts';
-import {
-    SCALING_STATE_IN_VUE_SPA_BY_LOCALE,
-    useScalingStateInVueSpaData,
-} from '@/modules/case-studies/data/articles/scaling-state-in-vue-spa.ts';
-import NotFoundPage from '@/modules/error/views/NotFoundPage.vue';
-import ServerErrorPage from '@/modules/error/views/ServerErrorPage.vue';
-import {
-    OPTIMIZING_QUERY_PERFORMANCE_BY_LOCALE,
-    useOptimizingQueryPerformanceData,
-} from '@/modules/case-studies/data/articles/optimizing-query-performance.ts';
-import {
-    OVER_ENGINEERING_A_CLEAN_ARCHITECTURE,
-    useOverEngineeringACleanArchitectureData,
-} from '@/modules/case-studies/data/articles/over-engineering-a-clean-architecture.ts';
+const HomePage = () => import('@/modules/home/views/home-page.vue');
+const SystemsPage = () => import('@/modules/systems/views/systems-page.vue');
+const CaseStudiesPage = () => import('@/modules/case-studies/views/case-studies-page.vue');
+const CaseStudyArticlePage = () => import('@/modules/case-studies/views/case-study-article-page.vue');
+const SkillsPage = () => import('@/modules/skills/views/skills-page.vue');
+const ContactPage = () => import('@/modules/contact/views/contact-page.vue');
+const NotFoundPage = () => import('@/modules/error/views/NotFoundPage.vue');
+const ServerErrorPage = () => import('@/modules/error/views/ServerErrorPage.vue');
 
 const HomeDrawer = () => import('@/modules/home/components/home-drawer.vue');
 const SystemsDrawer = () => import('@/modules/systems/components/systems-drawer.vue');
@@ -48,40 +32,10 @@ const routes: RouteRecordRaw[] = [
         meta: { drawer: CaseStudiesDrawer },
     },
     {
-        path: '/case-studies/system-twin-v1/handling-a-vat-increase-in-a-legacy-real-time-system',
-        name: 'handling-a-vat-increase-in-a-legacy-real-time-system',
+        path: '/case-studies/:systemId/:articleId',
+        name: 'case-study-article',
         component: CaseStudyArticlePage,
-        props: {
-            useArticleData: useVatChangeCaseData,
-            defaultContent: VAT_CHANGE_CASE_BY_LOCALE.en,
-        },
-    },
-    {
-        path: '/case-studies/system-twin-v1/front-end-state-management-at-scale',
-        name: 'front-end-state-management-at-scale',
-        component: CaseStudyArticlePage,
-        props: {
-            useArticleData: useScalingStateInVueSpaData,
-            defaultContent: SCALING_STATE_IN_VUE_SPA_BY_LOCALE.en,
-        },
-    },
-    {
-        path: '/case-studies/system-twin-v2-wms/over-engineering-a-clean-architecture',
-        name: 'over-engineering-a-clean-architecture',
-        component: CaseStudyArticlePage,
-        props: {
-            useArticleData: useOverEngineeringACleanArchitectureData,
-            defaultContent: OVER_ENGINEERING_A_CLEAN_ARCHITECTURE.en,
-        },
-    },
-    {
-        path: '/case-studies/system-twin-v1/optimizing-query-performance-in-a-monolithic-erp',
-        name: 'optimizing-query-performance-in-a-monolithic-erp',
-        component: CaseStudyArticlePage,
-        props: {
-            useArticleData: useOptimizingQueryPerformanceData,
-            defaultContent: OPTIMIZING_QUERY_PERFORMANCE_BY_LOCALE.en,
-        },
+        meta: { drawer: CaseStudiesDrawer },
     },
     {
         path: '/skillsPage',

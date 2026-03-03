@@ -56,4 +56,17 @@ export function useCaseStudiesData(systemId?: string | import('vue').Ref<string 
     });
 }
 
+export function useCaseStudyArticle(articleId: string) {
+    const { locale } = useI18n();
+
+    return computed<CaseStudyArticle | null>(() => {
+        const articleMap = articlesByLocale.find((map) => {
+            const article = map[locale.value] || map.en;
+            return article?.id === articleId;
+        });
+
+        return articleMap ? (articleMap[locale.value] || articleMap.en) : null;
+    });
+}
+
 export default CASE_STUDIES_BY_LOCALE.en;
