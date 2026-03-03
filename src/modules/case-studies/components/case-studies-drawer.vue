@@ -65,14 +65,12 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { useRoute } from 'vue-router';
 import { activeSection } from '@/store';
 import { ChevronDown, X } from 'lucide-vue-next';
 import { useCaseStudiesDrawerData } from '@/modules/case-studies/data/case-studies-drawer.data.ts';
 import { useDrawerManagement } from '@/core/composables/use-drawer-management';
 
 const caseStudiesDrawer = useCaseStudiesDrawerData();
-const route = useRoute();
 const { toggleDrawer, isDrawerOpen } = useDrawerManagement();
 
 const allSystemIds = computed<string[]>(() => caseStudiesDrawer.value.map((s) => s.id));

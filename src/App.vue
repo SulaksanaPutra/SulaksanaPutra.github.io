@@ -1,10 +1,10 @@
 <template>
     <div class="min-h-screen flex flex-col">
         <Header />
-        <div class="flex flex-grow transition-all duration-300">
+        <div class="flex flex-grow layout-transition">
             <component :is="currentDrawer" />
             <main
-                class="container flex-grow pt-0 pb-16 transition-all duration-300"
+                class="container flex-grow pt-0 pb-16 layout-transition"
                 :class="isDrawerOpen ? 'md:ml-64' : ''"
             >
                 <router-view v-slot="{ Component: RoutedComponent, route: routedRoute }">
@@ -24,7 +24,7 @@
                 </router-view>
             </main>
         </div>
-        <Footer class="transition-all duration-30" :class="isDrawerOpen ? 'md:ml-32' : ''" />
+        <Footer class="layout-transition" :class="isDrawerOpen ? 'md:ml-32' : ''" />
     </div>
 </template>
 

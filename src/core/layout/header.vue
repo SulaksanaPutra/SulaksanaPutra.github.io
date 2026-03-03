@@ -61,22 +61,33 @@
                         type="text"
                         placeholder="Search…"
                         class="w-56 md:w-72 pl-8 bg-bg-muted border border-border-subtle rounded-md py-1.5 px-2 text-sm focus:outline-none"
+                        @keydown="handleSearchKeydown"
                     />
                 </div>
                 <ul
                     v-if="searchQuery && filteredLinks.length"
-                    class="absolute left-0 mt-2 w-[28rem] max-w-[90vw] bg-bg-main border border-border-subtle rounded-md shadow-lg z-[100]"
+                    class="absolute left-0 mt-2 w-[28rem] max-w-[90vw] bg-bg-main border border-border-subtle rounded-md shadow-lg z-[100] max-h-[70vh] overflow-y-auto"
                 >
                     <li
-                        v-for="item in filteredLinks"
-                        :key="item.href"
-                        class="px-4 py-3 hover:bg-bg-muted"
+                        v-for="(item, index) in filteredLinks"
+                        :key="item.id"
+                        class="px-4 py-3 hover:bg-bg-muted cursor-pointer transition-colors"
+                        :class="{ 'bg-bg-muted': selectedIndex === index }"
+                        @mouseenter="selectedIndex = index"
                     >
                         <router-link :to="item.href" class="block" @click="searchQuery = ''">
-                            <div class="text-sm font-medium text-text-primary">
-                                {{ item.label }}
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm font-medium text-text-primary">
+                                    {{ item.label }}
+                                </span>
+                                <span
+                                    v-if="item.category"
+                                    class="text-[10px] uppercase tracking-wider text-text-secondary px-1.5 py-0.5 rounded bg-bg-muted border border-border-subtle"
+                                >
+                                    {{ item.category }}
+                                </span>
                             </div>
-                            <div class="text-xs text-text-secondary mt-0.5">
+                            <div class="text-xs text-text-secondary mt-0.5 line-clamp-1">
                                 {{ item.description }}
                             </div>
                         </router-link>
@@ -94,7 +105,7 @@
                     >
                         <router-link
                             :to="nav.href"
-                            class="text-base text-text-secondary hover:text-text-primary hover:no-underline"
+                            class="text-base text-text-secondary hover:text-text-primary hover:no-underline magnetic-hover"
                             active-class="text-text-primary font-semibold"
                         >
                             {{ nav.label }}
@@ -137,42 +148,84 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
+import { useRouter } from 'vue-router';
 import { Menu, Moon, Search, Sun } from 'lucide-vue-next';
-import {
-    headerComponentRef,
-    isDark,
-    isDrawerEmpty,
-    isDrawerOpen,
-    language,
-    scrollProgress,
-} from '@/store';
+import { headerComponentRef, isDark, isDrawerEmpty, language, scrollProgress } from '@/store';
 
 import { useHeaderData } from '@/core/data/header.data.ts';
-import { Header } from '@/core/types/header.types.ts';
+import { CASE_STUDIES_BY_LOCALE } from '@/modules/case-studies/data/case-studies.data.ts';
+import { SYSTEMS_BY_LOCALE } from '@/modules/systems/data/systems.data.ts';
+import { useDrawerManagement } from '@/core/composables/use-drawer-management';
 
 const page = useHeaderData();
+const router = useRouter();
+const { toggleDrawer } = useDrawerManagement();
 
-const route = useRoute();
 const headerRef = ref<HTMLElement | null>(null);
 const searchInputRef = ref<HTMLInputElement | null>(null);
 const searchQuery = ref<string>('');
 
-const searchLinks = computed<NonNullable<Header['searchLinks']>>(
-    () => page.value?.searchLinks || [],
-);
-const navLinks = computed<NonNullable<Header['navigations']>>(() => page.value?.navigations || []);
+const searchLinks = computed(() => page.value?.searchLinks || []);
+const navLinks = computed(() => page.value?.navigations || []);
 
-const filteredLinks = computed<NonNullable<Header['searchLinks']>>(() =>
-    searchLinks.value.filter((item) =>
-        item.label.toLowerCase().includes(searchQuery.value.toLowerCase()),
-    ),
-);
+const selectedIndex = ref(-1);
 
-import { useDrawerManagement } from '@/core/composables/use-drawer-management';
+const searchablePool = computed(() => {
+    const localeKey = language.value.toLowerCase() as 'en' | 'id';
 
-const { toggleDrawer } = useDrawerManagement();
+    return [
+        ...searchLinks.value.map((l) => ({ ...l, category: 'Page' })),
+        ...SYSTEMS_BY_LOCALE[localeKey].map((s) => ({
+            id: s.id,
+            label: s.title,
+            description: s.highlight,
+            href: `/case-studies?systemId=${s.id}`,
+            category: 'System',
+        })),
+        ...CASE_STUDIES_BY_LOCALE[localeKey].map((c) => ({
+            id: c.id,
+            label: c.title,
+            description: c.highlight,
+            href: c.link.href,
+            category: 'Case Study',
+        })),
+    ];
+});
+
+const filteredLinks = computed(() => {
+    if (!searchQuery.value) return [];
+    const query = searchQuery.value.toLowerCase();
+    return searchablePool.value.filter(
+        (item) =>
+            item.label.toLowerCase().includes(query) ||
+            item.description?.toLowerCase().includes(query),
+    );
+});
+
+watch(searchQuery, () => {
+    selectedIndex.value = -1;
+});
+
+const handleSearchKeydown = (e: KeyboardEvent) => {
+    if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        selectedIndex.value = (selectedIndex.value + 1) % filteredLinks.value.length;
+    } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        selectedIndex.value =
+            (selectedIndex.value - 1 + filteredLinks.value.length) % filteredLinks.value.length;
+    } else if (e.key === 'Enter') {
+        if (selectedIndex.value >= 0 && filteredLinks.value[selectedIndex.value]) {
+            const item = filteredLinks.value[selectedIndex.value];
+            searchQuery.value = '';
+            router.push(item.href);
+        }
+    } else if (e.key === 'Escape') {
+        searchQuery.value = '';
+        searchInputRef.value?.blur();
+    }
+};
 
 const toggleTheme = (): void => {
     isDark.value = !isDark.value;

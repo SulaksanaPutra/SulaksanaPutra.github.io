@@ -19,18 +19,25 @@
     }
 
     .dark {
-        --bg-main: #12110f; /* deep dark background */
-        --bg-muted: #1a1916; /* subtle secondary background */
-        --text-primary: #e0ded9; /* softer off-white for readability */
-        --text-secondary: #a8a29e; /* secondary text, unchanged */
-        --border-subtle: #2a2824; /* subtle divider */
-        --accent-primary: #8c715b; /* softer warm accent for elegance */
+        --bg-main: #12110f;
+        /* deep dark background */
+        --bg-muted: #1a1916;
+        /* subtle secondary background */
+        --text-primary: #e0ded9;
+        /* softer off-white for readability */
+        --text-secondary: #a8a29e;
+        /* secondary text, unchanged */
+        --border-subtle: #2a2824;
+        /* subtle divider */
+        --accent-primary: #8c715b;
+        /* softer warm accent for elegance */
     }
 
     body {
         @apply bg-bg-main text-text-primary font-sans antialiased;
         /*font-size: 1.125rem; !* ~18px *!*/
-        line-height: 1.75; /* ~31.5px - Explicit for scroll snapping */
+        line-height: 1.75;
+        /* ~31.5px - Explicit for scroll snapping */
     }
 
     /* Custom Scrollbar */
@@ -46,7 +53,8 @@
     ::-webkit-scrollbar-thumb {
         background-color: var(--border-subtle);
         border-radius: 9999px;
-        border: 2px solid var(--bg-main); /* Creates padding effect */
+        border: 2px solid var(--bg-main);
+        /* Creates padding effect */
     }
 
     ::-webkit-scrollbar-thumb:hover {
@@ -94,18 +102,68 @@
     }
 }
 
-/* Transitions */
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity 0.2s ease;
+/* Transitions & Micro-interactions */
+:root {
+    --ease-elastic: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+    --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.fade-enter-from,
+.layout-transition {
+    transition: all 0.5s var(--ease-out-expo);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.3s var(--ease-out-expo), transform 0.3s var(--ease-out-expo);
+}
+
+.fade-enter-from {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
 .fade-leave-to {
     opacity: 0;
+    transform: translateY(-10px);
+}
+
+/* List Transitions */
+.list-move,
+.list-enter-active,
+.list-leave-active {
+    transition: all 0.5s var(--ease-out-expo);
+}
+
+.list-enter-from,
+.list-leave-to {
+    opacity: 0;
+    transform: translateX(30px);
+}
+
+.list-leave-active {
+    position: absolute;
+}
+
+/* Magnetic Hover Effect */
+.magnetic-hover {
+    @apply relative transition-transform duration-300 ease-out inline-block;
+}
+
+.magnetic-hover:hover {
+    transform: scale(1.05) translateY(-2px);
+}
+
+.magnetic-hover::after {
+    content: '';
+    @apply absolute -bottom-1 left-0 w-0 h-[1.5px] bg-accent-primary transition-all duration-300 ease-out;
+}
+
+.magnetic-hover:hover::after {
+    @apply w-full;
 }
 
 @media print {
+
     /* Hide UI elements */
     header,
     aside,
@@ -140,4 +198,3 @@
     /* Optional: Show URL after links for reference in printed docs */
     /* a[href^="http"]:after { content: " (" attr(href) ")"; font-size: 0.8em; color: #666; } */
 }
-

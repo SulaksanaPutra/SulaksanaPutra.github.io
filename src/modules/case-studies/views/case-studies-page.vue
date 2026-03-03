@@ -24,7 +24,11 @@
                         {{ caseStudy.description }}
                     </p>
 
-                    <router-link :id="caseStudy.link.id" :to="caseStudy.link.href">
+                    <router-link
+                        :id="caseStudy.link.id"
+                        :to="caseStudy.link.href"
+                        class="magnetic-hover font-medium"
+                    >
                         {{ caseStudy.link.label }}
                     </router-link>
                 </article>
