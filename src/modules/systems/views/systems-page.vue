@@ -17,11 +17,7 @@
                     </p>
 
                     <div class="flex flex-wrap gap-2 mb-6">
-                        <span
-                            v-for="tag in system.tags"
-                            :key="tag"
-                            class="tag-pill"
-                        >
+                        <span v-for="tag in system.tags" :key="tag" class="tag-pill">
                             {{ tag }}
                         </span>
                     </div>

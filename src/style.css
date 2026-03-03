@@ -386,7 +386,7 @@
     }
 
     .magnetic-hover:hover {
-        @apply -translate-y-0.5 scale-[1.02];
+        @apply -translate-y-0.5 scale-[1.02] no-underline;
     }
 
     .magnetic-hover::after {
