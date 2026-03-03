@@ -8,7 +8,7 @@ export const OPTIMIZING_QUERY_PERFORMANCE_BY_LOCALE: Record<'en' | 'id', CaseStu
             backLink: {
                 id: 'case-studies',
                 href: '/case-studies',
-                label: '← Back to Case Studies',
+                label: 'Back to Case Studies',
             },
             id: 'optimizing-query-performance-in-a-monolithic-erp',
             systemId: 'system-twin-v1',

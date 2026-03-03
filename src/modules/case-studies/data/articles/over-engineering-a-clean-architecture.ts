@@ -7,7 +7,7 @@ export const OVER_ENGINEERING_A_CLEAN_ARCHITECTURE: Record<'en' | 'id', CaseStud
         backLink: {
             id: 'case-studies',
             href: '/case-studies',
-            label: '← Back to Case Studies',
+            label: 'Back to Case Studies',
         },
         id: 'over-engineering-a-clean-architecture',
         systemId: 'system-twin-v2-wms',

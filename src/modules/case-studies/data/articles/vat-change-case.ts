@@ -7,7 +7,7 @@ export const VAT_CHANGE_CASE_BY_LOCALE: Record<'en' | 'id', CaseStudyArticle | n
         backLink: {
             id: 'case-studies',
             href: '/case-studies',
-            label: '← Back to Case Studies',
+            label: 'Back to Case Studies',
         },
         id: 'handling-a-vat-increase-in-a-legacy-real-time-system',
         systemId: 'system-twin-v1',

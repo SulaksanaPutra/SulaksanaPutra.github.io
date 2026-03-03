@@ -8,7 +8,7 @@ export const SCALING_STATE_IN_VUE_SPA_BY_LOCALE: Record<'en' | 'id', CaseStudyAr
         backLink: {
             id: 'case-studies',
             href: '/case-studies',
-            label: '← Back to Case Studies',
+            label: 'Back to Case Studies',
         },
         title: 'Front-end State Management at Scale (Vue → Vuex)',
         heading: 'State Management at Scale',
