@@ -98,6 +98,26 @@
                             </li>
                         </ul>
                     </section>
+
+                    <!-- Next Case Study Section (Minimalist) -->
+                    <section
+                        v-if="nextCaseStudies.length"
+                        class="mt-20 pt-16 border-t border-border-subtle no-print"
+                    >
+                        <p class="label-overline mb-6">You might also like my other articles</p>
+                        <div class="space-y-6">
+                            <div v-for="study in nextCaseStudies" :key="study.id">
+                                <p class="text-text-primary mb-0">
+                                    <router-link
+                                        :to="study.link.href"
+                                        class="hover:text-accent-primary transition-colors"
+                                    >
+                                        → {{ study.title }}
+                                    </router-link>
+                                </p>
+                            </div>
+                        </div>
+                    </section>
                 </article>
             </div>
         </section>
@@ -125,7 +145,10 @@
 import { computed, onMounted, onUnmounted, provide, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { useWindowScroll } from '@vueuse/core';
-import { useCaseStudyArticle } from '@/modules/case-studies/data/case-studies.data.ts';
+import {
+    useCaseStudyArticle,
+    useCaseStudiesData,
+} from '@/modules/case-studies/data/case-studies.data.ts';
 import { headerComponentRef } from '@/store.ts';
 import { ArrowLeft, ArrowUp, BookOpen, Clock, FileQuestion } from 'lucide-vue-next';
 import GlossaryText from '@/core/components/glossary-text.vue';
@@ -148,6 +171,34 @@ watch([language, articleData], () => {
 
 const { y } = useWindowScroll();
 const currentActiveSection = ref<string>('');
+
+const allCaseStudies = useCaseStudiesData();
+const nextCaseStudies = computed(() => {
+    if (!article.value) return [];
+
+    const currentId = article.value.id;
+    const currentSystemId = article.value.systemId;
+
+    // Filter out current
+    const candidates = allCaseStudies.value.filter((cs) => cs.id !== currentId);
+
+    // Prioritize same system
+    const sameSystem = candidates
+        .filter((cs) => cs.systemId === currentSystemId)
+        .sort(() => Math.random() - 0.5);
+
+    const others = candidates
+        .filter((cs) => cs.systemId !== currentSystemId)
+        .sort(() => Math.random() - 0.5);
+
+    let result = [...sameSystem];
+
+    if (result.length < 2) {
+        result = [...result, ...others.slice(0, 2 - result.length)];
+    }
+
+    return result.slice(0, 2);
+});
 
 useSeo(
     computed(() => {
@@ -204,7 +255,7 @@ onMounted(() => {
             });
         },
         {
-            rootMargin: '-20% 0px -60% 0px', // Trigger when a section is in the top half
+            rootMargin: '-20% 0px -60% 0px',
             threshold: 0,
         },
     );

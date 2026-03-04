@@ -45,40 +45,83 @@
 
                 <!-- Messages area -->
                 <div class="chat-box-messages" ref="messageContainer">
-                    <div
-                        v-for="msg in messages"
-                        :key="msg.id"
-                        :class="[
-                            'flex flex-col gap-1.5 max-w-[85%]',
-                            msg.isUser ? 'self-end' : 'self-start',
-                        ]"
-                    >
+                    <!-- Skeleton Loading -->
+                    <template v-if="isLoading && messages.length === 0">
                         <div
+                            v-for="i in 3"
+                            :key="i"
                             :class="[
-                                'chat-box-bubble',
-                                msg.isUser ? 'chat-box-bubble-user' : 'chat-box-bubble-bot',
+                                'flex flex-col gap-2 max-w-[80%] mb-4',
+                                i % 2 === 0 ? 'self-end items-end' : 'self-start items-start',
                             ]"
                         >
-                            {{ msg.body }}
+                            <div
+                                :class="[
+                                    'h-12 w-48 rounded-2xl animate-pulse bg-bg-muted border border-border-subtle',
+                                    i % 2 === 0 ? 'rounded-br-none' : 'rounded-bl-none',
+                                ]"
+                            ></div>
+                            <div class="h-3 w-12 rounded animate-pulse bg-bg-muted"></div>
                         </div>
-                        <span
+                    </template>
+
+                    <!-- Empty State -->
+                    <div
+                        v-else-if="messages.length === 0 && !isLoading"
+                        class="flex flex-col items-center justify-center h-full text-center px-6 py-10"
+                    >
+                        <div
+                            class="w-16 h-16 bg-accent-primary/10 rounded-full flex items-center justify-center mb-5"
+                        >
+                            <Sparkles class="w-8 h-8 text-accent-primary animate-pulse" />
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-text-primary">Let's chat!</h3>
+                        <p class="text-sm text-text-secondary leading-relaxed max-w-[240px]">
+                            I'm here to help you navigate through my portfolio and answer any
+                            questions.
+                        </p>
+                    </div>
+
+                    <!-- Messages List -->
+                    <template v-else>
+                        <div
+                            v-for="msg in messages"
+                            :key="msg.id"
                             :class="[
-                                'text-[0.65rem] text-text-secondary font-medium',
+                                'flex flex-col gap-1.5 max-w-[85%]',
                                 msg.isUser ? 'self-end' : 'self-start',
                             ]"
                         >
-                            {{ formatTime(msg.timestamp) }}
-                        </span>
-                    </div>
-                    <div v-if="isLoading" class="flex gap-1 p-2">
+                            <div
+                                :class="[
+                                    'chat-box-bubble',
+                                    msg.isUser ? 'chat-box-bubble-user' : 'chat-box-bubble-bot',
+                                ]"
+                            >
+                                {{ msg.body }}
+                            </div>
+                            <span
+                                :class="[
+                                    'text-[0.65rem] text-text-secondary font-medium',
+                                    msg.isUser ? 'self-end' : 'self-start',
+                                ]"
+                            >
+                                {{ formatTime(msg.timestamp) }}
+                            </span>
+                        </div>
+                    </template>
+
+                    <!-- Typing Indicator -->
+                    <div
+                        v-if="isLoading && messages.length > 0"
+                        class="flex gap-1.5 p-3 px-4 rounded-xl rounded-bl-none bg-bg-muted border border-border-subtle self-start items-center"
+                    >
+                        <span class="typing-dot w-1.5 h-1.5 bg-text-secondary/40 rounded-full" />
                         <span
-                            class="w-1.5 h-1.5 bg-text-secondary/30 rounded-full animate-bounce"
+                            class="typing-dot w-1.5 h-1.5 bg-text-secondary/40 rounded-full [animation-delay:0.2s]"
                         />
                         <span
-                            class="w-1.5 h-1.5 bg-text-secondary/30 rounded-full animate-bounce [animation-delay:-0.15s]"
-                        />
-                        <span
-                            class="w-1.5 h-1.5 bg-text-secondary/30 rounded-full animate-bounce [animation-delay:-0.3s]"
+                            class="typing-dot w-1.5 h-1.5 bg-text-secondary/40 rounded-full [animation-delay:0.4s]"
                         />
                     </div>
                 </div>
@@ -107,7 +150,7 @@
 
 <script setup lang="ts">
 import { nextTick, ref, watch } from 'vue';
-import { MessageCircle, Send, X } from 'lucide-vue-next';
+import { MessageCircle, Send, X, Sparkles } from 'lucide-vue-next';
 import { useChat } from '../composables/use-chat';
 
 const { messages, isOpen, isLoading, newMessage, toggleChat, send } = useChat();
@@ -185,5 +228,14 @@ const formatTime = (date: Date) => {
 .chat-window-leave-to {
     opacity: 0;
     transform: scale(0.9) translateY(20px);
+}
+
+@keyframes typing {
+    0%, 100% { transform: translateY(0); opacity: 0.3; }
+    50% { transform: translateY(-3px); opacity: 1; }
+}
+
+.typing-dot {
+    animation: typing 1s infinite ease-in-out;
 }
 </style>
