@@ -5,7 +5,7 @@
             <button
                 v-if="y > 400"
                 @click="scrollToTop"
-                class="btn-floating group"
+                class="btn-floating !bottom-24 group md:flex hidden"
                 aria-label="Back to top"
             >
                 <ArrowUp class="w-6 h-6 group-hover:-translate-y-1 transition-transform" />

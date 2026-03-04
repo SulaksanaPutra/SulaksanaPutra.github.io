@@ -20,7 +20,7 @@ export function useDrawerManagement() {
                         loadingComponent: () =>
                             h('aside', {
                                 class: 'fixed left-0 w-64 bg-bg-main border-r border-border-subtle animate-pulse',
-                                style: 'top: var(--header-height); height: calc(100vh - var(--header-height))',
+                                style: 'top: var(--header-height); height: calc(100dvh - var(--header-height))',
                             }),
                         delay: 150,
                     }),

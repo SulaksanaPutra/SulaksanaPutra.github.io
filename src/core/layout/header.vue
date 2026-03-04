@@ -30,22 +30,34 @@
                         BayuAksana
                         <div class="text-base">dotcom</div>
                     </router-link>
-                    <div
-                        class="md:hidden lang-switcher-container ml-4"
-                    >
+                    <div class="flex items-center gap-3">
                         <button
-                            v-for="lang in ['EN', 'ID']"
-                            :key="lang"
-                            class="lang-btn"
-                            :class="
-                                language === lang
-                                    ? 'lang-btn-active'
-                                    : 'lang-btn-inactive'
-                            "
-                            @click="setLanguage(lang)"
+                            type="button"
+                            class="md:hidden flex items-center justify-center w-9 h-9 rounded-full bg-bg-muted border border-border-subtle transition-colors"
+                            :class="{ 'text-accent-primary': isOpen }"
+                            aria-label="Toggle chat"
+                            @click="toggleChat"
                         >
-                            {{ lang }}
+                            <MessageCircle v-if="!isOpen" :size="18" />
+                            <X v-else :size="18" />
                         </button>
+                        <div
+                            class="md:hidden lang-switcher-container"
+                        >
+                            <button
+                                v-for="lang in ['EN', 'ID']"
+                                :key="lang"
+                                class="lang-btn"
+                                :class="
+                                    language === lang
+                                        ? 'lang-btn-active'
+                                        : 'lang-btn-inactive'
+                                "
+                                @click="setLanguage(lang)"
+                            >
+                                {{ lang }}
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -149,17 +161,19 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
-import { Menu, Moon, Search, Sun } from 'lucide-vue-next';
+import { Menu, MessageCircle, Moon, Search, Sun, X } from 'lucide-vue-next';
 import { headerComponentRef, isDark, isDrawerEmpty, language, scrollProgress } from '@/store';
 
 import { useHeaderData } from '@/core/data/header.data.ts';
 import { CASE_STUDIES_BY_LOCALE } from '@/modules/case-studies/data/case-studies.data.ts';
 import { SYSTEMS_BY_LOCALE } from '@/modules/systems/data/systems.data.ts';
 import { useDrawerManagement } from '@/core/composables/use-drawer-management';
+import { useChat } from '@/modules/chat/composables/use-chat';
 
 const page = useHeaderData();
 const router = useRouter();
 const { toggleDrawer } = useDrawerManagement();
+const { toggleChat, isOpen } = useChat();
 
 const headerRef = ref<HTMLElement | null>(null);
 const searchInputRef = ref<HTMLInputElement | null>(null);

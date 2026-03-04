@@ -25,12 +25,14 @@
             </main>
         </div>
         <Footer :class="{ 'footer-drawer-offset': isDrawerOpen }" />
+        <ChatBox />
     </div>
 </template>
 
 <script setup lang="ts">
 import Header from '@/core/layout/header.vue';
 import Footer from '@/core/layout/footer.vue';
+import ChatBox from '@/modules/chat/components/chat-box.vue';
 import { useTheme } from '@/core/composables/use-theme';
 import { useScrollProgress } from '@/core/composables/use-scroll-progress';
 import { useDrawerManagement } from '@/core/composables/use-drawer-management';

@@ -2,7 +2,7 @@
     <aside
         class="fixed z-[60] md:z-30 left-0 w-64 bg-bg-main border-r border-border-subtle transition-transform duration-300 overflow-y-auto"
         :class="isDrawerOpen ? 'translate-x-0' : '-translate-x-full'"
-        style="top: var(--header-height); height: calc(100vh - var(--header-height))"
+        style="top: var(--header-height); height: calc(100dvh - var(--header-height))"
     >
         <nav class="p-6 pt-10 relative">
             <button

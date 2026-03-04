@@ -2,7 +2,7 @@
     <aside
         class="drawer-aside"
         :class="isDrawerOpen ? 'translate-x-0' : '-translate-x-full'"
-        style="top: var(--header-height); height: calc(100vh - var(--header-height))"
+        style="top: var(--header-height); height: calc(100dvh - var(--header-height))"
         @mouseleave="onDrawerMouseLeave"
     >
         <nav class="drawer-nav">
