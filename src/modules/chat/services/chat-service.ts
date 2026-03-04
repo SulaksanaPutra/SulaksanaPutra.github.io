@@ -1,5 +1,7 @@
 const ID_KEY = 'chat_session_id';
-const BASE_URL = import.meta.env.VITE_CHAT_BASE_URL;
+
+const EDGE_FUNCTION_URL = import.meta.env.VITE_EDGE_FUNCTION_URL;
+const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
 export const getSessionId = () => {
     let id = localStorage.getItem(ID_KEY);
@@ -12,25 +14,32 @@ export const getSessionId = () => {
 };
 
 export interface Message {
-    id: string;
+    id: string | number;
     uid: string;
-    direction: 'outgoing' | 'incoming';
+    type: 'outgoing' | 'ingoing' | string;
     message: string;
-    timestamp: number;
+    timestamp?: number;
+    created_at?: string;
 }
 
 export const chatService = {
     async fetchMessages(): Promise<Message[]> {
         const uid = getSessionId();
         try {
-            const response = await fetch(`${BASE_URL}/messages`, {
+            const response = await fetch(EDGE_FUNCTION_URL, {
+                method: 'GET', // Explicitly setting GET
                 headers: {
-                    'x-uid': uid
-                }
+                    Authorization: `Bearer ${SUPABASE_KEY}`,
+                    apikey: SUPABASE_KEY,
+                    'x-uid': uid,
+                },
             });
             if (!response.ok) throw new Error('Failed to fetch messages');
             const data = await response.json();
-            return data.messages || [];
+
+            // NOTE: Ensure your Edge Function GET handler actually returns the array
+            // inside a "messages" property, or adjust this to just `return data || []`
+            return data || [];
         } catch (error) {
             console.error('Failed to fetch messages:', error);
             return [];
@@ -40,13 +49,15 @@ export const chatService = {
     async sendMessage(message: string): Promise<void> {
         const uid = getSessionId();
         try {
-            const response = await fetch(`${BASE_URL}/send`, {
+            const response = await fetch(EDGE_FUNCTION_URL, {
                 method: 'POST',
                 headers: {
+                    Authorization: `Bearer ${SUPABASE_KEY}`,
+                    apikey: SUPABASE_KEY,
+                    'Content-Type': 'application/json',
                     'x-uid': uid,
-                    'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ message })
+                body: JSON.stringify({ message }),
             });
             if (!response.ok) throw new Error('Failed to send message');
         } catch (error) {
@@ -54,9 +65,4 @@ export const chatService = {
             throw error;
         }
     },
-
-    getSSEUrl(): string {
-        const uid = getSessionId();
-        return `${BASE_URL}/events?uid=${uid}`;
-    }
 };

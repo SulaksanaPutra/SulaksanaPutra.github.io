@@ -1,12 +1,19 @@
 import { onMounted, onUnmounted, ref } from 'vue';
+import { createClient, RealtimeChannel } from '@supabase/supabase-js';
 import { chatService, getSessionId, type Message } from '../services/chat-service';
 
-// Shared state
+// --- Supabase Client Setup ---
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
+const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// --- Shared State ---
 const messages = ref<Message[]>([]);
 const isOpen = ref(false);
 const isLoading = ref(false);
 const newMessage = ref('');
-let eventSource: EventSource | null = null;
+let chatChannel: RealtimeChannel | null = null; // Replaces EventSource
 
 export function useChat() {
     const toggleChat = () => {
@@ -17,8 +24,6 @@ export function useChat() {
     };
 
     const refreshMessages = async () => {
-        // We only set isLoading to true for the first fetch or when explicitly necessary
-        // Subsequent background refreshes via SSE might not want a full loading state
         const isFirstLoad = messages.value.length === 0;
         if (isFirstLoad) isLoading.value = true;
 
@@ -29,44 +34,55 @@ export function useChat() {
         }
     };
 
-    const connectSSE = () => {
-        if (eventSource) return;
+    const connectRealtime = () => {
+        // Prevent multiple subscriptions
+        if (chatChannel) return;
 
-        const url = chatService.getSSEUrl();
-        eventSource = new EventSource(url);
+        const currentUid = getSessionId();
 
-        eventSource.onmessage = (event) => {
-            try {
-                const payload = JSON.parse(event.data);
+        // Target the same channel defined in your Edge Function
+        chatChannel = supabase.channel('chat-room');
 
-                if (payload.type === 'clear') {
-                    console.log('SSE clear event received');
-                    messages.value = [];
-                } else if (payload.message) {
-                    console.log('SSE message received');
-                    const exists = messages.value.some(m => m.id === payload.message.id);
-                    if (!exists) {
-                        messages.value.push(payload.message);
-                    }
+        // 1. Listen for standard incoming messages
+        chatChannel.on('broadcast', { event: 'new-telegram-msg' }, (payload) => {
+            console.log('Realtime message received:', payload);
+            const newMsg = payload.payload;
+
+            // Security check: Only add the message to the UI if it belongs to this specific user
+            if (newMsg.uid === currentUid) {
+                const exists = messages.value.some((m) => m.id === newMsg.id);
+                if (!exists) {
+                    messages.value.push(newMsg);
                 }
-            } catch {
-                // Ignore keep-alive comments or malformed payloads
             }
-        };
+        });
 
-        eventSource.onerror = (error) => {
-            console.error('SSE Error:', error);
-            eventSource?.close();
-            eventSource = null;
-            // Attempt to reconnect after a delay
-            setTimeout(connectSSE, 5000);
-        };
+        // 2. Listen for the clear command
+        chatChannel.on('broadcast', { event: 'clear-telegram-msgs' }, (payload) => {
+            console.log('Realtime clear event received:', payload);
+            const targetUid = payload.payload.uid;
+
+            // Only wipe the chat if the [CLEAR] command targeted this specific user
+            if (targetUid === currentUid) {
+                messages.value = [];
+            }
+        });
+
+        // 3. Initiate the connection
+        chatChannel.subscribe((status) => {
+            if (status === 'SUBSCRIBED') {
+                console.log('Successfully connected to Supabase Realtime');
+            } else if (status === 'CHANNEL_ERROR' || status === 'CLOSED') {
+                console.error('Realtime connection issue. Status:', status);
+                // Note: Supabase JS client handles auto-reconnection under the hood!
+            }
+        });
     };
 
-    const disconnectSSE = () => {
-        if (eventSource) {
-            eventSource.close();
-            eventSource = null;
+    const disconnectRealtime = () => {
+        if (chatChannel) {
+            supabase.removeChannel(chatChannel);
+            chatChannel = null;
         }
     };
 
@@ -81,7 +97,7 @@ export function useChat() {
         const tempMsg: Message = {
             id: tempId,
             uid: uid,
-            direction: 'outgoing',
+            type: 'outgoing',
             message: text,
             timestamp: Date.now(),
         };
@@ -91,31 +107,23 @@ export function useChat() {
 
         try {
             await chatService.sendMessage(text);
-            // We don't call refreshMessages() here.
-            // We wait for the SSE 'update' event to trigger the source-of-truth refetch.
+            // We wait for the Realtime 'new-telegram-msg' event (if your Edge Function echoes it)
+            // or just rely on the optimistic update.
         } catch (error) {
             console.error('Error sending message:', error);
-            // Remove the optimistic message if it failed
+            // Remove the optimistic message if the API call failed
             messages.value = messages.value.filter((m) => m.id !== tempId);
-            // Optionally restore the input
             newMessage.value = text;
         }
     };
 
-    // Initialize SSE on first use of the composable
-    // In a multi-page app, you might want this to be global
-    // but here it's shared state anyway.
     onMounted(() => {
-        connectSSE();
+        connectRealtime();
     });
 
     onUnmounted(() => {
-        disconnectSSE();
+        disconnectRealtime();
     });
-
-    // We don't necessarily want to disconnect on unmount if it's shared state
-    // but if the whole chat feature is inactive, maybe we should.
-    // For now, let's keep it connected as long as the app is alive or until explicitly closed.
 
     return {
         messages,
