@@ -446,7 +446,6 @@
 }
 
 @layer utilities {
-
     /* Transitions & Micro-interactions */
     .layout-transition {
         transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
@@ -491,7 +490,9 @@
 /* Vue Animations (Keep globally accessible or move to utilities if possible) */
 .fade-enter-active,
 .fade-leave-active {
-    transition: opacity 0.3s cubic-bezier(0.19, 1, 0.22, 1), transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    transition:
+        opacity 0.3s cubic-bezier(0.19, 1, 0.22, 1),
+        transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .fade-enter-from {
@@ -522,7 +523,6 @@
 }
 
 @media print {
-
     /* Hide UI elements */
     header,
     aside,

@@ -80,11 +80,23 @@ export const VAT_CHANGE_CASE_BY_LOCALE: Record<'en' | 'id', CaseStudyArticle | n
         glossary: [
             {
                 term: 'legacy system',
-                definition: 'An outdated computer system, programming language, or software application that is still in use by an organization.',
+                definition:
+                    'An outdated computer system, programming language, or software application that is still in use by an organization.',
             },
             {
                 term: 'master data',
-                definition: 'The core data within an enterprise that describes objects like products, customers, and suppliers around which business is conducted.',
+                definition:
+                    'The core data within an enterprise that describes objects like products, customers, and suppliers around which business is conducted.',
+            },
+        ],
+        qnas: [
+            {
+                question: 'Why was changing the hardcoded VAT value directly not an option?',
+                answer: 'Because the system recalculated totals in real-time. Changing the value would have retroactively altered all historical invoices, causing massive legal and accounting discrepancies.',
+            },
+            {
+                question: 'How do you handle regulatory changes in legacy systems safely?',
+                answer: 'By shifting from hardcoded logic to versioned, configuration-based strategies and persisting the actual applied rates at the time of transaction.',
             },
         ],
     },

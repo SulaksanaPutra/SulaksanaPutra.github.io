@@ -65,7 +65,7 @@ export function useCaseStudyArticle(articleId: string) {
             return article?.id === articleId;
         });
 
-        return articleMap ? (articleMap[locale.value] || articleMap.en) : null;
+        return articleMap ? articleMap[locale.value] || articleMap.en : null;
     });
 }
 

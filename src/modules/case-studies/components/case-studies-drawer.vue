@@ -86,4 +86,3 @@ const toggleSystem = (id: string) => {
     }
 };
 </script>
-

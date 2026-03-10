@@ -85,6 +85,16 @@ export const OPTIMIZING_QUERY_PERFORMANCE_BY_LOCALE: Record<'en' | 'id', CaseStu
                     ],
                 },
             ],
+            qnas: [
+                {
+                    question: 'Why focus on read optimization instead of a database redesign?',
+                    answer: 'The system was live and business-critical. Redesigning core transactional models posed too high a risk for immediate operations, so we chose an incremental, read-side separation.',
+                },
+                {
+                    question: 'How did you handle the expensive COUNT queries for pagination?',
+                    answer: "We replaced standard pagination with LIMIT-based lists where the total count wasn't business-critical, significantly reducing database load on millions of rows.",
+                },
+            ],
         },
         id: null,
     };

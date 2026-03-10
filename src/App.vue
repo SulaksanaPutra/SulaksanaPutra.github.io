@@ -3,10 +3,7 @@
         <Header />
         <div class="main-layout">
             <component :is="currentDrawer" />
-            <main
-                class="main-content"
-                :class="{ 'drawer-open-offset': isDrawerOpen }"
-            >
+            <main class="main-content" :class="{ 'drawer-open-offset': isDrawerOpen }">
                 <router-view v-slot="{ Component: RoutedComponent, route: routedRoute }">
                     <transition :name="shouldTransition(routedRoute) ? 'fade' : ''" mode="out-in">
                         <Suspense :timeout="0">
@@ -44,4 +41,3 @@ useScrollProgress();
 const { currentDrawer, isDrawerOpen, sectionRoutes } = useDrawerManagement();
 const { shouldTransition, getRouteKey } = useAppLayout(sectionRoutes);
 </script>
-

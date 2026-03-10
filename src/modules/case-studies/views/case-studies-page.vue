@@ -2,16 +2,9 @@
     <div class="prose-content my-8">
         <section class="content-narrow" v-if="caseStudies.length">
             <div class="grid gap-8">
-                <article
-                    v-for="caseStudy in caseStudies"
-                    :key="caseStudy.id"
-                    class="article-item"
-                >
+                <article v-for="caseStudy in caseStudies" :key="caseStudy.id" class="article-item">
                     <h2 class="article-title">
-                        <router-link
-                            :to="caseStudy.link.href"
-                            class="article-link font-semibold"
-                        >
+                        <router-link :to="caseStudy.link.href" class="article-link font-semibold">
                             {{ caseStudy.title }}
                         </router-link>
                     </h2>

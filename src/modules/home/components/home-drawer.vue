@@ -33,9 +33,7 @@
                                 >
                                     {{ item.label }}
                                 </a>
-                                <p
-                                    class="drawer-item-description"
-                                >
+                                <p class="drawer-item-description">
                                     {{ item.description }}
                                 </p>
                             </div>
@@ -98,11 +96,13 @@ const handleDrawerLinkClick = () => {
 const onItemClicked = (item: HomeDrawerItem, _event: MouseEvent) => {
     let activeIndex = homeDrawer.value.findIndex((i: HomeDrawerItem) => i.isActive);
 
-    // If there's no active item but there's a pending one, 
+    // If there's no active item but there's a pending one,
     // it means the user clicked another item without moving the mouse out.
     if (activeIndex === -1 && pendingActiveItem.value) {
         pendingActiveItem.value.isActive = true;
-        activeIndex = homeDrawer.value.findIndex((i: HomeDrawerItem) => i.id === pendingActiveItem.value!.id);
+        activeIndex = homeDrawer.value.findIndex(
+            (i: HomeDrawerItem) => i.id === pendingActiveItem.value!.id,
+        );
     }
 
     pendingActiveItem.value = item;

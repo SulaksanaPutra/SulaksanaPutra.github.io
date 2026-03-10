@@ -89,6 +89,26 @@ export const SCALING_STATE_IN_VUE_SPA_BY_LOCALE: Record<'en' | 'id', CaseStudyAr
                     'Local UI state stayed inside components. Mutations and actions were the only way to change global state, while component-specific logic remained decoupled. This kept the store relatively small and avoided unnecessary boilerplate.',
                     'The goal was not to centralize everything, but to centralize only what truly needed to be shared.',
                 ],
+                codeBlock: {
+                    language: 'javascript',
+                    code: `// Example showing centralized store structure
+const store = new Vuex.Store({
+  modules: {
+    orders: orderModule,
+    products: productModule
+  }
+});
+
+// Decoupled component using mapped actions
+export default {
+  computed: {
+    ...mapState('orders', ['currentOrder'])
+  },
+  methods: {
+    ...mapActions('orders', ['updateOrder'])
+  }
+};`,
+                },
             },
             {
                 id: 'outcome',
@@ -108,6 +128,16 @@ export const SCALING_STATE_IN_VUE_SPA_BY_LOCALE: Record<'en' | 'id', CaseStudyAr
                     'I also learned that centralization needs restraint. Not everything belongs in a global store. Global state should remain global; behavior and specialized logic should stay close to the components that use them.',
                     'Since this experience, I almost always introduce some form of state management early in SPA development. Done carefully, it reduces long-term complexity rather than adding to it.',
                 ],
+            },
+        ],
+        qnas: [
+            {
+                question: 'When should you move from props to a global state manager?',
+                answer: 'When your component tree grows deep (e.g., 9+ levels) and you find yourself "drilling" props through components that don\'t actually need them just to reach a child.',
+            },
+            {
+                question: 'Did you migrate the entire application to Vuex at once?',
+                answer: 'No, we took an incremental approach, targeting the most complex, calculation-heavy pages first while leaving simpler pages with prop-based logic to avoid unnecessary friction.',
             },
         ],
     },

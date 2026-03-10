@@ -27,8 +27,16 @@ export interface CaseStudyArticle {
         label?: string;
         paragraphs?: string[];
         items?: string[];
+        codeBlock?: {
+            language: string;
+            code: string;
+        };
     }[];
     glossary?: GlossaryItem[];
+    qnas?: {
+        question: string;
+        answer: string;
+    }[];
 }
 export type CaseStudyArticles = CaseStudyArticle[];
 
@@ -37,5 +45,5 @@ export interface CaseStudiesDrawerItem extends DrawerItem {
 }
 export type CaseStudiesDrawer = CaseStudiesDrawerItem[];
 
-export interface CaseStudyArticleDrawerItem extends DrawerItem { }
+export interface CaseStudyArticleDrawerItem extends DrawerItem {}
 export type CaseStudyArticleDrawer = CaseStudyArticleDrawerItem[];

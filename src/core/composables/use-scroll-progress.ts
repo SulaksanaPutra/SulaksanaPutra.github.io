@@ -4,7 +4,8 @@ import { scrollProgress } from '@/store';
 export function useScrollProgress() {
     const updateScrollProgress = () => {
         const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const height =
+            document.documentElement.scrollHeight - document.documentElement.clientHeight;
 
         if (height > 0) {
             scrollProgress.value = (winScroll / height) * 100;

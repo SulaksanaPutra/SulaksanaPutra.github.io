@@ -83,6 +83,16 @@ export const OVER_ENGINEERING_A_CLEAN_ARCHITECTURE: Record<'en' | 'id', CaseStud
                 ],
             },
         ],
+        qnas: [
+            {
+                question: 'Does "Clean Architecture" always mean better code?',
+                answer: "Not necessarily. If the abstraction layers exceed the actual complexity of the problem or the team's needs, it creates friction and slows down development without adding real value.",
+            },
+            {
+                question: 'What did you learn about implementing complex structures in Go?',
+                answer: 'Unlike frameworks like Laravel, Go requires explicit boilerplate for every layer. One should start simple and only introduce layers when there is a concrete need for that level of abstraction.',
+            },
+        ],
     },
     id: null,
 };

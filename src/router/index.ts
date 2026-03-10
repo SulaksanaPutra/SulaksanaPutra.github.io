@@ -2,7 +2,8 @@ import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 const HomePage = () => import('@/modules/home/views/home-page.vue');
 const SystemsPage = () => import('@/modules/systems/views/systems-page.vue');
 const CaseStudiesPage = () => import('@/modules/case-studies/views/case-studies-page.vue');
-const CaseStudyArticlePage = () => import('@/modules/case-studies/views/case-study-article-page.vue');
+const CaseStudyArticlePage = () =>
+    import('@/modules/case-studies/views/case-study-article-page.vue');
 const SkillsPage = () => import('@/modules/skills/views/skills-page.vue');
 const ContactPage = () => import('@/modules/contact/views/contact-page.vue');
 const NotFoundPage = () => import('@/modules/error/views/NotFoundPage.vue');

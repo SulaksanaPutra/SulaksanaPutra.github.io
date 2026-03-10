@@ -89,14 +89,74 @@
                                 :key="pIndex"
                                 class="article-paragraph"
                             >
-                                <GlossaryText :text="paragraph" :items="glossaryItems" />
+                                <TextBlock :text="paragraph" :items="glossaryItems" />
                             </p>
                         </div>
                         <ul v-if="section.items" class="pl-6 list-disc space-y-3 article-paragraph">
                             <li v-for="(item, iIndex) in section.items" :key="iIndex">
-                                <GlossaryText :text="item" :items="glossaryItems" />
+                                <TextBlock :text="item" :items="glossaryItems" />
                             </li>
                         </ul>
+                        <div v-if="section.codeBlock" class="mt-6 mb-8 group">
+                            <div
+                                class="rounded-xl overflow-hidden border border-border-subtle bg-[#1a1b26]/90 shadow-lg relative"
+                            >
+                                <div
+                                    class="px-4 py-2 bg-[#16161e] border-b border-border-subtle/30 flex justify-between items-center text-[10px] text-text-secondary font-mono uppercase tracking-wider"
+                                >
+                                    <span class="opacity-70">{{ section.codeBlock.language }}</span>
+                                </div>
+                                <div
+                                    class="p-4 overflow-x-auto text-sm font-mono text-[#c0caf5] leading-relaxed"
+                                >
+                                    <pre
+                                        class="whitespace-pre-wrap"
+                                    ><code v-text="section.codeBlock.code"></code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- QnA Section -->
+                    <section
+                        v-if="article.qnas?.length"
+                        class="mt-16 pt-16 border-t border-border-subtle"
+                    >
+                        <div class="flex items-center gap-3 mb-8">
+                            <div class="p-2 bg-accent-primary/10 rounded-lg">
+                                <HelpCircle class="w-5 h-5 text-accent-primary" />
+                            </div>
+                            <h2 class="text-2xl font-bold text-text-primary">
+                                Questions & Answers
+                            </h2>
+                        </div>
+
+                        <div class="grid gap-8">
+                            <div
+                                v-for="(qna, index) in article.qnas"
+                                :key="index"
+                                class="p-6 bg-bg-muted/50 rounded-2xl border border-border-subtle hover:border-accent-primary/30 transition-colors group"
+                            >
+                                <h3
+                                    class="text-lg font-semibold text-text-primary mb-3 flex items-start gap-3 text-left"
+                                >
+                                    <span
+                                        class="text-accent-primary opacity-50 font-mono mt-0.5 shrink-0"
+                                        >Q.</span
+                                    >
+                                    <span><TextBlock :text="qna.question" :items="glossaryItems" /></span>
+                                </h3>
+                                <div class="flex items-start gap-3 text-left">
+                                    <span
+                                        class="text-text-secondary opacity-50 font-mono mt-0.5 shrink-0"
+                                        >A.</span
+                                    >
+                                    <div class="text-text-secondary leading-relaxed">
+                                        <TextBlock :text="qna.answer" :items="glossaryItems" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </section>
 
                     <!-- Next Case Study Section (Minimalist) -->
@@ -150,8 +210,8 @@ import {
     useCaseStudiesData,
 } from '@/modules/case-studies/data/case-studies.data.ts';
 import { headerComponentRef } from '@/store.ts';
-import { ArrowLeft, ArrowUp, BookOpen, Clock, FileQuestion } from 'lucide-vue-next';
-import GlossaryText from '@/core/components/glossary-text.vue';
+import { ArrowLeft, ArrowUp, BookOpen, Clock, FileQuestion, HelpCircle } from 'lucide-vue-next';
+import TextBlock from '@/core/components/text-block.vue';
 
 import { useSeo } from '@/core/composables/use-seo';
 import { language } from '@/store';
@@ -219,6 +279,10 @@ const readingTime = computed(() => {
         text += (s.label || '') + ' ';
         s.paragraphs?.forEach((p: string) => (text += p + ' '));
         s.items?.forEach((i: string) => (text += i + ' '));
+    });
+
+    article.value.qnas?.forEach((qna: any) => {
+        text += qna.question + ' ' + qna.answer + ' ';
     });
 
     const words = text.trim().split(/\s+/).length;
