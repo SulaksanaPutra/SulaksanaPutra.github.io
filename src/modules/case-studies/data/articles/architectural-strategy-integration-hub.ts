@@ -69,24 +69,49 @@ export const INTEGRATION_STRATEGY_CASE_BY_LOCALE: Record<'en' | 'id', CaseStudyA
         ],
         glossary: [
             {
-                term: 'Point-to-Point (P2P) Integration',
+                term: 'Miniservices',
                 definition:
-                    'An architecture where systems are connected directly to one another. It works for 2-3 systems but quickly becomes unmanageable (spaghetti architecture) as more systems are added.',
+                    'Independent, encapsulated services designed to handle specific business domains (like WMS or FMS) while remaining decoupled from the main monolithic system.',
             },
             {
-                term: 'Hub-and-Spoke Architecture',
+                term: 'Point-to-Point',
                 definition:
-                    'A centralized design where a central "hub" manages communications between various "spokes" (applications), improving observability and decoupling the systems.',
+                    'A direct integration pattern where two systems communicate directly. While simple to implement, it often leads to a "tangled chain" of data that is difficult to monitor at scale.',
             },
             {
-                term: 'API Orchestrator / Middleware',
+                term: 'Webhooks',
                 definition:
-                    'A centralized layer that coordinates multiple requests, handles data transformation, and manages retries and logging across different services.',
+                    'Automated messages sent from one application to another when an event occurs. In this context, they were used for real-time syncing but contributed to the fragility of the integration chain.',
             },
             {
-                term: 'Cron-based Scheduler',
+                term: 'Silent Failure',
                 definition:
-                    'A time-based job scheduler used to run automated tasks (like data validation scripts) at fixed intervals.',
+                    'A critical error—such as a network blip or logical bug—that occurs without triggering an immediate alert, often resulting in data loss that is only discovered much later.',
+            },
+            {
+                term: 'Reconciliation Scheduler',
+                definition:
+                    'A "band-aid" background process that periodically scans multiple databases to identify and fix data inconsistencies that the real-time integration failed to catch.',
+            },
+            {
+                term: 'Hub-and-Spoke',
+                definition:
+                    'A centralized architecture where all individual systems (spokes) communicate through a single central orchestrator (hub) rather than connecting to each other directly.',
+            },
+            {
+                term: 'Single Source of Truth',
+                definition:
+                    'An architectural principle ensuring that a specific piece of data has one primary, definitive location or service that manages its state across the entire ecosystem.',
+            },
+            {
+                term: 'Distributed Systems Tax',
+                definition:
+                    'The inherent "cost" of complexity, operational overhead, and network latency that developers must pay when splitting a single application into multiple independent services.',
+            },
+            {
+                term: 'Modular Monolith',
+                definition:
+                    'An alternative architecture where code is strictly separated into independent business modules but still lives within a single application, reducing the operational cost of managing multiple services.',
             },
         ],
         qnas: [
@@ -94,6 +119,14 @@ export const INTEGRATION_STRATEGY_CASE_BY_LOCALE: Record<'en' | 'id', CaseStudyA
                 question:
                     'Why a Hub-and-Spoke proxy instead of a "proper" event-driven architecture like `Kafka`?',
                 answer: 'Because we weren\'t building a unified internal platform; we were building standalone SaaS products. We chose a `miniservice` approach specifically so each app could be sold independently. If we had forced them to share a message broker, we would have permanently tethered their lifecycles together. A Hub-and-Spoke model allowed the WMS and FMS to stay "clean" and product-focused, while the Hub handled the messy, internal translation logic.',
+            },
+            {
+                question:
+                    'If you could redo this integration, would you choose the same Miniservice path?',
+                answer:
+                    'In hindsight, I’ve realized that architecture must be right-sized to the team, not just the technology. While the miniservice approach was theoretically clean, it was too heavy for our small team to maintain effectively. We were paying a "Distributed Systems Tax"—the overhead of managing multiple deployments and complex data syncing—on top of our daily feature work.\n' +
+                    '\n' +
+                    'If I were starting again with that same team size, I would opt for a Modular Monolith. It would provide the same code boundaries and multi-tenant flexibility, but without the high operational cost of network calls and API webhooks. I’ve learned that a "clean" architecture is only successful if the team is large enough to support the infrastructure it requires.',
             },
         ],
     },

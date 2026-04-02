@@ -73,7 +73,7 @@ export const TWIN_FMS_ROUTING_CASE_BY_LOCALE: Record<'en' | 'id', CaseStudyArtic
         ],
         glossary: [
             {
-                term: 'UOM (Unit of Measure)',
+                term: 'UOM',
                 definition:
                     'A standard magnitude of a physical quantity. In logistics, this refers to how items are counted or sized, such as Pieces, Boxes, Kilograms, or Cubic Meters.',
             },
@@ -88,7 +88,7 @@ export const TWIN_FMS_ROUTING_CASE_BY_LOCALE: Record<'en' | 'id', CaseStudyArtic
                     'An architectural style that sits between a monolith and microservices. It is a decoupled, independent service focused on a specific business capability, like fleet management.',
             },
             {
-                term: 'Last-Mile Delivery',
+                term: 'Last Mile',
                 definition:
                     'The final and most complex stage of the logistics process, involving the movement of goods from a distribution hub to the final customer destination.',
             },
@@ -98,12 +98,12 @@ export const TWIN_FMS_ROUTING_CASE_BY_LOCALE: Record<'en' | 'id', CaseStudyArtic
                     'A technical bridge that hides complex logic (like volumetric math) behind a simplified interface (like the term "Box"), allowing users to work in familiar ways while the system stays precise.',
             },
             {
-                term: 'Metadata-Driven Logic',
+                term: 'Metadata-Driven',
                 definition:
                     'A design approach where a system changes its behavior based on "tags" or "flags" passed along with the data, rather than having hardcoded rules for every specific scenario.',
             },
             {
-                term: 'FIFO (First-In, First-Out)',
+                term: 'FIFO',
                 definition:
                     'An inventory and logistics management principle where the oldest orders or items are prioritized for processing and delivery first.',
             },

@@ -120,19 +120,19 @@ export const OPTIMIZING_QUERY_PERFORMANCE_BY_LOCALE: Record<'en' | 'id', CaseStu
                         'An oversized database model that handles too many unrelated business responsibilities, making it difficult to optimize for specific use cases without breaking others.',
                 },
                 {
-                    term: 'Database Index',
+                    term: 'Database Indexes',
                     definition:
                         'A data structure that improves the speed of data retrieval operations on a table, though it comes at the cost of additional storage and slightly slower write speeds.',
                 },
                 {
-                    term: 'ETL (Extract, Transform, Load)',
+                    term: 'ETL',
                     definition:
                         'The process of moving data from a primary source (like an ERP) to a destination system (like a Data Warehouse) specifically formatted for complex reporting and analysis.',
                 },
                 {
-                    term: 'Object-Relational Mapping (ORM)',
+                    term: 'ORMs',
                     definition:
-                        'A tool (like Laravel’s Eloquent) that lets developers interact with a database using object-oriented code. While convenient, it can hide inefficient underlying SQL queries from the developer.',
+                        'Object-Relational Mapping, A tool (like Laravel’s Eloquent) that lets developers interact with a database using object-oriented code. While convenient, it can hide inefficient underlying SQL queries from the developer.',
                 },
             ],
         },

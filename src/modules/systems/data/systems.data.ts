@@ -119,7 +119,7 @@ export const SYSTEMS_BY_LOCALE: Record<'en' | 'id', Systems> = {
             ],
             link: {
                 id: 'view-fms',
-                href: '/case-studies?systemId=system-twin-v2-fleet',
+                href: '/case-studies?systemId=system-twin-v2-fms',
                 label: '→ View case study',
             },
         },

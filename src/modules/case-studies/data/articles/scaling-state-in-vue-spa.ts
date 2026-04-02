@@ -118,14 +118,14 @@ export const SCALING_STATE_IN_VUE_SPA_BY_LOCALE: Record<'en' | 'id', CaseStudyAr
                     'An anti-pattern where data is passed through multiple layers of components that do not need the information, simply to reach a deeply nested child component.',
             },
             {
-                term: 'God Component',
+                term: 'God Components',
                 definition:
                     'A component that has grown too large and complex, taking on too many responsibilities and becoming a "puppet master" for the rest of the UI tree.',
             },
             {
-                term: 'Single Source of Truth (SSoT)',
+                term: 'Single Source of Truth',
                 definition:
-                    'The practice of structuring a system so that every piece of data is stored in only one place, ensuring that all parts of the application stay in sync.',
+                    '(SSoT), The practice of structuring a system so that every piece of data is stored in only one place, ensuring that all parts of the application stay in sync.',
             },
             {
                 term: 'Side-Effect Fragility',
@@ -138,12 +138,12 @@ export const SCALING_STATE_IN_VUE_SPA_BY_LOCALE: Record<'en' | 'id', CaseStudyAr
                     'The act of changing the data within the store. By strictly controlling mutations, developers can track exactly when and why the application state changed.',
             },
             {
-                term: 'Race Condition',
+                term: 'Race Conditions',
                 definition:
                     'A bug that occurs when the system’s timing or sequence of events (like multiple API calls) affects the final state in an unpredictable way.',
             },
             {
-                term: 'Ephemeral State',
+                term: 'Ephemeral UI State',
                 definition:
                     'Temporary UI data—such as whether a dropdown is open or a loading spinner is active—that does not need to be stored globally and is kept local to a component.',
             },

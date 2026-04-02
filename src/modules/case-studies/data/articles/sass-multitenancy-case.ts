@@ -71,32 +71,67 @@ export const SAAS_MULTITENANCY_CASE_BY_LOCALE: Record<'en' | 'id', CaseStudyArti
             {
                 term: 'SaaS (Software as a Service)',
                 definition:
-                    'A software distribution model in which applications are hosted by a vendor or service provider and made available to customers over a network.',
+                    'A software distribution model in which applications are hosted by a vendor and made available to customers over a network.',
             },
             {
                 term: 'Multi-tenancy',
                 definition:
-                    'A software architecture where a single instance of software runs on a server and serves multiple tenants (customers), with data physically or logically isolated.',
+                    'A software architecture where a single instance of software serves multiple tenants (customers), with data physically or logically isolated.',
+            },
+            {
+                term: 'Data Contamination',
+                definition:
+                    'A critical failure where data from one tenant incorrectly appears in another tenant’s environment, representing a fundamental breach of system integrity.',
+            },
+            {
+                term: 'Middleware',
+                definition:
+                    'A layer of code that intercepts requests to perform logic—such as identifying a tenant—before passing the request to the main application handlers.',
             },
             {
                 term: 'Goroutine',
                 definition:
-                    'A lightweight thread managed by the Go runtime, used to perform tasks concurrently.',
+                    'A lightweight thread managed by the Go runtime, used to perform tasks concurrently within a single application instance.',
             },
             {
                 term: 'Race Condition',
                 definition:
-                    "A flaw that occurs when the timing or order of events affects a program's correctness, often caused by multiple threads accessing shared data simultaneously.",
+                    'A flaw occurring when the timing or order of events (like concurrent requests) affects a program’s correctness, often leading to unpredictable behavior.',
             },
             {
-                term: 'Dependency Injection',
+                term: 'Global State Mutation',
                 definition:
-                    'A design pattern used to implement Inversion of Control, allowing the creation of dependent objects outside of a class and passing them in, improving modularity and testing.',
+                    'The practice of changing a shared global variable during runtime. In concurrent systems, this is a "ticking time bomb" that leads to data bleeding.',
+            },
+            {
+                term: 'Connection Pools',
+                definition:
+                    'A cache of database connections maintained so that they can be reused when future requests to the database are required, improving performance.',
+            },
+            {
+                term: 'Dependency Injection (DI)',
+                definition:
+                    'A design pattern where a component’s dependencies (like a database connection) are provided to it externally rather than the component creating them itself.',
             },
             {
                 term: 'Repository Pattern',
                 definition:
-                    'A design pattern that isolates the data access layer from the rest of the application, providing a centralized place to handle data logic.',
+                    'An architectural pattern that isolates the data access logic from the business logic, providing a centralized place to manage database interactions.',
+            },
+            {
+                term: 'TCP/DB Handshakes',
+                definition:
+                    'The multi-step process of establishing a connection between a server and a database. Constantly repeating this for every request creates significant overhead.',
+            },
+            {
+                term: 'Isolated Contexts',
+                definition:
+                    'A design principle where each request or process is strictly bound to its own data and dependencies, preventing cross-pollination with other concurrent tasks.',
+            },
+            {
+                term: 'Lazy Loading LRU Cache',
+                definition:
+                    'A strategy that loads data (like connection pools) only when needed and evicts the "Least Recently Used" items to manage memory footprint efficiently.',
             },
         ],
         qnas: [

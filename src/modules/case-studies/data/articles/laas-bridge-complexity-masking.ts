@@ -12,7 +12,7 @@ export const LAAS_BRIDGE_CASE_BY_LOCALE: Record<'en' | 'id', CaseStudyArticle | 
         id: 'laas-bridge-complexity-masking',
         systemIds: ['system-laas'],
         title: 'The LaaS Bridge: Abstracting Logistics Complexity',
-        heading: 'The LaaS Bridge',
+        heading: 'Bridging Logistics Complexity',
         highlight:
             'LaaS App — Transforming complex internal WMS/FMS engines into a user-friendly service platform via a "Command and Control" Laravel architecture.',
         subtitle:
@@ -23,7 +23,7 @@ export const LAAS_BRIDGE_CASE_BY_LOCALE: Record<'en' | 'id', CaseStudyArticle | 
                 label: 'Context',
                 paragraphs: [
                     'Our organization already possessed robust internal Warehouse (WMS) and Fleet (FMS) management systems. However, these were designed for internal efficiency and specialized operators, not for external customers. To expand the market, the business decided to pivot from a SaaS model to a Logistics-as-a-Service (LaaS) model, allowing end-users to "rent" warehouse space and delivery services directly.',
-                    'As the Senior Developer and Team Lead, I led a small team of three to architect a standalone client-side application. The goal was to create a "masking layer" that provided a simplified interface for users while acting as a bridge to the complex logistics engines running in the background.',
+                    'As the Senior Developer and Team Lead, I led a small team of three to architect a standalone client-first application. The goal was to create a "masking layer" that provided a simplified interface for users while acting as a bridge to the complex logistics engines running in the background.',
                 ],
             },
             {
@@ -54,32 +54,62 @@ export const LAAS_BRIDGE_CASE_BY_LOCALE: Record<'en' | 'id', CaseStudyArticle | 
                 id: 'reflection',
                 label: 'Reflection',
                 paragraphs: [
-                    'This project reinforced that software doesn’t exist in a vacuum; business health is the ultimate constraint. Architecturally, if I were to rebuild this today, I would introduce a Repository Layer to further decouple our logic from the database, as we currently rely heavily on Eloquent models.',
+                    "This project reinforced that technical success is a subset of market timing. While we achieved every architectural milestone and delivered a high-performance system, external market shifts ultimately dictated a change in the organization's strategic direction. It was a reminder that software is a tool for a business, and that tool's lifecycle is bound to the health of the industry it serves. Architecturally, if I were to rebuild this today, I would introduce a Repository Layer to further decouple our logic from the database, as we currently rely heavily on Eloquent models.",
                     'I also recognized that our single-database multi-tenancy is a pragmatic choice for a medium-scale system, but the next logical step would be moving toward separated databases for high-value tenants to ensure complete performance isolation. These "small" technical debts were conscious trade-offs made to meet the ambitious launch timeline.',
                 ],
-            },
-        ],
-        glossary: [
-            {
-                term: 'Command and Control',
-                definition:
-                    'An architectural pattern where a central application dictates actions to satellite systems without those systems sharing a common state or database.',
-            },
-            {
-                term: 'Hit and Forget',
-                definition:
-                    'An asynchronous integration pattern where a system sends a request and immediately moves to the next task, handling the response or confirmation via background processes.',
-            },
-            {
-                term: 'Tenant Masking',
-                definition:
-                    'A mechanism used in multi-tenant systems to allow automated processes or background jobs to "impersonate" a specific tenant context to ensure data isolation.',
             },
         ],
         qnas: [
             {
                 question: 'Why build a standalone app instead of updating the existing WMS/FMS?',
                 answer: 'The legacy systems were built for experts and internal operators. Modifying them to be user-friendly for end-users would have required a massive rewrite of core logic. Creating a standalone bridge allowed us to move faster, keep the legacy systems stable, and provide a tailored experience for a completely different user persona.',
+            },
+        ],
+        glossary: [
+            {
+                term: 'Logistics-as-a-Service (LaaS)',
+                definition:
+                    'A business model pivot where a company moves from selling software (SaaS) to allowing customers to directly "rent" physical warehouse space and delivery services.',
+            },
+            {
+                term: 'Masking layer',
+                definition:
+                    'An architectural bridge that provides a simplified, user-friendly interface to hide the underlying complexity of enterprise-grade logistics engines.',
+            },
+            {
+                term: 'Technical Wall',
+                definition:
+                    'The barrier of complexity created by enterprise terminology and specialized workflows that often leads to high user churn for non-expert operators.',
+            },
+            {
+                term: 'Command and Control',
+                definition:
+                    'An architectural design where a single application acts as the central hub for triggering, logging, and managing instructions across multiple integrated systems.',
+            },
+            {
+                term: 'One-way communication model',
+                definition:
+                    'A strict data flow where the primary application sends instructions to background systems without becoming entangled in their internal legacy debt.',
+            },
+            {
+                term: 'Hit and Forget',
+                definition:
+                    'An asynchronous strategy that provides a snappy user experience by dispatching background jobs and responding immediately while the actual API work happens later.',
+            },
+            {
+                term: 'Integration Factory',
+                definition:
+                    'A technical pattern used to identify the correct target system and dispatch the appropriate instructions through a decoupled service layer.',
+            },
+            {
+                term: 'DTO (Data Transfer Object)',
+                definition:
+                    'A strict data pattern used to move information internally, replacing unpredictable arrays to centralize transformation logic and improve robustness.',
+            },
+            {
+                term: 'Tenant Masking',
+                definition:
+                    'A mechanism that allows background jobs to impersonate a specific user or company context to perform tasks without an active, logged-in user.',
             },
         ],
     },
