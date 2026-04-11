@@ -31,36 +31,11 @@
             </section>
         </div>
 
-        <div v-else-if="availability.length > 0" class="py-16 text-center">
-            <div class="max-w-md mx-auto">
-                <div
-                    class="w-16 h-16 bg-bg-muted rounded-full flex items-center justify-center mx-auto mb-6"
-                >
-                    <FileQuestion class="text-text-secondary" />
-                </div>
-                <h1 class="text-2xl text-text-primary mb-2 font-bold">Language Not Available</h1>
-                <p class="text-text-secondary mb-8">
-                    This page is not yet available in your currently selected language. You can view
-                    it in the available languages below:
-                </p>
-                <div class="flex flex-col gap-4 max-w-[250px] mx-auto">
-                    <button
-                        v-for="loc in availability"
-                        :key="loc"
-                        @click="switchLanguageTo(loc)"
-                        class="btn-primary justify-center"
-                    >
-                        View in {{ loc === 'en' ? 'English' : 'Indonesian' }}
-                    </button>
-                    <router-link
-                        to="/"
-                        class="text-text-secondary hover:text-text-primary mt-2 text-sm underline underline-offset-4"
-                    >
-                        Back to home
-                    </router-link>
-                </div>
-            </div>
-        </div>
+        <LanguageFallback 
+            v-else-if="availability.length > 0" 
+            :availability="availability"
+            :back-link="{ href: '/', label: 'Back to home' }"
+        />
 
         <div v-else class="py-16 text-center">
             <p class="text-text-secondary">No skills data available.</p>
@@ -72,19 +47,10 @@
 import { computed } from 'vue';
 import { useSkillsAvailability, useSkillsData } from '@/modules/skills/data/skills.data.ts';
 import { useSeo } from '@/core/composables/use-seo';
-import { FileQuestion } from 'lucide-vue-next';
-import { language } from '@/store';
+import LanguageFallback from '@/core/components/language-fallback.vue';
 
 const page = useSkillsData();
 const availability = useSkillsAvailability();
-
-const switchLanguageTo = (loc: string) => {
-    const lang = loc.toLowerCase() === 'id' ? 'ID' : 'EN';
-    language.value = lang;
-    if (typeof window !== 'undefined') {
-        window.localStorage.setItem('language', lang);
-    }
-};
 
 useSeo(
     computed(() => ({

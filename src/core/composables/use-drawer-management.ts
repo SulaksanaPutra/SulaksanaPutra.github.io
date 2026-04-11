@@ -1,6 +1,8 @@
 import { computed, defineAsyncComponent, h, watch } from 'vue';
 import { useRoute } from 'vue-router';
-import { isDrawerEmpty, isDrawerOpen } from '@/store';
+import { isDrawerEmpty, isDrawerOpen, language } from '@/store';
+import { SYSTEMS_BY_LOCALE } from '@/modules/systems/data/systems.data.ts';
+import { CASE_STUDIES_BY_LOCALE } from '@/modules/case-studies/data/case-studies.data.ts';
 
 const sectionRoutes = ['about', 'writing', 'projects', 'uses', 'hobbies'];
 
@@ -44,9 +46,18 @@ export function useDrawerManagement() {
     const syncDrawerState = () => {
         const key = getDrawerStateKey();
 
+        // 0. Force hidden if route has no drawer component
+        if (!route.meta.drawer) {
+            isDrawerOpen.value = false;
+            // Persistence is handled by key, but for simple consistency:
+            localStorage.setItem(key, 'false');
+            return;
+        }
+
         // 1. Force hidden on case study articles (don't read from storage)
         if (route.name === 'case-study-article') {
             isDrawerOpen.value = false;
+            localStorage.setItem(key, 'false');
             return;
         }
 
@@ -54,7 +65,7 @@ export function useDrawerManagement() {
         const stored = localStorage.getItem(key);
 
         if (
-            ['/systems', '/case-studies', '/skills', '/contact'].includes(route.path) &&
+            ['/systems', '/case-studies'].includes(route.path) &&
             stored === null
         ) {
             isDrawerOpen.value = true;
@@ -75,10 +86,36 @@ export function useDrawerManagement() {
     };
 
     watch(
-        route,
+        [route, language],
         () => {
             syncDrawerState();
-            isDrawerEmpty.value = !route.meta.drawer;
+
+            const drawerLoader = route.meta.drawer;
+            if (!drawerLoader) {
+                isDrawerEmpty.value = true;
+                isDrawerOpen.value = false;
+            } else {
+                // Check content availability for specific routes
+                const localeKey = language.value.toLowerCase() as 'en' | 'id';
+                let hasContent = true;
+
+                if (route.name === 'systems') {
+                    hasContent = (SYSTEMS_BY_LOCALE[localeKey]?.length || 0) > 0;
+                } else if (route.name === 'case-studies' || route.name === 'case-study-article') {
+                    hasContent = (CASE_STUDIES_BY_LOCALE[localeKey]?.length || 0) > 0;
+                }
+
+                isDrawerEmpty.value = !hasContent;
+
+                // User request: Auto-open if has content, auto-close if empty
+                if (!hasContent) {
+                    isDrawerOpen.value = false;
+                    localStorage.setItem(getDrawerStateKey(), 'false');
+                } else if (['systems', 'case-studies', 'case-study-article'].includes(route.name as string)) {
+                    isDrawerOpen.value = true;
+                    localStorage.setItem(getDrawerStateKey(), 'true');
+                }
+            }
 
             // Auto-close drawer on navigation for mobile screens
             if (window.innerWidth < 768) {
@@ -91,6 +128,8 @@ export function useDrawerManagement() {
     watch(isDrawerEmpty, (isEmpty) => {
         if (isEmpty) {
             isDrawerOpen.value = false;
+            const key = getDrawerStateKey();
+            localStorage.setItem(key, 'false');
         }
     });
 

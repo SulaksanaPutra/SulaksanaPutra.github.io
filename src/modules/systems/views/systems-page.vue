@@ -1,6 +1,6 @@
 <template>
-    <div class="prose-content my-8">
-        <section v-if="systems.length > 0" class="content-narrow pt-8 relative mx-auto">
+    <div class="prose-content py-8">
+        <section v-if="systems.length > 0" class="content-narrow relative mx-auto">
             <TransitionGroup name="list" tag="div">
                 <article
                     v-for="system in systems"
@@ -40,30 +40,10 @@
             </TransitionGroup>
         </section>
 
-        <div v-else-if="availability.length > 0" class="py-16 text-center">
-            <div class="max-w-md mx-auto">
-                <div
-                    class="w-16 h-16 bg-bg-muted rounded-full flex items-center justify-center mx-auto mb-6"
-                >
-                    <FileQuestion class="text-text-secondary" />
-                </div>
-                <h1 class="text-2xl text-text-primary mb-2 font-bold">Language Not Available</h1>
-                <p class="text-text-secondary mb-8">
-                    This page is not yet available in your currently selected language. You can view
-                    it in the available languages below:
-                </p>
-                <div class="flex flex-col gap-4 max-w-[250px] mx-auto">
-                    <button
-                        v-for="loc in availability"
-                        :key="loc"
-                        @click="switchLanguageTo(loc)"
-                        class="btn-primary justify-center"
-                    >
-                        View in {{ loc === 'en' ? 'English' : 'Indonesian' }}
-                    </button>
-                </div>
-            </div>
-        </div>
+        <LanguageFallback 
+            v-else-if="availability.length > 0" 
+            :availability="availability"
+        />
 
         <div v-else class="py-16 text-center">
             <p class="text-text-secondary">No systems available.</p>
@@ -73,21 +53,13 @@
 
 <script setup lang="ts">
 import { computed, nextTick, onMounted, onUnmounted, watch } from 'vue';
-import { activeSection, language } from '@/store';
+import { activeSection } from '@/store';
 import { useSystemsAvailability, useSystemsData } from '@/modules/systems/data/systems.data.ts';
 import { useSeo } from '@/core/composables/use-seo';
-import { FileQuestion } from 'lucide-vue-next';
+import LanguageFallback from '@/core/components/language-fallback.vue';
 
 const systems = useSystemsData();
 const availability = useSystemsAvailability();
-
-const switchLanguageTo = (loc: string) => {
-    const lang = loc.toLowerCase() === 'id' ? 'ID' : 'EN';
-    language.value = lang;
-    if (typeof window !== 'undefined') {
-        window.localStorage.setItem('language', lang);
-    }
-};
 
 useSeo(
     computed(() => ({
