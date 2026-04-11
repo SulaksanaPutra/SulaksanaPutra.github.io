@@ -3,4 +3,5 @@ export interface LanguageFallbackData {
     description: string;
     languagePrefix: string;
     languageNames: Record<string, string>;
+    links: Record<string, string>;
 }

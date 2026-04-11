@@ -31,10 +31,10 @@
             </section>
         </div>
 
-        <LanguageFallback 
-            v-else-if="availability.length > 0" 
+        <LanguageFallback
+            v-else-if="availability.length > 0"
             :availability="availability"
-            :back-link="{ href: '/', label: 'Back to home' }"
+            :back-link="{ href: '/' }"
         />
 
         <div v-else class="py-16 text-center">

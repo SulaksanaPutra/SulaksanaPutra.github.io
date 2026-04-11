@@ -31,7 +31,7 @@
         <LanguageFallback 
             v-else-if="availability.length > 0" 
             :availability="availability"
-            :back-link="systemId ? { href: '/case-studies', label: 'View all case studies' } : undefined"
+            :back-link="systemId ? { href: '/case-studies?all=true' } : undefined"
         />
 
         <section v-else>

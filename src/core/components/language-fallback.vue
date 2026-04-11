@@ -15,8 +15,9 @@
                     v-for="loc in availability"
                     :key="loc"
                     @click="switchLanguageTo(loc)"
-                    class="btn-primary justify-center"
+                    class="text-sm font-bold uppercase tracking-wider text-accent-primary hover:text-accent-secondary transition-colors px-6 py-3 border border-accent-primary/20 rounded-xl hover:bg-accent-primary/5 flex items-center justify-center gap-2"
                 >
+                    <Globe :size="14" />
                     {{ t.languagePrefix }}{{ t.languageNames[loc] || loc }}
                 </button>
                 <router-link 
@@ -24,7 +25,7 @@
                     :to="backLink.href" 
                     class="text-text-secondary hover:text-text-primary mt-2 text-sm underline underline-offset-4"
                 >
-                    {{ backLink.label }}
+                    {{ getBackLinkLabel(backLink) }}
                 </router-link>
             </div>
         </div>
@@ -32,9 +33,10 @@
 </template>
 
 <script setup lang="ts">
-import { FileQuestion } from 'lucide-vue-next';
+import { FileQuestion, Globe } from 'lucide-vue-next';
 import { language } from '@/store';
 import { useLanguageFallbackData } from '@/core/data/language-fallback.data.ts';
+import type { LanguageFallbackData } from '@/core/types/language-fallback.types.ts';
 
 defineProps<{
     availability: string[];
@@ -42,11 +44,19 @@ defineProps<{
     description?: string;
     backLink?: {
         href: string;
-        label: string;
+        label?: string;
     };
 }>();
 
 const t = useLanguageFallbackData();
+
+const getBackLinkLabel = (backLink: any) => {
+    if (backLink.label) return backLink.label;
+    if (t.value.links[backLink.href]) {
+        return t.value.links[backLink.href];
+    }
+    return '';
+};
 
 const switchLanguageTo = (loc: string) => {
     const lang = loc.toLowerCase() === 'id' ? 'ID' : 'EN';

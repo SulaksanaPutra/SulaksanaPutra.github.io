@@ -373,7 +373,7 @@
             :availability="availability.availableLocales"
             title="Article Not Available"
             description="This case study is not yet available in your currently selected language. You can read it in the available languages below:"
-            :back-link="{ href: '/case-studies', label: 'Back to case studies' }"
+            :back-link="{ href: '/case-studies' }"
         />
 
         <LanguageFallback 
@@ -381,7 +381,7 @@
             :availability="[]"
             title="Case study not found"
             description="The case study you are looking for does not exist or is no longer available."
-            :back-link="{ href: '/case-studies', label: 'Back to case studies' }"
+            :back-link="{ href: '/case-studies' }"
         />
     </div>
 </template>

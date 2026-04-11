@@ -181,7 +181,7 @@
             :availability="availability.availableLocales"
             title="Article Not Available"
             description="This writing is not yet available in your currently selected language. You can read it in the available languages below:"
-            :back-link="{ href: '/writing', label: 'Back to writing' }"
+            :back-link="{ href: '/writing' }"
         />
 
         <LanguageFallback 
@@ -189,7 +189,7 @@
             :availability="[]"
             title="Article not found"
             description="The article you are looking for does not exist or is no longer available."
-            :back-link="{ href: '/writing', label: 'Back to writing' }"
+            :back-link="{ href: '/writing' }"
         />
     </div>
 </template>

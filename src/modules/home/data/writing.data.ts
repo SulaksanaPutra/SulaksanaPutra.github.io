@@ -13,7 +13,6 @@ const WRITING_BY_LOCALE: Record<'en' | 'id', Writing> = {
         title: 'Tulisan',
         descriptions: [
             'Di sini Anda akan menemukan esai, catatan, dan pemikiran panjang saya tentang rekayasa perangkat lunak, desain sistem, dan topik lain yang saya minati.',
-            'Menulis membantu saya menjernihkan pemikiran dan membagikan apa yang telah saya pelajari kepada orang lain.',
         ],
     },
 };

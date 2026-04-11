@@ -11,6 +11,12 @@ const FALLBACK_BY_LOCALE: Record<'en' | 'id', LanguageFallbackData> = {
             en: 'English',
             id: 'Indonesian',
         },
+        links: {
+            '/': 'Back to home',
+            '/writing': 'Back to writing',
+            '/case-studies': 'Back to case studies',
+            '/case-studies?all=true': 'View all case studies',
+        },
     },
     id: {
         title: 'Bahasa Tidak Tersedia',
@@ -19,6 +25,12 @@ const FALLBACK_BY_LOCALE: Record<'en' | 'id', LanguageFallbackData> = {
         languageNames: {
             en: 'English',
             id: 'Bahasa Indonesia',
+        },
+        links: {
+            '/': 'Kembali ke beranda',
+            '/writing': 'Kembali ke tulisan',
+            '/case-studies': 'Kembali ke studi kasus',
+            '/case-studies?all=true': 'Lihat semua studi kasus',
         },
     },
 };

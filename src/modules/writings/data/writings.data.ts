@@ -39,6 +39,39 @@ export function useWritingsData() {
     });
 }
 
+export function useWritingsDataStrict() {
+    const { locale } = useI18n();
+
+    return computed<Writings>(() => {
+        return articlesByLocale
+            .map((articleMap) => articleMap[locale.value])
+            .filter((article): article is WritingArticle => !!article)
+            .map((article) => ({
+                id: article.id,
+                title: article.title,
+                subtitle: article.subtitle || '',
+                thumbnail: article.thumbnail,
+                date: article.date,
+                link: {
+                    id: 'read-' + article.id,
+                    href: '/writing/' + article.id,
+                    label: 'Read Article →',
+                },
+            }));
+    });
+}
+
+export function useWritingsAvailability() {
+    return computed(() => {
+        const counts: Record<'en' | 'id', number> = { en: 0, id: 0 };
+        articlesByLocale.forEach((map) => {
+            if (map.en) counts.en++;
+            if (map.id) counts.id++;
+        });
+        return counts;
+    });
+}
+
 export function useWritingArticle(articleId: string) {
     const { locale } = useI18n();
 
