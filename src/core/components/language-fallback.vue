@@ -36,7 +36,6 @@
 import { FileQuestion, Globe } from 'lucide-vue-next';
 import { language } from '@/store';
 import { useLanguageFallbackData } from '@/core/data/language-fallback.data.ts';
-import type { LanguageFallbackData } from '@/core/types/language-fallback.types.ts';
 
 defineProps<{
     availability: string[];

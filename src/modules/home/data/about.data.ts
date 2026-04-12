@@ -5,9 +5,9 @@ import { About } from '@/modules/home/types/about.types.ts';
 const ABOUT_BY_LOCALE: Record<'en' | 'id', About> = {
     en: {
         intro: [
-            'Hi, I’m Bayu. I work on systems behind everyday operations—orders, finance, payments, warehouse and fleet operations, internal platforms, and multi-tenant business tools.',
+            'Hi, I’m Bayu. I build the operational backbone for complex business ecosystems—specializing in logistics, financial systems, and multi-tenant internal platforms that keep companies running.',
             'Over six years, I’ve built and maintained production systems under real daily usage. For the last four years, I’ve worked remotely, owning features from design through production, running systems under real traffic, and serving as technical lead on specific projects.',
-            'I design systems that adapt as requirements evolve, where traffic grows unevenly and failures are subtle but costly, requiring deliberate trade-offs between speed, cost, and correctness.',
+            'I design systems that evolve alongside the business. Rather than chasing theoretical perfection, I focus on pragmatic architecture—aligning technical decisions with business goals to ensure the system is reliable where it matters most and flexible where it needs to grow.',
         ],
         principles: {
             title: 'How I think about engineering',

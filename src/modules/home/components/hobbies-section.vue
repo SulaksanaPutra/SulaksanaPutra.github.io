@@ -1,10 +1,10 @@
 <template>
-    <section v-if="page" class="content-narrow">
+    <section v-if="hobbiesData" class="content-narrow">
         <h1 class="heading-large">
-            {{ page.title }}
+            {{ hobbiesData.title }}
         </h1>
         <div class="prose-content">
-            <p v-for="(paragraph, index) in page.descriptions" :key="index">
+            <p v-for="(paragraph, index) in hobbiesData.descriptions" :key="index">
                 {{ paragraph }}
             </p>
         </div>
@@ -14,5 +14,5 @@
 <script setup lang="ts">
 import { useHobbiesData } from '@/modules/home/data/hobbies.data.ts';
 
-const page = useHobbiesData();
+const hobbiesData = useHobbiesData();
 </script>

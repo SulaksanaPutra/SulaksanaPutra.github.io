@@ -104,3 +104,27 @@ export function useWritingArticleAvailability(articleId: string) {
         };
     });
 }
+
+export function useWritingBlendedFallbackData() {
+    const { locale } = useI18n();
+    const availability = useWritingsAvailability();
+    const writings = useWritingsDataStrict();
+    
+    return computed(() => {
+        const isID = locale.value === 'id';
+        const otherCount = isID 
+            ? availability.value.en - writings.value.length 
+            : availability.value.id - writings.value.length;
+
+        return {
+            otherCount,
+            message: isID 
+                ? `Terdapat ${otherCount} tulisan lainnya dalam Bahasa Inggris`
+                : `There are ${otherCount} other posts available in Indonesian`,
+            submessage: isID
+                ? 'Beberapa konten mungkin belum diterjemahkan sepenuhnya.'
+                : 'Some content might not be fully translated yet.',
+            button: isID ? 'Switch to English' : 'Beralih ke Indonesia'
+        };
+    });
+}

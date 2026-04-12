@@ -9,35 +9,25 @@ export const SYSTEMS_BY_LOCALE: Record<'en' | 'id', Systems> = {
             title: 'LAAS — Logistics as a Service',
             heading: 'LAAS',
             highlight:
-                'External access to logistics capabilities without exposing internal systemsPage.',
+                'A hybrid service portal and API gateway for commercial logistics-as-a-service',
             subtitle:
-                'A customer-facing platform exposing logistics capabilities to external clients while protecting internal operational systemsPage.',
-            tags: ['Customer-facing', 'B2B', 'B2C'],
+                'A multi-tenant service portal and API gateway designed for commercial logistics-as-a-service.',
+            tags: ['Logistics ', ' Customer Portals ', ' API Integration'],
             sections: [
                 {
-                    label: 'Design intent',
+                    label: 'Context',
                     description:
-                        'Designed to support a new business model where warehouse capacity and logistics services could be rented to external customers. Acts as a controlled access layer that exposes logistics operations without coupling clients to internal systemsPage.',
+                        'Designed as a "capsulated" bridge to expose internal warehouse and delivery capabilities to the commercial market. The system provides a user-friendly interface for end-clients while offering a flexible Open API for external business integrations, all while maintaining a secure abstraction layer over internal core systems.',
                 },
                 {
-                    label: 'Architecture',
+                    label: 'My Responsibility',
                     description:
-                        'Implemented as an asynchronous proxy using queues and background jobs. Requests follow a fire-and-forget model, requiring strong observability, logging, and traceability to compensate for the lack of immediate synchronous feedback.',
-                },
-                {
-                    label: 'My role',
-                    description:
-                        'Sole designer and technical decision-maker. Led development with support from two other developers, selecting architecture, patterns, and trade-offs based on lessons learned from earlier systemsPage.',
-                },
-                {
-                    label: 'Trade-offs',
-                    description:
-                        'Chose Laravel to meet tight delivery timelines, accepting performance and strictness limitations compared to Go. Mitigated these through explicit service layers, DTO usage, and strict separation between validation, data access, and business logic.',
+                        'I served as the sole architect and technical lead, managing the end-to-end development of the platform. I focused on creating a decoupled architecture that could handle both high-traffic UI interactions and complex API requests. My goal was to ensure architectural integrity and system security, shielding the "Twin" ecosystem while delivering a simplified experience for external users.',
                 },
                 {
                     label: 'Outcome',
                     description:
-                        'Enabled a new logistics business model by giving customers real-time access to logistics capabilities while shielding internal systemsPage from direct external interaction.',
+                        'Successfully delivered a production-ready platform that enabled the business to offer logistics-as-a-service to the public. The system provides the flexibility to support both manual client operations via a modern UI and automated business integrations via API, establishing a secure and scalable gateway for external logistics management.',
                 },
             ],
             link: {
@@ -50,35 +40,29 @@ export const SYSTEMS_BY_LOCALE: Record<'en' | 'id', Systems> = {
             id: 'system-twin-v2-wms',
             title: 'Twin V2 — Warehouse Management System',
             heading: 'Twin V2 WMS',
-            highlight: 'A clean-slate WMS built to replace a fragile legacy core.',
-            subtitle:
-                'A standalone warehouse management system designed to replace legacy stock handling while serving as a foundation for a future SaaS offering.',
-            tags: ['Warehouse Management', 'Distribution', 'Logistics'],
+            highlight: 'Dedicated service for warehouse management and inventory operations',
+            subtitle: 'A multi-tenant, SaaS-ready WMS resolving legacy debt for standalone growth',
+            tags: ['Warehouse Management ', 'Multi-tenancy ', ' SaaS Foundation'],
             sections: [
                 {
-                    label: 'Architecture & design',
+                    label: 'Context',
                     description:
-                        'Backend implemented as independent services with separate databases, written in Go to prioritize performance, reliability, and infrastructure cost efficiency. The frontend was shared across applications to reduce operational overhead. Design decisions balanced SaaS generality against customer-specific requirements inherited from the legacy system.',
+                        'Designed as a dedicated miniservice to address deep-rooted structural issues within the legacy warehouse logic. This system was built to decouple business-critical inventory operations from the monolith, transforming a problematic internal tool into a high-performance, sellable SaaS foundation.',
                 },
                 {
-                    label: 'Trade-offs',
+                    label: 'My Responsibility',
                     description:
-                        'Chose Go despite a slower development pace to improve correctness and long-term operability. Accepted limited modularity in certain workflows due to tight coupling with legacy sales systemsPage, deferring full SaaS generalization to later phases.',
-                },
-                {
-                    label: 'My role',
-                    description:
-                        'Designed and owned the backend architecture, including service boundaries, data separation, and integration contracts. Contributed to frontend architectural decisions and took primary responsibility for backend stability in production.',
+                        'I designed and owned the backend architecture, focusing on building a clean domain model that resolved the "ghost stock" and calculation errors of the legacy system. I managed the transition to a multi-tenant architecture, ensuring service boundaries were robust enough to allow the WMS to function as a standalone product while maintaining reliable integration with existing order systems.',
                 },
                 {
                     label: 'Outcome',
                     description:
-                        'Delivered a more reliable and scalable stock management system with significantly clearer architecture than the legacy platform. Enabled horizontal scaling, safer data migration, and improved correctness of inventory calculations.',
+                        'Successfully replaced a fragile legacy module with a stable, scalable service. This transition not only improved inventory correctness but also created a new business opportunity by providing a "capsulated" application that can be deployed as a dedicated service for external clients.',
                 },
             ],
             link: {
-                id: 'view-wms',
-                href: '/case-studies?systemId=system-twin-v2-wms',
+                id: 'view-fms',
+                href: '/case-studies?systemId=system-twin-v2-fms',
                 label: '→ View case study',
             },
         },
@@ -86,35 +70,25 @@ export const SYSTEMS_BY_LOCALE: Record<'en' | 'id', Systems> = {
             id: 'system-twin-v2-fms',
             title: 'Twin V2 — Fleet Management System',
             heading: 'Twin V2 FMS',
-            highlight: 'Delivery and settlement isolated into a correctness-first domain.',
+            highlight: 'Dedicated service for fleet operations and delivery settlement.',
             subtitle:
-                'A standalone delivery domain created to isolate fleet and settlement workflows after the organization split warehouse and delivery into separate business units.',
-            tags: ['Logistics', 'Delivery Operations'],
+                'A multi-tenant, SaaS-oriented miniservice designed to decouple fleet operations.',
+            tags: ['Logistics', ' Delivery Operations', 'Multi-tenancy'],
             sections: [
                 {
-                    label: 'Key complexity',
+                    label: 'Context',
                     description:
-                        'Although simpler than WMS in flow, the system required high transparency and traceability. This led to complex relational models and extensive logging of state changes. A major challenge was reconciling inconsistent legacy business rules—such as unit measurements—into a stable and general-purpose domain model.',
+                        'Part of a strategic shift to separate business units into dedicated, standalone services. This system extracted complex fleet and settlement logic from the legacy monolith, creating a high-traceability platform capable of supporting multiple business entities independently.',
                 },
                 {
-                    label: 'Reliability approach',
+                    label: 'My Responsibility',
                     description:
-                        'Integration safety was critical. Failures in communication with WMS or Sales systemsPage could cascade into financial impact, so consistency checks and saga-style coordination were implemented to protect transaction settlement.',
-                },
-                {
-                    label: 'My role',
-                    description:
-                        'Designed the system boundaries and core domain model, implemented critical correctness safeguards, and owned integration reliability across dependent systemsPage.',
+                        'I led the architectural design and domain modeling, focusing on defining clear service boundaries. I ensured the FMS could function as a standalone product while maintaining reliable, real-time integration with peer services and the core distribution platform. I also implemented the core correctness safeguards for the end-to-end settlement workflow.',
                 },
                 {
                     label: 'Outcome',
                     description:
-                        'Delivered a reliable delivery execution platform with improved correctness in settlement and measurement handling, while maintaining safe integration with upstream and downstream systemsPage.',
-                },
-                {
-                    label: 'What I would change today',
-                    description:
-                        'Reduce architectural layering to improve development speed and clarity. With more time, I would explore automated routing using optimization or machine learning techniques once the domain model is sufficiently simplified.',
+                        'Established a dedicated, scalable platform for delivery execution with high data integrity. By decoupling fleet logic and implementing a multi-tenant architecture, we provided the business with a specialized, "capsulated" tool that can evolve independently and serve external clients as a SaaS offering.',
                 },
             ],
             link: {
@@ -128,24 +102,23 @@ export const SYSTEMS_BY_LOCALE: Record<'en' | 'id', Systems> = {
             title: 'Twin — In-house Distributor System',
             heading: 'Twin V1',
             highlight: 'A legacy monolith that powered daily distributor operations.',
-            subtitle:
-                'A business-critical legacy platform that unified fragmented, paper-based distributor operations into a single operational backbone across multiple companies and branches.',
-            tags: ['Distribution', 'Inventory', 'Sales Operations'],
+            subtitle: 'Centralized management for multi-tenant, multi-branch distribution.',
+            tags: ['Distribution', ' Inventory', 'Order Operations'],
             sections: [
                 {
-                    label: 'Context & constraints',
+                    label: 'Context',
                     description:
-                        'A large Laravel monolith used daily by two distributor companies and all their branches. The system had minimal automated testing, duplicated business logic, and real-time operational tables. Architectural change carried high risk, limiting scalability primarily to vertical approaches.',
+                        'A large Laravel monolith serving multiple companies. The legacy architecture lacked automated testing and relied on isolated local databases, making data reconciliation a manual, high-risk process.',
                 },
                 {
                     label: 'My responsibility',
                     description:
-                        'Inherited and maintained the system in production. Led incremental refactoring in high-risk areas, introduced unit testing for critical calculations, resolved major tax-calculation defects, and supported rollout to additional branch offices. Shared direct responsibility for production stability within a small core team.',
+                        'As a core maintainer for over three years, I was responsible for the long-term stability and evolution of the platform. I led the incremental refactoring of high-stakes business logic and introduced automated testing to secure legacy modules. My role involved balancing daily production support with strategic technical improvements, ensuring the system remained reliable as we expanded operations to new branches.',
                 },
                 {
                     label: 'Outcome',
                     description:
-                        'Replaced branch-isolated and paper-based workflows with a centralized system relied on for daily operations. Improved data consistency, reduced manual reconciliation, and enabled real-time visibility across distributor branches.',
+                        'Unified fragmented branch data into a single source of truth. By migrating from isolated local systems to a centralized cloud platform, we eliminated manual reconciliation errors and enabled real-time operational tracking across all companies.',
                 },
             ],
             link: {

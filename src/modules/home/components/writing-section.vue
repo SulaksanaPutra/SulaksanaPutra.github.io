@@ -1,11 +1,11 @@
 <template>
-    <section v-if="page" class="content-narrow">
-        <header class="mb-12">
+    <section v-if="writingData" class="content-narrow">
+        <header>
             <h1 class="heading-large mb-4">
-                {{ page.title }}
+                {{ writingData.title }}
             </h1>
             <div class="prose-content">
-                <p v-for="(paragraph, index) in page.descriptions" :key="index">
+                <p v-for="(paragraph, index) in writingData.descriptions" :key="index">
                     {{ paragraph }}
                 </p>
             </div>
@@ -48,11 +48,8 @@
 
         <!-- Blended Language Fallback / Info -->
         <div
-            v-if="
-                (language === 'ID' && availability.en > writings.length) ||
-                (language === 'EN' && availability.id > writings.length)
-            "
-            class="mt-12 p-6 rounded-2xl bg-bg-muted/30 border border-border-subtle flex flex-col md:flex-row items-center justify-between gap-4"
+            v-if="t.otherCount > 0"
+            class="p-6 rounded-2xl bg-bg-muted/30 border border-border-subtle flex flex-col md:flex-row items-center justify-between gap-4"
         >
             <div class="flex items-center gap-4 text-left">
                 <div
@@ -62,18 +59,10 @@
                 </div>
                 <div>
                     <p class="text-sm font-medium text-text-primary mb-0">
-                        {{
-                            language === 'ID'
-                                ? `Terdapat ${availability.en - writings.length} tulisan lainnya dalam Bahasa Inggris`
-                                : `There are ${availability.id - writings.length} other posts available in Indonesian`
-                        }}
+                        {{ t.message }}
                     </p>
                     <p class="text-xs text-text-secondary mt-0.5 mb-0">
-                        {{
-                            language === 'ID'
-                                ? 'Beberapa konten mungkin belum diterjemahkan sepenuhnya.'
-                                : 'Some content might not be fully translated yet.'
-                        }}
+                        {{ t.submessage }}
                     </p>
                 </div>
             </div>
@@ -81,7 +70,7 @@
                 @click="switchLanguage"
                 class="text-xs font-bold uppercase tracking-wider text-accent-primary hover:text-accent-secondary transition-colors px-4 py-2 border border-accent-primary/20 rounded-lg hover:bg-accent-primary/5"
             >
-                {{ language === 'ID' ? 'Switch to English' : 'Beralih ke Indonesia' }}
+                {{ t.button }}
             </button>
         </div>
     </section>
@@ -90,16 +79,16 @@
 <script setup lang="ts">
 import { useWritingData } from '@/modules/home/data/writing.data';
 import {
-    useWritingsAvailability,
+    useWritingBlendedFallbackData,
     useWritingsDataStrict,
 } from '@/modules/writings/data/writings.data';
 import { Clock, Globe } from 'lucide-vue-next';
 import ThemeImage from '@/core/components/theme-image.vue';
 import { language } from '@/store';
 
-const page = useWritingData();
+const writingData = useWritingData();
 const writings = useWritingsDataStrict();
-const availability = useWritingsAvailability();
+const t = useWritingBlendedFallbackData();
 
 const switchLanguage = () => {
     const newLang = language.value === 'ID' ? 'EN' : 'ID';
