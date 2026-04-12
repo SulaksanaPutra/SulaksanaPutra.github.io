@@ -4,7 +4,7 @@
         <button
             class="btn-floating md:flex hidden z-[101] pointer-events-auto"
             @click="toggleChat"
-            :aria-label="isOpen ? 'Close chat' : 'Open chat'"
+            :aria-label="isOpen ? t.ariaLabels.close : t.ariaLabels.open"
         >
             <MessageCircle v-if="!isOpen" class="w-6 h-6" />
             <X v-else class="w-6 h-6" />
@@ -33,7 +33,7 @@
                 <!-- Header -->
                 <div class="chat-box-header">
                     <div class="flex items-center">
-                        <h3 class="m-0">Chatbox</h3>
+                        <h3 class="m-0">{{ t.title }}</h3>
                     </div>
                     <button
                         @click="toggleChat"
@@ -75,10 +75,9 @@
                         >
                             <Sparkles class="w-8 h-8 text-accent-primary animate-pulse" />
                         </div>
-                        <h3 class="text-xl font-bold mb-3 text-text-primary">Let's chat!</h3>
+                        <h3 class="text-xl font-bold mb-3 text-text-primary">{{ t.emptyState.title }}</h3>
                         <p class="text-sm text-text-secondary leading-relaxed max-w-[240px]">
-                            I'm here to help you navigate through my portfolio and answer any
-                            questions.
+                            {{ t.emptyState.description }}
                         </p>
                     </div>
 
@@ -134,7 +133,7 @@
                         v-model="newMessage"
                         @keyup.enter="send"
                         type="text"
-                        placeholder="Type a message..."
+                        :placeholder="t.placeholder"
                         class="chat-box-input"
                     />
                     <button
@@ -154,7 +153,11 @@
 import { nextTick, ref, watch } from 'vue';
 import { MessageCircle, Send, Sparkles, X } from 'lucide-vue-next';
 import { useChat } from '../composables/use-chat';
+import { useChatBoxData } from '../data/chat-box.data.ts';
+import { useI18n } from '@/core/composables/use-i18n.ts';
 
+const t = useChatBoxData();
+const { locale } = useI18n();
 const { messages, isOpen, isLoading, newMessage, toggleChat, send } = useChat();
 const messageContainer = ref<HTMLElement | null>(null);
 const isFullscreen = ref(false);
@@ -213,7 +216,8 @@ watch(isOpen, (val) => {
 
 const formatTime = (timestamp?: number | string) => {
     if (!timestamp) return '';
-    return new Intl.DateTimeFormat('id-ID', {
+    const dateLocale = locale.value === 'id' ? 'id-ID' : 'en-US';
+    return new Intl.DateTimeFormat(dateLocale, {
         hour: '2-digit',
         minute: '2-digit',
     }).format(new Date(timestamp));

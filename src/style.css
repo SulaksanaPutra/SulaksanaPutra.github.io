@@ -394,6 +394,10 @@
         @apply md:ml-32;
     }
 
+    .footer-base {
+        @apply text-[16px];
+    }
+
     /* Skeleton Loading States */
     .skeleton-wrapper {
         @apply w-full animate-pulse space-y-8 pt-8;

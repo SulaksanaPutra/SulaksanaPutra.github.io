@@ -54,10 +54,11 @@ export function useDrawerManagement() {
             return;
         }
 
-        // 1. Force hidden on case study articles (don't read from storage)
-        if (route.name === 'case-study-article') {
+        // 1. Force hidden on articles (don't read from storage)
+        // We force it to false UI-only to satisfy "always false when the page opened" 
+        // without replacing persistent state.
+        if (route.name === 'case-study-article' || route.name === 'writing-article') {
             isDrawerOpen.value = false;
-            localStorage.setItem(key, 'false');
             return;
         }
 
@@ -111,7 +112,7 @@ export function useDrawerManagement() {
                 if (!hasContent) {
                     isDrawerOpen.value = false;
                     localStorage.setItem(getDrawerStateKey(), 'false');
-                } else if (['systems', 'case-studies', 'case-study-article'].includes(route.name as string)) {
+                } else if (['systems', 'case-studies'].includes(route.name as string)) {
                     isDrawerOpen.value = true;
                     localStorage.setItem(getDrawerStateKey(), 'true');
                 }
