@@ -1,3 +1,5 @@
+import { GlossaryItem } from '@/core/types/glossary.types';
+
 export interface Skills {
     sections: {
         id: string;
@@ -5,4 +7,5 @@ export interface Skills {
         description: string;
         points: string[];
     }[];
+    glossary?: GlossaryItem[];
 }

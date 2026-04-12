@@ -12,7 +12,7 @@ const WRITING_BY_LOCALE: Record<'en' | 'id', Writing> = {
     id: {
         title: 'Tulisan',
         descriptions: [
-            'Di sini Anda akan menemukan esai, catatan, dan pemikiran panjang saya tentang rekayasa perangkat lunak, desain sistem, dan topik lain yang saya minati.',
+            'Di sini kamu bisa menemukan esai, catatan, dan pemikiran mendalamku seputar software engineering, system design, serta berbagai topik lain yang aku pikir menarik.',
         ],
     },
 };

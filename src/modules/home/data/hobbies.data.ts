@@ -14,7 +14,12 @@ const HOBBIES_BY_LOCALE: Record<'en' | 'id', Hobbies> = {
     },
     id: {
         title: 'Hobi',
-        descriptions: ['Hal-hal yang saya nikmati'],
+        descriptions: [
+            'Hal-hal yang aku nikmati',
+            'Aku sering banget bikin tool yang hyper-specific untuk kebutuhan sendiri—kayak browser extension simpel, mobile automation, atau web app internal buat ngurangin friction kecil di keseharian. Aku pakai project-project ini buat eksperimen pattern baru atau sekadar bikin rutinitas harian lebih efisien.',
+            "Pas lagi nggak di depan meja kerja, aku biasanya pilih kegiatan yang low-key. Aku suka baca novel, komik, dan sesekali nonton anime. Biasanya aku lebih milih cerita 'popcorn' yang ringan—cerita yang seru buat refreshing tapi nggak terlalu berat sampai kepikiran atau ganggu fokus kerja.",
+            'Buat menjaga produktivitas dan manage stress, aku punya rutinitas gym santai. Ini cara simpel buat aku buang energi negatif dan menghindari burnout.',
+        ],
     },
 };
 

@@ -1,5 +1,6 @@
 import { DrawerItem } from '@/core/types/drawer.types.ts';
 import { Link } from '@/core/types/link.types.ts';
+import { GlossaryItem } from '@/core/types/glossary.types';
 
 export interface System {
     id: string;
@@ -13,6 +14,7 @@ export interface System {
         description: string;
     }[];
     link?: Link;
+    glossary?: GlossaryItem[];
 }
 
 export type Systems = System[];

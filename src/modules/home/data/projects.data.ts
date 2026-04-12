@@ -11,9 +11,10 @@ const PROJECTS_BY_LOCALE: Record<'en' | 'id', Projects> = {
         ],
     },
     id: {
-        title: 'Proyek',
+        title: 'Project',
         descriptions: [
-            'Kumpulan ide singkat, eksperimen, dan draf. Ini adalah proyek yang saya kerjakan untuk mengeksplorasi teknologi baru atau menyelesaikan masalah tertentu.',
+            'Kumpulan ide singkat, eksperimen, dan draf. Ini adalah project-project yang aku kerjakan untuk eksplorasi teknologi baru atau sekadar menyelesaikan masalah spesifik.',
+            'Coming soon!',
         ],
     },
 };

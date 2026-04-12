@@ -12,10 +12,10 @@ const CONTACT_BY_LOCALE: Record<'en' | 'id', Contact> = {
         email: 'info@bayuaksana.com',
     },
     id: {
-        title: 'Kontak',
+        title: 'Yuk, Ngobrol!',
         descriptions: [
-            'Saya selalu terbuka untuk berdiskusi mengenai peluang baru, kolaborasi, atau sekadar berbincang tentang teknologi.',
-            'Anda dapat menghubungi saya melalui <a href="mailto:info@bayuaksana.com" class="text-accent-primary hover:underline">info@bayuaksana.com</a>.',
+            'Aku selalu terbuka untuk mendiskusikan new opportunities, kolaborasi, atau sekadar ngobrol seputar teknologi.',
+            'Kamu bisa hubungi aku di <a href="mailto:info@bayuaksana.com" class="text-accent-primary hover:underline">info@bayuaksana.com</a>.',
         ],
         email: 'info@bayuaksana.com',
     },

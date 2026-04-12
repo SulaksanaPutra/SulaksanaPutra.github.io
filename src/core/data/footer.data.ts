@@ -8,7 +8,12 @@ const FOOTER_BY_LOCALE: Record<'en' | 'id', Footer | null> = {
         availability: 'Open to senior full-stack web engineering roles —',
         email: 'info@bayuaksana.com',
     },
-    id: null,
+    id: {
+        copyright:
+            '© 2025 — Situs ini berisi dokumentasi kerja dan pemikiranku seputar software system.',
+        availability: 'Open untuk role senior full-stack web engineering —',
+        email: 'info@bayuaksana.com',
+    },
 };
 
 export function useFooterData() {

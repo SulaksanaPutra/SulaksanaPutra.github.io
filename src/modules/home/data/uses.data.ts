@@ -5,9 +5,6 @@ import { UsesCategory } from '@/modules/home/types/uses.types.ts';
 const USES_BY_LOCALE: Record<'en' | 'id', UsesCategory> = {
     en: {
         title: 'Uses',
-        descriptions: [
-            'A curated list of tools and hardware optimized for focus and architectural delivery.',
-        ],
         groups: [
             {
                 label: 'Development Environment',
@@ -46,44 +43,41 @@ const USES_BY_LOCALE: Record<'en' | 'id', UsesCategory> = {
         ],
     },
     id: {
-        title: 'Peralatan',
-        descriptions: [
-            'Daftar peralatan dan perangkat lunak yang dikurasi untuk fokus dan efisiensi arsitektural.',
-        ],
+        title: 'Uses',
         groups: [
             {
-                label: 'Lingkungan Pengembangan',
+                label: 'Development Environment',
                 items: [
-                    'IDE Utama: Ekosistem JetBrains (GoLand, PHPStorm, WebStorm, DataGrip)',
-                    'Perangkat Keras: MacBook (macOS) / Linux untuk kesamaan lingkungan produksi',
-                    'Terminal: Zsh dengan konfigurasi minimalis untuk portabilitas',
+                    'IDE Utama: JetBrains Ecosystem (GoLand, PHPStorm, WebStorm, DataGrip)',
+                    'Hardware: MacBook (macOS) / Linux untuk production parity',
+                    'Terminal: Zsh dengan konfigurasi minimalis supaya tetap portable',
                     'Font: JetBrains Mono',
                 ],
             },
             {
-                label: 'Kolaborasi & Alat',
+                label: 'Collaboration & Tools',
                 items: [
                     'Komunikasi: Slack, Microsoft Teams, dan Discord',
-                    'Produktivitas: Jira dan Confluence untuk manajemen alur kerja',
-                    'AI: Pendekatan Tool-agnostic (Claude, Cursor, OpenAI)',
+                    'Produktivitas: Jira dan Confluence untuk workflow management',
+                    'AI: Pendekatan tool-agnostic (Claude, Cursor, OpenAI)',
                 ],
             },
         ],
         glossary: [
             {
-                term: 'Ekosistem JetBrains',
+                term: 'JetBrains Ecosystem',
                 definition:
-                    'Rangkaian IDE khusus yang menyediakan analisis statis mendalam dan fitur lengkap, mengurangi waktu untuk konfigurasi workspace.',
+                    'Kumpulan IDE khusus yang menyediakan deep static analysis dan fitur "batteries-included", jadi aku nggak perlu buang banyak waktu untuk konfigurasi workspace.',
             },
             {
                 term: 'Zsh',
                 definition:
-                    'Shell yang dirancang untuk penggunaan interaktif, digunakan di sini dengan fokus pada kecepatan dan kompatibilitas standar.',
+                    'Shell yang didesain untuk penggunaan interaktif, aku pakai dengan fokus pada kecepatan dan kompatibilitas standar.',
             },
             {
                 term: 'Tool-agnostic',
                 definition:
-                    'Praktik memilih perangkat lunak berdasarkan efisiensi tugas tertentu daripada loyalitas pada satu merek atau ekosistem.',
+                    'Kebiasaan memilih software berdasarkan efisiensi untuk tugas spesifik, alih-alih terpaku pada satu brand atau ekosistem tertentu.',
             },
         ],
     },

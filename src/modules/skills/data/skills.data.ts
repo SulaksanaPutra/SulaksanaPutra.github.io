@@ -52,6 +52,48 @@ const SKILLS_BY_LOCALE: Record<'en' | 'id', Skills | null> = {
                 ],
             },
         ],
+        glossary: [
+            {
+                term: 'Backend Architecture',
+                definition:
+                    'The structural design of server-side systems, focusing on how data is processed, stored, and communicated between services.',
+            },
+            {
+                term: 'REST',
+                definition:
+                    'Representational State Transfer — a standard architectural style for building web services that allow systems to communicate over HTTP.',
+            },
+            {
+                term: 'GraphQL',
+                definition:
+                    'A query language for APIs that allows clients to request exactly the data they need, making it more efficient than traditional REST.',
+            },
+            {
+                term: 'CI/CD',
+                definition:
+                    'Continuous Integration and Continuous Deployment — a set of practices that automate the building, testing, and deployment of software.',
+            },
+            {
+                term: 'SSR',
+                definition:
+                    'Server-Side Rendering — the ability of an application to contribute to the display of the web page on the server instead of in the browser.',
+            },
+            {
+                term: 'CSR',
+                definition:
+                    'Client-Side Rendering — a modern web development technique where the browser renders the content using JavaScript.',
+            },
+            {
+                term: 'Technical Debt',
+                definition:
+                    'The long-term cost of choosing a quick, sub-optimal solution today instead of a more robust architectural approach.',
+            },
+            {
+                term: 'Kanban',
+                definition:
+                    'A visual workflow management method that helps teams visualize their work and maximize efficiency.',
+            },
+        ],
     },
     id: null,
 };

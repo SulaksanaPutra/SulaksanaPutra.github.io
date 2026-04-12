@@ -35,6 +35,18 @@ export const SYSTEMS_BY_LOCALE: Record<'en' | 'id', Systems> = {
                 href: '/case-studies?systemId=system-laas',
                 label: '→ View case study',
             },
+            glossary: [
+                {
+                    term: 'LAAS',
+                    definition:
+                        'Logistics as a Service — a business model where companies outsource their logistics operations to a third-party provider.',
+                },
+                {
+                    term: 'API Gateway',
+                    definition:
+                        'A management layer that sits between clients and backend services, handling authentication, routing, and rate limiting.',
+                },
+            ],
         },
         {
             id: 'system-twin-v2-wms',
@@ -65,6 +77,23 @@ export const SYSTEMS_BY_LOCALE: Record<'en' | 'id', Systems> = {
                 href: '/case-studies?systemId=system-twin-v2-fms',
                 label: '→ View case study',
             },
+            glossary: [
+                {
+                    term: 'WMS',
+                    definition:
+                        'Warehouse Management System — software designed to optimize and manage warehouse operations and inventory.',
+                },
+                {
+                    term: 'SaaS',
+                    definition:
+                        'Software as a Service — a software distribution model where applications are hosted by a provider and made available over the internet.',
+                },
+                {
+                    term: 'Multi-tenant',
+                    definition:
+                        'An architecture where a single instance of software serves multiple customers, with data virtually isolated for each.',
+                },
+            ],
         },
         {
             id: 'system-twin-v2-fms',
@@ -96,6 +125,18 @@ export const SYSTEMS_BY_LOCALE: Record<'en' | 'id', Systems> = {
                 href: '/case-studies?systemId=system-twin-v2-fms',
                 label: '→ View case study',
             },
+            glossary: [
+                {
+                    term: 'FMS',
+                    definition:
+                        'Fleet Management System — a platform used to manage, coordinate, and monitor commercial motor vehicles.',
+                },
+                {
+                    term: 'Miniservice',
+                    definition:
+                        'A variant of microservices that are slightly larger in scope, focusing on a specific business domain while being independently deployable.',
+                },
+            ],
         },
         {
             id: 'system-twin-v1',
@@ -126,6 +167,18 @@ export const SYSTEMS_BY_LOCALE: Record<'en' | 'id', Systems> = {
                 href: '/case-studies?systemId=system-twin-v1',
                 label: '→ View case study',
             },
+            glossary: [
+                {
+                    term: 'Monolith',
+                    definition:
+                        'A software architecture where all components of an application are unified into a single program and codebase.',
+                },
+                {
+                    term: 'Data Reconciliation',
+                    definition:
+                        'The process of comparing two sets of records to ensure they are in agreement and accurate.',
+                },
+            ],
         },
     ],
     id: [],

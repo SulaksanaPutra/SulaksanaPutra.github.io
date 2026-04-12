@@ -4,11 +4,6 @@
             <h1 class="heading-large">
                 {{ usesData.title }}
             </h1>
-            <div class="prose-content">
-                <p v-for="(paragraph, index) in usesData.descriptions" :key="index">
-                    <GlossaryText :text="paragraph" :items="glossaryItems" />
-                </p>
-            </div>
         </header>
 
         <div class="space-y-12">

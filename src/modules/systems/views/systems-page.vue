@@ -13,7 +13,7 @@
                     </h2>
 
                     <p class="article-meta">
-                        {{ system.subtitle }}
+                        <GlossaryText :text="system.subtitle" :items="system.glossary" />
                     </p>
 
                     <div class="flex flex-wrap gap-2 mb-6">
@@ -27,7 +27,9 @@
                             <p class="article-section-title">
                                 {{ section.label }}
                             </p>
-                            <p>{{ section.description }}</p>
+                            <p>
+                                <GlossaryText :text="section.description" :items="system.glossary" />
+                            </p>
                         </div>
 
                         <p v-if="system.link && system.link.label">
@@ -52,14 +54,18 @@
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, onMounted, onUnmounted, watch } from 'vue';
+import { computed, nextTick, onMounted, onUnmounted, provide, watch } from 'vue';
 import { activeSection } from '@/store';
 import { useSystemsAvailability, useSystemsData } from '@/modules/systems/data/systems.data.ts';
 import { useSeo } from '@/core/composables/use-seo';
 import LanguageFallback from '@/core/components/language-fallback.vue';
+import GlossaryText from '@/core/components/glossary-text.vue';
 
 const systems = useSystemsData();
 const availability = useSystemsAvailability();
+
+const glossaryRegistry = new Set<string>();
+provide('glossaryRegistry', glossaryRegistry);
 
 useSeo(
     computed(() => ({
@@ -98,6 +104,7 @@ const observeSections = () => {
 watch(
     systems,
     () => {
+        glossaryRegistry.clear();
         nextTick(() => {
             observeSections();
         });

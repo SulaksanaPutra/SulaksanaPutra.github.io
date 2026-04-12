@@ -15,22 +15,22 @@ const ABOUT_BY_LOCALE: Record<'en' | 'id', About> = {
                 {
                     label: 'Reliability',
                     description:
-                        'Reliable systems are built on strong patterns and clear principles. When the team follows them, failures are predictable, diagnosable, and easier to resolve.',
+                        'Reliable systems are built on consistent patterns and shared principles. When a team adheres to these, failures become predictable, diagnosable, and easier to resolve.',
                 },
                 {
                     label: 'Vision & Cost Awareness',
                     description:
-                        'Every project has trade-offs. Early decisions about the app’s purpose, vision, and cost shape maintainability, scalability, and long-term success.',
+                        "Every project involves trade-offs. Decisions regarding an application's purpose, vision, and cost must be clarified early to ensure long-term maintainability.",
                 },
                 {
                     label: 'Simplicity',
                     description:
-                        'Complexity incurs a cost. My system designs prioritize simplicity, ease of use, and the ability to scale to accommodate future needs and the overall vision.',
+                        'Complexity is a permanent cost. I prioritize designs that start with simplicity and ease of use, allowing the system to scale naturally alongside business growth.',
                 },
                 {
                     label: 'Clean boundaries',
                     description:
-                        'A clear assignment of responsibilities makes it easy to identify and fix problems quickly and ensures accountability across teams and tasks.',
+                        'Clear assignments—both in task tickets and system ownership—are essential. Defined responsibilities ensure that problems are identified quickly and accountability is maintained across the organization.',
                 },
             ],
         },
@@ -66,32 +66,32 @@ const ABOUT_BY_LOCALE: Record<'en' | 'id', About> = {
     },
     id: {
         intro: [
-            'Hai, saya Bayu. Saya mengerjakan sistem di balik operasional sehari-hari—pemesanan, keuangan, pembayaran, gudang dan armada, platform internal, serta alat bisnis multi-tenant.',
-            'Selama lebih dari enam tahun, saya membangun dan memelihara sistem produksi yang digunakan setiap hari. Dalam empat tahun terakhir, saya bekerja secara remote, memiliki fitur dari desain hingga produksi, menjalankan sistem dengan trafik nyata, serta berperan sebagai technical lead pada proyek tertentu.',
-            'Saya merancang sistem yang dapat beradaptasi seiring berkembangnya kebutuhan, ketika pertumbuhan trafik tidak merata dan kegagalan bersifat halus namun berdampak besar, sehingga memerlukan trade-off yang matang antara kecepatan, biaya, dan ketepatan.',
+            'Halo, aku Bayu. Aku seorang developer yang fokus membangun operational backbone untuk ekosistem bisnis yang kompleks—especially di bidang logistik, financial systems, dan multi-tenant internal platforms yang menjaga operasional perusahaan tetap berjalan stabil.',
+            'Selama lebih dari enam tahun, aku sudah membangun dan me-maintain production systems dengan real daily usage. Dalam empat tahun terakhir, aku bekerja secara remote, memegang ownership fitur mulai dari tahap design sampai production, menjalankan sistem di bawah real traffic, serta menjadi technical lead untuk project tertentu.',
+            'Aku merancang sistem yang tumbuh sejalan dengan perkembangan bisnis. Dibanding mengejar theoretical perfection, aku lebih fokus pada pragmatic architecture—menyelaraskan keputusan teknis dengan business goals untuk memastikan sistem tetap reliable di bagian yang krusial, tapi tetap fleksibel untuk dikembangkan.',
         ],
         principles: {
-            title: 'Cara saya memandang engineering',
+            title: 'How I think about engineering',
             items: [
                 {
-                    label: 'Keandalan',
+                    label: 'Reliability',
                     description:
-                        'Sistem yang andal dibangun di atas pola yang kuat dan prinsip yang jelas. Ketika tim mengikutinya, kegagalan menjadi lebih mudah diprediksi, didiagnosis, dan diselesaikan.',
+                        'Sistem yang reliable dibangun di atas pola yang konsisten dan shared principles. Saat tim berkomitmen pada hal ini, kegagalan jadi lebih predictable, mudah didiagnosis, dan lebih cepat diselesaikan.',
                 },
                 {
-                    label: 'Visi & Kesadaran Biaya',
+                    label: 'Vision & Cost Awareness',
                     description:
-                        'Setiap proyek memiliki trade-off. Keputusan awal tentang tujuan, visi, dan biaya aplikasi sangat memengaruhi maintainability, skalabilitas, dan keberhasilan jangka panjang.',
+                        'Tiap project pasti ada trade-offs. Keputusan soal tujuan aplikasi, visi, dan cost harus diperjelas sejak awal untuk menjamin long-term maintainability.',
                 },
                 {
-                    label: 'Kesederhanaan',
+                    label: 'Simplicity',
                     description:
-                        'Kompleksitas memiliki biaya. Desain sistem saya mengutamakan kesederhanaan, kemudahan penggunaan, serta kemampuan untuk berkembang mengikuti kebutuhan dan visi ke depan.',
+                        'Complexity is a permanent cost. Aku memprioritaskan design yang dimulai dari simpel dan mudah digunakan, supaya sistemnya bisa scale up secara natural seiring pertumbuhan bisnis.',
                 },
                 {
-                    label: 'Batasan yang jelas',
+                    label: 'Clean Boundaries',
                     description:
-                        'Pembagian tanggung jawab yang jelas memudahkan identifikasi dan perbaikan masalah, serta memastikan akuntabilitas di seluruh tim dan tugas.',
+                        'Pembagian tugas yang jelas—baik di task tickets maupun system ownership—itu wajib clear. Tanggung jawab yang clear memastikan masalah bisa diidentifikasi dengan cepat dan akuntabilitas tetap terjaga di seluruh organisasi.',
                 },
             ],
         },
@@ -99,7 +99,7 @@ const ABOUT_BY_LOCALE: Record<'en' | 'id', About> = {
             {
                 id: 'systemsPage',
                 href: '/systems',
-                label: '→ Sistem yang pernah saya kerjakan',
+                label: '→ Sistem yang pernah aku kerjakan',
             },
             {
                 id: 'case-studies',

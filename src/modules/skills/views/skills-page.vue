@@ -15,7 +15,7 @@
                 </div>
 
                 <p class="text-text-secondary mb-4 leading-relaxed">
-                    {{ section.description }}
+                    <GlossaryText :text="section.description" :items="page.glossary" />
                 </p>
 
                 <ul class="skills-list">
@@ -25,7 +25,9 @@
                         class="skills-list-item"
                     >
                         <span class="skills-list-bullet">•</span>
-                        <span class="skills-list-text">{{ point }}</span>
+                        <span class="skills-list-text">
+                            <GlossaryText :text="point" :items="page.glossary" />
+                        </span>
                     </li>
                 </ul>
             </section>
@@ -44,13 +46,21 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, provide, watch } from 'vue';
 import { useSkillsAvailability, useSkillsData } from '@/modules/skills/data/skills.data.ts';
 import { useSeo } from '@/core/composables/use-seo';
 import LanguageFallback from '@/core/components/language-fallback.vue';
+import GlossaryText from '@/core/components/glossary-text.vue';
 
 const page = useSkillsData();
 const availability = useSkillsAvailability();
+
+const glossaryRegistry = new Set<string>();
+provide('glossaryRegistry', glossaryRegistry);
+
+watch(page, () => {
+    glossaryRegistry.clear();
+});
 
 useSeo(
     computed(() => ({
