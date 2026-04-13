@@ -19,7 +19,10 @@ function caseStudyDevPlugin() {
                         try {
                             const data = JSON.parse(body);
                             const articleId = data.id;
-                            const articlesDir = path.resolve(__dirname, 'src/modules/case-studies/data/articles');
+                            const articlesDir = path.resolve(
+                                __dirname,
+                                'src/modules/case-studies/data/articles',
+                            );
                             const files = fs.readdirSync(articlesDir);
                             let filepath: string | null = null;
                             let content: string = '';
@@ -29,7 +32,9 @@ function caseStudyDevPlugin() {
                                     const fp = path.join(articlesDir, file);
                                     content = fs.readFileSync(fp, 'utf-8');
                                     // Search for exact id match in the file
-                                    if (content.match(new RegExp(`id:\\s*['"\`]${articleId}['"\`]`))) {
+                                    if (
+                                        content.match(new RegExp(`id:\\s*['"\`]${articleId}['"\`]`))
+                                    ) {
                                         filepath = fp;
                                         break;
                                     }
@@ -38,17 +43,22 @@ function caseStudyDevPlugin() {
 
                             if (filepath && fs.existsSync(filepath)) {
                                 // Replace the "en: { ... }" block before "id: null"
-                                const regex = /en:\s*\{[\s\S]*?\}(?=\s*,\s*id:\s*null)/;
-                                content = content.replace(regex, `en: ${JSON.stringify(data, null, 4)}`);
-                                
+                                const regex = /en:\s*\{[\s\S]*?}(?=\s*,\s*id:\s*null)/;
+                                content = content.replace(
+                                    regex,
+                                    `en: ${JSON.stringify(data, null, 4)}`,
+                                );
+
                                 fs.writeFileSync(filepath, content);
-                                
+
                                 try {
-                                    execSync(`npx prettier --write ${filepath}`, { stdio: 'ignore' });
+                                    execSync(`npx prettier --write ${filepath}`, {
+                                        stdio: 'ignore',
+                                    });
                                 } catch (e) {
                                     console.error('Prettier formatting failed:', e);
                                 }
-                                
+
                                 res.setHeader('Content-Type', 'application/json');
                                 res.end(JSON.stringify({ success: true }));
                             } else {
@@ -70,7 +80,7 @@ function caseStudyDevPlugin() {
 
 export default defineConfig({
     base: '/', // Adjusted for root hosting (username.github.io)
-    plugins: [vue(), caseStudyDevPlugin()],
+    plugins: [vue() as any, caseStudyDevPlugin() as any],
     resolve: {
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url)),

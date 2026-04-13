@@ -4,6 +4,7 @@ import { fileURLToPath, URL } from 'node:url';
 import fs from 'node:fs';
 import path from 'node:path';
 import { execSync } from 'node:child_process';
+
 function caseStudyDevPlugin() {
     return {
         name: 'case-study-dev-plugin',
@@ -18,34 +19,56 @@ function caseStudyDevPlugin() {
                         try {
                             var data = JSON.parse(body_1);
                             var articleId = data.id;
-                            var filepath = path.resolve(__dirname, "src/modules/case-studies/data/articles/".concat(articleId, ".ts"));
-                            if (fs.existsSync(filepath)) {
-                                var content = fs.readFileSync(filepath, 'utf-8');
-                                // Replace the "en: { ... }" block before "id:"
-                                var regex = /en:\s*\{[\s\S]*?\}(?=\s*,\s*id:)/;
-                                content = content.replace(regex, "en: ".concat(JSON.stringify(data, null, 4)));
+                            var articlesDir = path.resolve(
+                                __dirname,
+                                'src/modules/case-studies/data/articles',
+                            );
+                            var files = fs.readdirSync(articlesDir);
+                            var filepath = null;
+                            var content = '';
+                            for (var _i = 0, files_1 = files; _i < files_1.length; _i++) {
+                                var file = files_1[_i];
+                                if (file.endsWith('.ts')) {
+                                    var fp = path.join(articlesDir, file);
+                                    content = fs.readFileSync(fp, 'utf-8');
+                                    // Search for exact id match in the file
+                                    if (
+                                        content.match(
+                                            new RegExp('id:\\s*[\'"`]'.concat(articleId, '[\'"`]')),
+                                        )
+                                    ) {
+                                        filepath = fp;
+                                        break;
+                                    }
+                                }
+                            }
+                            if (filepath && fs.existsSync(filepath)) {
+                                // Replace the "en: { ... }" block before "id: null"
+                                var regex = /en:\s*\{[\s\S]*?}(?=\s*,\s*id:\s*null)/;
+                                content = content.replace(
+                                    regex,
+                                    'en: '.concat(JSON.stringify(data, null, 4)),
+                                );
                                 fs.writeFileSync(filepath, content);
                                 try {
-                                    execSync("npx prettier --write ".concat(filepath), { stdio: 'ignore' });
-                                }
-                                catch (e) {
+                                    execSync('npx prettier --write '.concat(filepath), {
+                                        stdio: 'ignore',
+                                    });
+                                } catch (e) {
                                     console.error('Prettier formatting failed:', e);
                                 }
                                 res.setHeader('Content-Type', 'application/json');
                                 res.end(JSON.stringify({ success: true }));
-                            }
-                            else {
+                            } else {
                                 res.statusCode = 404;
                                 res.end(JSON.stringify({ error: 'File not found' }));
                             }
-                        }
-                        catch (e) {
+                        } catch (e) {
                             res.statusCode = 500;
                             res.end(JSON.stringify({ error: e.message }));
                         }
                     });
-                }
-                else {
+                } else {
                     next();
                 }
             });
@@ -53,6 +76,7 @@ function caseStudyDevPlugin() {
     };
 }
 export default defineConfig({
+    base: '/', // Adjusted for root hosting (username.github.io)
     plugins: [vue(), caseStudyDevPlugin()],
     resolve: {
         alias: {
