@@ -20,16 +20,19 @@ export interface About {
 
 export interface Writing {
     title: string;
+    subtitle: string;
     descriptions: string[];
 }
 
 export interface Projects {
     title: string;
+    subtitle: string;
     descriptions: string[];
 }
 
 export interface UsesCategory {
     title: string;
+    subtitle: string;
     groups: {
         label: string;
         items: string[];
@@ -42,5 +45,6 @@ export interface UsesCategory {
 
 export interface Hobbies {
     title: string;
+    subtitle: string;
     descriptions: string[];
 }

@@ -1,9 +1,9 @@
 <template>
     <section v-if="writingData" class="prose-content content-narrow">
         <header>
-            <h1 class="heading-large">
-                {{ writingData.title }}
-            </h1>
+            <h2 class="heading-section">
+                {{ writingData.subtitle }}
+            </h2>
             <div>
                 <p v-for="(paragraph, index) in writingData.descriptions" :key="index">
                     {{ paragraph }}

@@ -1,8 +1,8 @@
 <template>
     <section v-if="projectsData" class="prose-content content-narrow">
-        <h1 class="heading-large">
-            {{ projectsData.title }}
-        </h1>
+        <h2 class="heading-section">
+            {{ projectsData.subtitle }}
+        </h2>
         <div>
             <p v-for="(paragraph, index) in projectsData.descriptions" :key="index">
                 {{ paragraph }}

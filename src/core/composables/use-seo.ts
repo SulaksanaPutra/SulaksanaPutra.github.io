@@ -1,4 +1,4 @@
-import { watch, type Ref } from 'vue';
+import { type Ref, watch } from 'vue';
 
 interface SeoOptions {
     title: string;
@@ -37,7 +37,7 @@ export function useSeo(options: Ref<SeoOptions | null | undefined>) {
             if (!newOptions) return;
 
             // Update Page Title
-            const fullTitle = `${newOptions.title} | Bayu Aksana Portfolio`;
+            const fullTitle = `${newOptions.title} | Bayu Aksana Personal website`;
             document.title = fullTitle;
 
             // Update Metadata
@@ -48,7 +48,10 @@ export function useSeo(options: Ref<SeoOptions | null | undefined>) {
 
             // Update OpenGraph
             updateProperty('og:title', newOptions.ogTitle || newOptions.title);
-            updateProperty('og:description', newOptions.ogDescription || newOptions.description || '');
+            updateProperty(
+                'og:description',
+                newOptions.ogDescription || newOptions.description || '',
+            );
             updateProperty('og:type', newOptions.ogType || 'website');
             if (newOptions.ogImage) {
                 updateProperty('og:image', newOptions.ogImage);
@@ -56,7 +59,10 @@ export function useSeo(options: Ref<SeoOptions | null | undefined>) {
 
             // Update Twitter
             updateMeta('twitter:title', newOptions.ogTitle || newOptions.title);
-            updateMeta('twitter:description', newOptions.ogDescription || newOptions.description || '');
+            updateMeta(
+                'twitter:description',
+                newOptions.ogDescription || newOptions.description || '',
+            );
             if (newOptions.ogImage) {
                 updateMeta('twitter:image', newOptions.ogImage);
             }

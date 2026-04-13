@@ -219,12 +219,14 @@ export function useAboutData() {
 const WRITING_BY_LOCALE: Record<'en' | 'id', Writing> = {
     en: {
         title: 'Writing',
+        subtitle: 'Essays, notes, and long-form thoughts',
         descriptions: [
             'Here you will find my essays, notes, and long-form thoughts on software engineering, system design, and other topics that interest me.',
         ],
     },
     id: {
         title: 'Tulisan',
+        subtitle: 'Esai, catatan, dan pemikiran mendalam',
         descriptions: [
             'Di sini kamu bisa menemukan esai, catatan, dan pemikiran mendalamku seputar software engineering, system design, serta berbagai topik lain yang aku pikir menarik.',
         ],
@@ -240,6 +242,7 @@ export function useWritingData() {
 const PROJECTS_BY_LOCALE: Record<'en' | 'id', Projects> = {
     en: {
         title: 'Projects',
+        subtitle: 'Short ideas, experiments, and drafts',
         descriptions: [
             "A collection of short ideas, experiments, and drafts. These are projects that I've worked on to explore new technologies or to solve specific problems.",
             'Coming soon!',
@@ -247,6 +250,7 @@ const PROJECTS_BY_LOCALE: Record<'en' | 'id', Projects> = {
     },
     id: {
         title: 'Project',
+        subtitle: 'Ide singkat, eksperimen, dan draf',
         descriptions: [
             'Kumpulan ide singkat, eksperimen, dan draf. Ini adalah project-project yang aku kerjakan untuk eksplorasi teknologi baru atau sekadar menyelesaikan masalah spesifik.',
             'Coming soon!',
@@ -263,6 +267,7 @@ export function useProjectsData() {
 const USES_BY_LOCALE: Record<'en' | 'id', UsesCategory> = {
     en: {
         title: 'Uses',
+        subtitle: 'Tools, hardware, and software I use daily',
         groups: [
             {
                 label: 'Development Environment',
@@ -302,6 +307,7 @@ const USES_BY_LOCALE: Record<'en' | 'id', UsesCategory> = {
     },
     id: {
         title: 'Uses',
+        subtitle: 'Tool, hardware, dan software',
         groups: [
             {
                 label: 'Development Environment',
@@ -350,8 +356,8 @@ export function useUsesData() {
 const HOBBIES_BY_LOCALE: Record<'en' | 'id', Hobbies> = {
     en: {
         title: 'Hobbies',
+        subtitle: 'Things I enjoy doing',
         descriptions: [
-            'What I enjoy doing',
             'I often find myself building small, hyper-specific tools for my own use—simple browser extensions, mobile automations, or internal web apps designed to solve a bit of personal friction. I treat these projects as a way to explore new patterns or simply make my daily routine more efficient.',
             "When I’m not at my desk, I tend to keep things low-key. I enjoy novels, comics, and the occasional anime, usually i prefer 'popcorn' or lighthearted stories—narratives that are engaging enough to be a good break, but not so heavy that they linger or affect my focus.",
             'To maintain a baseline of productivity and manage stress, I keep a casual gym routine. It’s a simple way to burn off energy and avoid burnout.',
@@ -359,8 +365,8 @@ const HOBBIES_BY_LOCALE: Record<'en' | 'id', Hobbies> = {
     },
     id: {
         title: 'Hobi',
+        subtitle: 'Hal-hal yang aku nikmati',
         descriptions: [
-            'Hal-hal yang aku nikmati',
             'Aku sering banget bikin tool yang hyper-specific untuk kebutuhan sendiri—kayak browser extension simpel, mobile automation, atau web app internal buat ngurangin friction kecil di keseharian. Aku pakai project-project ini buat eksperimen pattern baru atau sekadar bikin rutinitas harian lebih efisien.',
             "Pas lagi nggak di depan meja kerja, aku biasanya pilih kegiatan yang low-key. Aku suka baca novel, komik, dan sesekali nonton anime. Biasanya aku lebih milih cerita 'popcorn' yang ringan—cerita yang seru buat refreshing tapi nggak terlalu berat sampai kepikiran atau ganggu fokus kerja.",
             'Buat menjaga produktivitas dan manage stress, aku punya rutinitas gym santai. Ini cara simpel buat aku buang energi negatif dan menghindari burnout.',

@@ -1,16 +1,16 @@
 <template>
     <section v-if="usesData" class="prose-content content-narrow">
-        <header class="mb-12">
-            <h1 class="heading-large">
-                {{ usesData.title }}
-            </h1>
+        <header class="mb-8">
+            <h2 class="heading-section">
+                {{ usesData.subtitle }}
+            </h2>
         </header>
 
-        <div class="space-y-12">
+        <div class="space-y-8">
             <div v-for="group in usesData.groups" :key="group.label">
-                <h2 class="uses-group-header">
+                <h3 class="uses-group-header">
                     <span class="label-overline">{{ group.label }}</span>
-                </h2>
+                </h3>
 
                 <ul class="uses-list">
                     <li v-for="(item, index) in group.items" :key="index" class="uses-list-item">
