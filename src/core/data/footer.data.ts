@@ -4,13 +4,13 @@ import { computed } from 'vue';
 
 const FOOTER_BY_LOCALE: Record<'en' | 'id', Footer | null> = {
     en: {
-        copyright: '© 2025 — This site documents my work and thinking around software system.',
+        copyright: '© 2026 — This site documents my work and thinking around software system.',
         availability: 'Open to senior full-stack web engineering roles —',
         email: 'info@bayuaksana.com',
     },
     id: {
         copyright:
-            '© 2025 — Situs ini berisi dokumentasi kerja dan pemikiranku seputar software system.',
+            '© 2026 — Situs ini berisi dokumentasi kerja dan pemikiranku seputar software system.',
         availability: 'Open untuk role senior full-stack web engineering —',
         email: 'info@bayuaksana.com',
     },
