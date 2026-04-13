@@ -69,7 +69,7 @@ function caseStudyDevPlugin() {
 }
 
 export default defineConfig({
-    base: '/personal-website/', // Repository name for GitHub Pages
+    base: '/', // Adjusted for root hosting (username.github.io)
     plugins: [vue(), caseStudyDevPlugin()],
     resolve: {
         alias: {
