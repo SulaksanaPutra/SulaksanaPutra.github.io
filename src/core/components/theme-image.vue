@@ -9,6 +9,7 @@
             @load="onLoad"
             class="transition-opacity duration-700 ease-in-out"
             :class="isLoaded ? 'opacity-100' : 'opacity-0'"
+            alt="thumbnail"
         />
     </div>
 </template>
