@@ -21,6 +21,7 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.98.0",
     "@vueuse/core": "^10.7.0",
+    "katex": "^0.16.45",
     "lucide-vue-next": "^0.469.0",
     "typescript-eslint": "^8.53.0",
     "vue": "^3.4.0",

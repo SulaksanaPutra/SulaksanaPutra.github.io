@@ -6,7 +6,7 @@ const CONTACT_BY_LOCALE: Record<'en' | 'id', Contact> = {
     en: {
         title: "Let's Talk",
         descriptions: [
-            "I'm always open to discussing new opportunities, collaborations, or just chatting about technology.",
+            "I'm currently based in Bali, Indonesia (GMT+8), and I'm always open to discussing new opportunities, collaborations, or just chatting about technology.",
             'You can reach me at <a href="mailto:info@bayuaksana.com" class="text-accent-primary hover:underline">info@bayuaksana.com</a>.',
         ],
         email: 'info@bayuaksana.com',
@@ -14,7 +14,7 @@ const CONTACT_BY_LOCALE: Record<'en' | 'id', Contact> = {
     id: {
         title: 'Yuk, Ngobrol!',
         descriptions: [
-            'Aku selalu terbuka untuk mendiskusikan new opportunities, kolaborasi, atau sekadar ngobrol seputar teknologi.',
+            'Aku sekarang tinggal di Bali, Indonesia (GMT+8), dan Aku selalu terbuka untuk mendiskusikan new opportunities, kolaborasi, atau sekadar ngobrol seputar teknologi.',
             'Kamu bisa hubungi aku di <a href="mailto:info@bayuaksana.com" class="text-accent-primary hover:underline">info@bayuaksana.com</a>.',
         ],
         email: 'info@bayuaksana.com',
