@@ -404,7 +404,6 @@ import {
     ArrowUp,
     BookOpen,
     Clock,
-    FileQuestion,
     HelpCircle,
     List,
     Plus,
