@@ -1,5 +1,5 @@
 <template>
-    <div class="prose-content my-8">
+    <div class="prose-content">
         <section class="content-narrow" v-if="caseStudies.length">
             <div class="grid gap-8">
                 <article v-for="caseStudy in caseStudies" :key="caseStudy.id" class="article-item">
@@ -27,9 +27,9 @@
                 </article>
             </div>
         </section>
-        
-        <LanguageFallback 
-            v-else-if="availability.length > 0" 
+
+        <LanguageFallback
+            v-else-if="availability.length > 0"
             :availability="availability"
             :back-link="systemId ? { href: '/case-studies?all=true' } : undefined"
         />
@@ -37,10 +37,12 @@
         <section v-else>
             <div class="py-16 text-center">
                 <h2 class="text-xl text-text-primary mb-2">No case studies found</h2>
-                <p class="text-text-secondary mb-6">
-                    There are no case studies available.
-                </p>
-                <router-link v-if="systemId" to="/case-studies" class="text-sm text-primary hover:underline">
+                <p class="text-text-secondary mb-6">There are no case studies available.</p>
+                <router-link
+                    v-if="systemId"
+                    to="/case-studies"
+                    class="text-sm text-primary hover:underline"
+                >
                     View all case studies
                 </router-link>
             </div>
@@ -51,7 +53,10 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
-import { useCaseStudiesData, useCaseStudiesAvailability } from '@/modules/case-studies/data/case-studies.data.ts';
+import {
+    useCaseStudiesAvailability,
+    useCaseStudiesData,
+} from '@/modules/case-studies/data/case-studies.data.ts';
 import { useSeo } from '@/core/composables/use-seo';
 import LanguageFallback from '@/core/components/language-fallback.vue';
 

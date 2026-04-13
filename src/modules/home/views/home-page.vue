@@ -4,7 +4,7 @@
             v-for="section in mountedSections"
             :id="`section-${section.name}`"
             :key="section.name"
-            class="section-wrapper py-8 px-6 md:px-0"
+            class="section-wrapper"
         >
             <component :is="section.component" />
         </div>
@@ -47,10 +47,11 @@ useSeo(
     computed(() => {
         const name = (route.name as string) || '';
         const sectionName = name.charAt(0).toUpperCase() + name.slice(1);
-        
+
         return {
             title: sectionName || 'Senior Backend Engineer',
-            description: 'Portfolio and technical insights of Bayu Aksana, a Senior Backend Engineer specializing in scalable systems and architecture.',
+            description:
+                'Portfolio and technical insights of Bayu Aksana, a Senior Backend Engineer specializing in scalable systems and architecture.',
             ogType: 'website',
         };
     }),

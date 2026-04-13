@@ -1,5 +1,5 @@
 <template>
-    <div class="prose-content py-8">
+    <div class="prose-content">
         <section v-if="systems.length > 0" class="content-narrow relative mx-auto">
             <TransitionGroup name="list" tag="div">
                 <article
@@ -28,7 +28,10 @@
                                 {{ section.label }}
                             </p>
                             <p>
-                                <GlossaryText :text="section.description" :items="system.glossary" />
+                                <GlossaryText
+                                    :text="section.description"
+                                    :items="system.glossary"
+                                />
                             </p>
                         </div>
 
@@ -42,10 +45,7 @@
             </TransitionGroup>
         </section>
 
-        <LanguageFallback 
-            v-else-if="availability.length > 0" 
-            :availability="availability"
-        />
+        <LanguageFallback v-else-if="availability.length > 0" :availability="availability" />
 
         <div v-else class="py-16 text-center">
             <p class="text-text-secondary">No systems available.</p>

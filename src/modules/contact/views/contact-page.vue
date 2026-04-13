@@ -1,5 +1,5 @@
 <template>
-    <div v-if="page" class="prose-content pt-8">
+    <div v-if="page" class="prose-content">
         <section id="contact-info" class="content-narrow">
             <h1 class="heading-large">
                 {{ page.title }}

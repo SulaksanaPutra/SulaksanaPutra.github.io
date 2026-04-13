@@ -1,10 +1,10 @@
 <template>
-    <section v-if="writingData" class="content-narrow">
+    <section v-if="writingData" class="prose-content content-narrow">
         <header>
-            <h1 class="heading-large mb-4">
+            <h1 class="heading-large">
                 {{ writingData.title }}
             </h1>
-            <div class="prose-content">
+            <div>
                 <p v-for="(paragraph, index) in writingData.descriptions" :key="index">
                     {{ paragraph }}
                 </p>

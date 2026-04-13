@@ -1,5 +1,5 @@
 <template>
-    <section v-if="usesData" class="content-narrow">
+    <section v-if="usesData" class="prose-content content-narrow">
         <header class="mb-12">
             <h1 class="heading-large">
                 {{ usesData.title }}

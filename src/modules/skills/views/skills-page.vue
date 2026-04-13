@@ -1,6 +1,6 @@
 <template>
-    <div class="prose-content content-narrow pt-8">
-        <div v-if="page" class="flex-1 min-w-0">
+    <div class="prose-content">
+        <div v-if="page" class="flex-1 content-narrow min-w-0">
             <section
                 v-for="section in page.sections"
                 :id="section.id"
