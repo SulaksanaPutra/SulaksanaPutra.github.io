@@ -3,6 +3,7 @@ import { type Ref, watch } from 'vue';
 interface SeoOptions {
     title: string;
     description?: string;
+    keywords?: string;
     ogTitle?: string;
     ogDescription?: string;
     ogType?: 'website' | 'article';
@@ -44,6 +45,9 @@ export function useSeo(options: Ref<SeoOptions | null | undefined>) {
             updateMeta('title', fullTitle);
             if (newOptions.description) {
                 updateMeta('description', newOptions.description);
+            }
+            if (newOptions.keywords) {
+                updateMeta('keywords', newOptions.keywords);
             }
 
             // Update OpenGraph

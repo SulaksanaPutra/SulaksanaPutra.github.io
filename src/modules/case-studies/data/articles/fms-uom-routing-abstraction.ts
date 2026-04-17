@@ -11,12 +11,13 @@ export const TWIN_FMS_ROUTING_CASE_BY_LOCALE: Record<'en' | 'id', CaseStudyArtic
         },
         id: 'fms-uom-routing-abstraction',
         systemIds: ['system-twin-v2-fms'],
-        title: 'The Friction of Units: Bridging Physical Habits and Digital Logic',
-        heading: 'Bridging Human Habit and Logic',
+        title: 'Fleet Management System (FMS) Routing Logic: Virtual UOM Abstraction',
+        heading: 'FMS Routing & UOM Abstraction',
         highlight:
-            'Twin FMS — Navigating the conflict between standardized volumetric routing and entrenched "box-based" business habits.',
+            'Twin FMS — Navigating the conflict between standardized volumetric routing and virtual Unit of Measure (UOM) abstraction.',
+        keywords: 'Fleet Management System, FMS, Routing Logic, Virtual Unit of Measure, UOM Abstraction, Logistics Automation, Vehicle Capacity Scheduling, Decoupled Priority Logic',
         subtitle:
-            'Resolving the conflict between volumetric routing and entrenched business habits by implementing a virtual UOM abstraction and decoupled priority logic to enable automated scheduling without breaking operational workflows.',
+            'Implementing a Fleet Management System (FMS) with virtual UOM abstraction and decoupled priority logic to enable automated scheduling without breaking operational workflows.',
         sections: [
             {
                 id: 'context',

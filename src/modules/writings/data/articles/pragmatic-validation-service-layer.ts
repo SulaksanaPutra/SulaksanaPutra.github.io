@@ -12,11 +12,12 @@ export const PRAGMATIC_VALIDATION_ARTICLE_BY_LOCALE: Record<'en' | 'id', Writing
             href: '/writing',
             label: 'Back to Writing',
         },
-        title: 'Pragmatic Validation: Why I Merge Business Rules into the Service Layer',
+        title: 'Pragmatic Validation in the Service Layer: Balancing Logic and Clean Architecture',
         subtitle:
-            'Stop performing the same checks twice. Learn why stateful invariants belong inside the transaction, not a separate validation layer.',
+            'Why stateful invariants belong inside the transaction, not a separate validation layer. Navigating Clean Architecture trade-offs.',
         highlight:
-            'For small to medium applications, architectural "purity" often introduces race conditions and unnecessary boilerplate. Explore why atomic execution is a superior choice for data integrity.',
+            'For small to medium applications, architectural "purity" often introduces race conditions and high boilerplate tax. Explore why pragmatic validation in the service layer helps avoid double-gatekeeping.',
+        keywords: 'Pragmatic Validation, Service Layer, Clean Architecture Trade-offs, Business Logic, Double-Gatekeeping, Atomic Execution, Boilerplate Tax, Software Design',
         thumbnail: {
             light: thumbnail,
             dark: thumbnailDark,

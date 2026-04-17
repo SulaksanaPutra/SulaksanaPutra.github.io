@@ -18,6 +18,7 @@ export interface WritingArticle {
     title: string;
     subtitle?: string;
     highlight: string;
+    keywords?: string;
     thumbnail: string | { light: string; dark: string };
     date: string;
     sections: {

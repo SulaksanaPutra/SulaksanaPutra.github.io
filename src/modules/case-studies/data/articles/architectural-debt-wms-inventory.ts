@@ -11,12 +11,13 @@ export const TWIN_WMS_STOCK_CASE_BY_LOCALE: Record<'en' | 'id', CaseStudyArticle
         },
         id: 'architectural-debt-wms-inventory',
         systemIds: ['system-twin-v2-wms'],
-        title: 'Architectural Debt: Inventory Ledgers and Physical Constraints',
-        heading: 'Architectural Debt: Inventory Ledgers',
+        title: 'Warehouse Management System (WMS) Architecture: Resolving Architectural Debt',
+        heading: 'WMS Architecture & Architectural Debt',
         highlight:
-            'Twin v1 & Twin v2 WMS — Solving ghost stock and race conditions by transitioning to an append-only transaction architecture.',
+            'Solving ghost stock and race conditions by transitioning to an append-only transactional ledger architecture in WMS.',
+        keywords: 'Warehouse Management System Architecture, WMS, Architectural Debt, Append-only transactional ledger, Ghost Stock, Inventory Management, Logistics Technology',
         subtitle:
-            'Transitioning from volatile dynamic stock calculations to a strict append-only transactional ledger, eliminating race conditions and reconciling digital inventory with physical warehouse.',
+            'Transitioning from volatile dynamic stock calculations to a strict append-only transactional ledger, eliminating race conditions and reconciling digital inventory with physical warehouse logistics.',
         sections: [
             {
                 id: 'context',

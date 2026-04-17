@@ -12,11 +12,12 @@ export const SSE_FEEDBACK_ARTICLE_BY_LOCALE: Record<'en' | 'id', WritingArticle 
             href: '/writing',
             label: 'Back to Writing',
         },
-        title: '"Hit-and-Forget" Gap: A Pragmatic Guide to Server-Sent Events',
+        title: 'Server-Sent Events (SSE) Implementation: Closing the Observability Gap',
         subtitle:
-            'Solving the observability gap in background jobs without the infrastructure overhead of WebSockets.',
+            'Solving the "Hit-and-Forget" gap in background jobs without the infrastructure overhead of WebSockets.',
         highlight:
-            'Explore why Server-Sent Events (SSE) are often the superior architectural choice for real-time monitoring and why choosing the right direction for your data matters.',
+            'Explore why Server-Sent Events (SSE) implementation is often the superior architectural choice for real-time monitoring of asynchronous systems.',
+        keywords: 'Server-Sent Events, SSE Implementation, Hit-and-Forget Gap, Real-Time Monitoring, Asynchronous Systems, WebSockets vs SSE, Pragmatic Architecture',
         thumbnail: {
             light: thumbnail,
             dark: thumbnailDark,

@@ -10,11 +10,12 @@ export const EXPLICIT_POOLING_ARTICLE_BY_LOCALE: Record<'en' | 'id', WritingArti
             href: '/writing',
             label: 'Back to Writing',
         },
-        title: 'Explicit Connection Pooling: Managing Multi-Tenant Resource Silos in Go',
+        title: 'Explicit Connection Pooling in Go: Fixing Cross-Tenant Data Contamination',
         subtitle:
-            'Eliminating race conditions and data leaks by shifting from global state mutation to scoped resource selection.',
+            'A registry-driven approach to resolving race conditions and data leaks in high-concurrency Go SaaS applications.',
         highlight:
-            'A deep dive into the Tenant Registry pattern in Go—trading memory footprint for absolute system integrity and sub-millisecond query performance.',
+            'A deep dive into fixing cross-tenant data contamination in Go—using the Tenant Registry pattern to trade memory footprint for absolute system integrity.',
+        keywords: 'Explicit Connection Pooling, Go SaaS, Cross-Tenant Data Contamination, High-Concurrency Go, Database Management, Tenant Registry Pattern, Go Backend Engineering',
         thumbnail: {
             light: thumbnail,
             dark: thumbnailDark,

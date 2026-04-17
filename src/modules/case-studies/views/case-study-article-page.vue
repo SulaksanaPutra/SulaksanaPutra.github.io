@@ -383,11 +383,14 @@
             description="The case study you are looking for does not exist or is no longer available."
             :back-link="{ href: '/case-studies' }"
         />
+
+        <JsonLd v-if="article" :data="structuredData" />
     </div>
 </template>
 
 <script setup lang="ts">
 import LanguageFallback from '@/core/components/language-fallback.vue';
+import JsonLd from '@/core/components/json-ld.vue';
 import { computed, defineAsyncComponent, onMounted, onUnmounted, provide, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { useWindowScroll } from '@vueuse/core';
@@ -575,11 +578,41 @@ useSeo(
         return {
             title: article.value.title,
             description: article.value.highlight || article.value.subtitle || '',
+            keywords: article.value.keywords,
             ogType: 'article',
             ogImage: ogImage,
         };
     }),
 );
+
+const structuredData = computed(() => {
+    if (!article.value) return {};
+
+    const ogImage = typeof article.value.thumbnail === 'string' 
+        ? article.value.thumbnail 
+        : article.value.thumbnail?.light || '';
+
+    return {
+        '@context': 'https://schema.org',
+        '@type': 'TechArticle',
+        headline: article.value.title,
+        description: article.value.highlight || article.value.subtitle || '',
+        image: ogImage,
+        author: {
+            '@type': 'Person',
+            name: 'Bayu Aksana',
+            url: 'https://bayuaksana.com'
+        },
+        publisher: {
+            '@type': 'Person',
+            name: 'Bayu Aksana'
+        },
+        mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': `https://bayuaksana.com/case-studies/${route.params.systemId}/${articleId}`
+        }
+    };
+});
 
 const readingTime = computed(() => {
     if (!article.value) return 0;

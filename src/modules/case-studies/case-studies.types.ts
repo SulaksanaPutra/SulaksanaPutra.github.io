@@ -21,6 +21,7 @@ export interface CaseStudyArticle {
     subtitle?: string;
     highlight: string;
     description?: string;
+    keywords?: string;
     thumbnail?: string | { light: string; dark: string }; // Main image for the article
     systemIds: string[];
     sections: {

@@ -10,11 +10,12 @@ export const NAIVE_STATE_RESET_ARTICLE_BY_LOCALE: Record<'en' | 'id', WritingArt
             href: '/writing',
             label: 'Back to Writing',
         },
-        title: 'The Naive State Reset: An Architectural Anti-Pattern in Resource Management',
+        title: 'Architectural Debt: Resolving Race Conditions in High-Concurrency Systems',
         subtitle:
-            'Understanding how premature resource de-allocation creates destructive race conditions in high-concurrency systems.',
+            'Solving the "Naive State Reset" anti-pattern in resource management and high-traffic distributed systems.',
         highlight:
-            "A technical autopsy of a common architectural failure where 'wipe-and-rewrite' logic undermines system integrity and creates physical discrepancies.",
+            "A technical autopsy of a common architectural failure where 'wipe-and-rewrite' logic undermines system integrity, creating architectural debt and physical discrepancies.",
+        keywords: 'Architectural Debt, Naive State Reset, Race Conditions, High-Concurrency Systems, Resource Management, Software Architecture, Pragmatic Architecture',
         thumbnail: {
             light: thumbnail,
             dark: thumbnailDark,

@@ -191,6 +191,8 @@
             description="The article you are looking for does not exist or is no longer available."
             :back-link="{ href: '/writing' }"
         />
+
+        <JsonLd v-if="article" :data="structuredData" />
     </div>
 </template>
 
@@ -204,6 +206,7 @@ import TextBlock from '@/core/components/text-block.vue';
 import CodeHighlighter from '@/core/components/code-highlighter.vue';
 import ThemeImage from '@/core/components/theme-image.vue';
 import LanguageFallback from '@/core/components/language-fallback.vue';
+import JsonLd from '@/core/components/json-ld.vue';
 import { useSeo } from '@/core/composables/use-seo';
 import { language } from '@/store';
 import { headerComponentRef } from '@/store.ts';
@@ -236,11 +239,42 @@ useSeo(
         return {
             title: article.value.title,
             description: article.value.highlight,
+            keywords: article.value.keywords,
             ogType: 'article',
             ogImage: ogImage,
         };
     }),
 );
+
+const structuredData = computed(() => {
+    if (!article.value) return {};
+
+    const ogImage = typeof article.value.thumbnail === 'string' 
+        ? article.value.thumbnail 
+        : article.value.thumbnail?.light || '';
+
+    return {
+        '@context': 'https://schema.org',
+        '@type': 'TechArticle',
+        headline: article.value.title,
+        description: article.value.highlight,
+        image: ogImage,
+        datePublished: article.value.date,
+        author: {
+            '@type': 'Person',
+            name: 'Bayu Aksana',
+            url: 'https://bayuaksana.com'
+        },
+        publisher: {
+            '@type': 'Person',
+            name: 'Bayu Aksana'
+        },
+        mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': `https://bayuaksana.com/writing/${articleId}`
+        }
+    };
+});
 
 const readingTime = computed(() => {
     if (!article.value) return 0;
