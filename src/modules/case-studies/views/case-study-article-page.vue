@@ -61,9 +61,9 @@
                     :multiline="true"
                     :class="!isDev ? 'contents' : ''"
                 >
-                    <p class="article-summary" :class="isDev ? 'mb-0' : ''">
-                        {{ isDev ? editableArticle?.highlight : article?.highlight }}
-                    </p>
+                <p class="article-summary" :class="isDev ? 'mb-0' : ''" itemprop="description" role="doc-abstract">
+                    {{ isDev ? editableArticle?.highlight : article?.highlight }}
+                </p>
                 </component>
 
                 <!-- Subtitle -->
@@ -416,6 +416,7 @@ import TextBlock from '@/core/components/text-block.vue';
 import CodeHighlighter from '@/core/components/code-highlighter.vue';
 
 import { useSeo } from '@/core/composables/use-seo';
+import { getArticleSchema } from '@/core/utils/schema';
 import { isEditorActive, language } from '@/store';
 
 const route = useRoute();
@@ -592,26 +593,14 @@ const structuredData = computed(() => {
         ? article.value.thumbnail 
         : article.value.thumbnail?.light || '';
 
-    return {
-        '@context': 'https://schema.org',
-        '@type': 'TechArticle',
-        headline: article.value.title,
+    return getArticleSchema({
+        id: articleId,
+        title: article.value.title,
         description: article.value.highlight || article.value.subtitle || '',
         image: ogImage,
-        author: {
-            '@type': 'Person',
-            name: 'Bayu Aksana',
-            url: 'https://bayuaksana.com'
-        },
-        publisher: {
-            '@type': 'Person',
-            name: 'Bayu Aksana'
-        },
-        mainEntityOfPage: {
-            '@type': 'WebPage',
-            '@id': `https://bayuaksana.com/case-studies/${route.params.systemId}/${articleId}`
-        }
-    };
+        keywords: article.value.keywords,
+        urlPath: `/case-studies/${route.params.systemId}/${articleId}`
+    });
 });
 
 const readingTime = computed(() => {

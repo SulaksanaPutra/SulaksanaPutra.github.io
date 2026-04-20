@@ -39,7 +39,7 @@
                 <h1 class="article-title-large">
                     {{ article.title }}
                 </h1>
-                <p class="article-summary">
+                <p class="article-summary" itemprop="description" role="doc-abstract">
                     {{ article.highlight }}
                 </p>
             </header>
@@ -208,6 +208,7 @@ import ThemeImage from '@/core/components/theme-image.vue';
 import LanguageFallback from '@/core/components/language-fallback.vue';
 import JsonLd from '@/core/components/json-ld.vue';
 import { useSeo } from '@/core/composables/use-seo';
+import { getArticleSchema } from '@/core/utils/schema';
 import { language } from '@/store';
 import { headerComponentRef } from '@/store.ts';
 
@@ -253,27 +254,14 @@ const structuredData = computed(() => {
         ? article.value.thumbnail 
         : article.value.thumbnail?.light || '';
 
-    return {
-        '@context': 'https://schema.org',
-        '@type': 'TechArticle',
-        headline: article.value.title,
+    return getArticleSchema({
+        id: articleId,
+        title: article.value.title,
         description: article.value.highlight,
+        date: article.value.date,
         image: ogImage,
-        datePublished: article.value.date,
-        author: {
-            '@type': 'Person',
-            name: 'Bayu Aksana',
-            url: 'https://bayuaksana.com'
-        },
-        publisher: {
-            '@type': 'Person',
-            name: 'Bayu Aksana'
-        },
-        mainEntityOfPage: {
-            '@type': 'WebPage',
-            '@id': `https://bayuaksana.com/writing/${articleId}`
-        }
-    };
+        keywords: article.value.keywords
+    });
 });
 
 const readingTime = computed(() => {

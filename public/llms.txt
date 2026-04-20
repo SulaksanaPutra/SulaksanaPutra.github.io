@@ -1,0 +1,18 @@
+# Bayu Aksana — Technical Portfolio
+
+Professional technical portfolio and digital garden of Bayu Aksana, a Software Architect specializing in the design and implementation of high-performance operational backbones for complex business ecosystems, including logistics and financial systems.
+
+## Core Entities
+
+- **Bayu Aksana**: Software Architect & Fullstack Engineer.
+- **Tech Stack**: Vue 3, TypeScript, Vite, Clean Architecture.
+- **Expertise**: Scalable Systems, Internal Platforms, Reliability Engineering.
+
+## Primary URLs
+
+- [Home](https://bayuaksana.com/)
+- [Systems Overview](https://bayuaksana.com/systems)
+- [Case Studies](https://bayuaksana.com/case-studies)
+- [Technical Writings](https://bayuaksana.com/writing)
+- [Specialized Skills](https://bayuaksana.com/skills)
+- [Contact Information](https://bayuaksana.com/contact)
