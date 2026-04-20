@@ -35,6 +35,9 @@ import { computed } from 'vue';
 import JsonLd from '@/core/components/json-ld.vue';
 import { getPersonSchema, getWebSiteSchema } from '@/core/utils/schema';
 import { useTheme } from '@/core/composables/use-theme';
+import { useScrollProgress } from '@/core/composables/use-scroll-progress';
+import { useDrawerManagement } from '@/core/composables/use-drawer-management';
+import { useAppLayout } from '@/core/composables/use-app-layout';
 
 // --- Global Schema ---
 const globalSchema = computed(() => ({
