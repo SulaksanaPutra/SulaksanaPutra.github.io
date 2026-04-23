@@ -2,29 +2,29 @@
     <transition name="slide-up">
         <div v-if="isVisible" class="cookie-consent-wrapper no-print">
             <div class="cookie-consent-content">
-                <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex flex-col gap-5">
                     <div class="flex items-start gap-4">
                         <div class="p-2 bg-accent-primary/10 rounded-lg shrink-0 hidden md:block">
                             <CookieIcon class="w-5 h-5 text-accent-primary" />
                         </div>
-                        <p class="text-sm text-text-secondary leading-relaxed">
+                        <p class="text-sm text-text-secondary leading-relaxed max-w-2xl">
                             We use cookies to enhance your experience and analyze our traffic. 
                             By clicking "Accept", you consent to our use of cookies.
                             <router-link to="/privacy" class="underline hover:text-accent-primary ml-1">Learn more</router-link>.
                         </p>
                     </div>
-                    <div class="flex items-center gap-3 w-full md:w-auto">
+                    <div class="flex items-center justify-end gap-8 px-2">
                         <button 
                             @click="decline" 
-                            class="flex-1 md:flex-none px-6 py-2 text-sm font-medium text-text-secondary hover:text-text-primary transition-colors"
+                            class="text-xs font-medium uppercase tracking-wider text-text-secondary hover:text-text-primary hover:underline transition-all"
                         >
                             Decline
                         </button>
                         <button 
                             @click="accept" 
-                            class="flex-1 md:flex-none px-8 py-2.5 text-sm font-bold bg-accent-primary text-white rounded-xl shadow-lg shadow-accent-primary/20 hover:scale-[1.02] active:scale-95 transition-all"
+                            class="text-xs font-bold uppercase tracking-wider text-accent-primary hover:underline transition-all"
                         >
-                            Accept
+                            Accept Cookies
                         </button>
                     </div>
                 </div>

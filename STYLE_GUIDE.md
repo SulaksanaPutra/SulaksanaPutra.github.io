@@ -11,12 +11,12 @@ We build on a mobile-first philosophy relying on Tailwind's default breakpoints:
 **Rule of Thumb:** Always write the accessible mobile dimension base sizes first. Progressively adjust or enhance the UI into `md:` and `lg:` size scaling (e.g., `@apply gap-5 md:gap-8;`).
 
 ## 2. Spacing System (Margin, Padding, Layout)
-A tight compliance with the **4-point (base unit) grid** is followed for layout structural flow (where `1 tailwind unit = 0.25rem = 4px`). 
+A tight compliance with the **4-point (base unit) grid** is followed for layout structural flow (where `1 tailwind unit = 0.25rem = 4px`).
 
 ### Touch Accessibility & Minimum Scaling
 Mobile layouts **must** prioritize finger touch targets. This means minimum heights, paddings, and interaction boundaries need to be much wider on mobile base views, while occasionally crunching down for desktop efficiency (`md:`).
 
-- **Component Padding (Cards, Buttons, Inputs):** 
+- **Component Padding (Cards, Buttons, Inputs):**
   - Standard buttons run on large touch padding: `@apply px-6 py-3 md:py-2.5;`
   - Form Fields and inputs mandate heights of roughly ~44px to prevent tap fatigue: `@apply py-2.5 md:py-2 px-4;`
   - Base container sizing defaults to generous breathing room for reading flows: `@apply max-w-container mx-auto px-6 md:px-12 lg:px-16;`
@@ -25,14 +25,14 @@ Mobile layouts **must** prioritize finger touch targets. This means minimum heig
 Explicit width and height properties define visual weight consistently:
 - **Interactive Targets (Buttons, Icon Wrappers):** Standardized scaling for Apple/Google touch accessibilities guidelines.
   - Floating and icon buttons must map to a minimum 44px (e.g. `w-11 h-11`) layout box.
-  - Responsive Flow: `@apply w-11 h-11 md:w-10 md:h-10;` or larger `w-14 h-14 md:w-12 md:h-12` for primary actions. 
+  - Responsive Flow: `@apply w-11 h-11 md:w-10 md:h-10;` or larger `w-14 h-14 md:w-12 md:h-12` for primary actions.
 
 ## 4. Typography Hierarchy
 Text elements follow a strictly cascading size hierarchy that adjusts per breakpoint. To prevent iOS automatic scale-zooming into inputs, and to preserve reading ergonomics, do not drop below `text-sm` (14px) for reading, and ensure `text-base` (16px) is standard for mobile forms.
 
 | Element Type       | Base (Mobile)       | `md:`             | `lg:`             |
 |--------------------|---------------------|-------------------|-------------------|
-| **Giant Headings** | `text-3xl`          | `text-4xl`        | `text-5xl`        |
+| **Giant Headings** | `text-3xl`          | `text-4xl`        | -                 |
 | **Section Titles** | `text-lg`           | `text-xl`         | —                 |
 | **Article Titles** | `text-xl`           | —                 | —                 |
 | **Base Body**      | `text-base`         | `text-lg`         | —                 |

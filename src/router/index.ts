@@ -9,6 +9,7 @@ const SkillsPage = () => import('@/modules/skills/views/skills-page.vue');
 const ContactPage = () => import('@/modules/contact/views/contact-page.vue');
 const NotFoundPage = () => import('@/modules/error/views/NotFoundPage.vue');
 const ServerErrorPage = () => import('@/modules/error/views/ServerErrorPage.vue');
+const PrivacyPage = () => import('@/modules/static/views/privacy-page.vue');
 
 const HomeDrawer = () => import('@/modules/home/components/home-drawer.vue');
 const SystemsDrawer = () => import('@/modules/systems/components/systems-drawer.vue');
@@ -85,6 +86,11 @@ const routes: RouteRecordRaw[] = [
         path: '/500',
         name: 'server-error',
         component: ServerErrorPage,
+    },
+    {
+        path: '/privacy',
+        name: 'privacy',
+        component: PrivacyPage,
     },
     {
         path: '/:pathMatch(.*)*',
