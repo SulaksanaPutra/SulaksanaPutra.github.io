@@ -18,9 +18,20 @@ const updateJsonLd = () => {
 };
 
 onMounted(() => {
+  const content = JSON.stringify(props.data);
+  
+  // Look for existing prerendered script tag to avoid duplicates during hydration
+  const existingTags = document.querySelectorAll('script[type="application/ld+json"]');
+  for (let i = 0; i < existingTags.length; i++) {
+    if (existingTags[i].textContent === content) {
+      scriptTag = existingTags[i] as HTMLScriptElement;
+      return; // Reuse the prerendered tag
+    }
+  }
+
   scriptTag = document.createElement('script');
   scriptTag.type = 'application/ld+json';
-  scriptTag.textContent = JSON.stringify(props.data);
+  scriptTag.textContent = content;
   document.head.appendChild(scriptTag);
 });
 

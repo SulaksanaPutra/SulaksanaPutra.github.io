@@ -417,7 +417,7 @@ import CodeHighlighter from '@/core/components/code-highlighter.vue';
 
 import { useSeo } from '@/core/composables/use-seo';
 import { SITE_URL } from '@/core/utils/schema';
-import { getArticleSchema, getProductSchema, getFAQSchema } from '@/core/utils/schema';
+import { getArticleSchema, getFAQSchema } from '@/core/utils/schema';
 import { isEditorActive, language } from '@/store';
 
 const route = useRoute();
@@ -609,13 +609,7 @@ const structuredData = computed(() => {
         urlPath: `/case-studies/${route.params.systemId}/${articleId}`
     });
 
-    const productSchema = getProductSchema({
-        name: article.value.title,
-        description: article.value.highlight || article.value.subtitle || '',
-        image: ogImage
-    });
-
-    const graph: any[] = [articleSchema, productSchema];
+    const graph: any[] = [articleSchema];
 
     if (article.value.qnas && article.value.qnas.length > 0) {
         graph.push(getFAQSchema(article.value.qnas));
