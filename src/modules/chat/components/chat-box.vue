@@ -1,5 +1,5 @@
 <template>
-    <div class="chat-box-container">
+    <div v-if="isSupported" class="chat-box-container">
         <!-- Chat Toggle Button - Matching btn-floating -->
         <button
             class="btn-floating md:flex hidden z-[101] pointer-events-auto"
@@ -143,7 +143,7 @@ import { useI18n } from '@/core/composables/use-i18n.ts';
 
 const t = useChatBoxData();
 const { locale } = useI18n();
-const { messages, isOpen, isLoading, newMessage, toggleChat, send } = useChat();
+const { messages, isOpen, isLoading, newMessage, toggleChat, send, isSupported } = useChat();
 const messageContainer = ref<HTMLElement | null>(null);
 const isFullscreen = ref(false);
 

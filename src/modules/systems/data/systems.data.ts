@@ -5,6 +5,50 @@ import { computed } from 'vue';
 export const SYSTEMS_BY_LOCALE: Record<'en' | 'id', Systems> = {
     en: [
         {
+            id: 'system-mtsa',
+            title: 'MTSA — Multi-Tenancy Storefront Application',
+            heading: 'MTSA',
+            highlight:
+                'A modular frontend skeleton application designed to radically accelerate e-commerce development across multiple tenants.',
+            subtitle:
+                'A modular e-commerce backbone that eliminates boilerplate, letting developers focus purely on UI/UX.',
+            tags: ['E-commerce ', ' Remix & SSR ', ' BFF Architecture ', ' Multi-tenancy'],
+            sections: [
+                {
+                    label: 'Context',
+                    description:
+                        "Building e-commerce applications from scratch is highly time-consuming, yet most share the same fundamental operational flows. This system was built to solve that inefficiency by extracting the general e-commerce flow (such as payments and ordering) into a dynamic, customizable backbone. It acts as a modular foundation with clear page contracts, allowing development teams to start 'halfway through the race' rather than from zero.",
+                },
+                {
+                    label: 'My Responsibility',
+                    description:
+                        'Serving as the sole Architect and Technical Lead, I introduced the foundational design patterns and architected the end-to-end flow. I engineered a secure BFF (Backend-for-Frontend) pattern, optimized Server-Side Rendering (SSR) using the latest Remix framework, and designed the system for highly flexible, component-level UI customization—all successfully executed under a very tight project deadline.',
+                },
+                {
+                    label: 'Outcome',
+                    description:
+                        'Successfully launched a production-ready storefront skeleton that drastically cuts down development time for new custom e-commerce apps. The framework has already been fully adopted and implemented for our first commercial customer, proving its viability and flexibility in a real-world scenario.',
+                },
+            ],
+            link: {
+                id: 'view-mtsa',
+                href: '/case-studies?systemId=system-mtsa',
+                label: '→ View case study',
+            },
+            glossary: [
+                {
+                    term: 'BFF Pattern',
+                    definition:
+                        'Backend-for-Frontend — an architectural pattern where a dedicated backend API is created specifically to serve the needs of a particular frontend application, improving security and performance.',
+                },
+                {
+                    term: 'Remix & SSR',
+                    definition:
+                        'A modern full-stack web framework that utilizes Server-Side Rendering (SSR) to render pages on the server before sending them to the client, greatly improving initial load times and SEO.',
+                },
+            ],
+        },
+        {
             id: 'system-laas',
             title: 'LAAS — Logistics as a Service',
             heading: 'LAAS',

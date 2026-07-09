@@ -24,6 +24,10 @@ export interface Message {
 
 export const chatService = {
     async fetchMessages(): Promise<Message[]> {
+        if (!SUPABASE_URL || !SUPABASE_KEY) {
+            console.warn('Supabase credentials missing, skipping fetchMessages');
+            return [];
+        }
         const uid = getSessionId();
         try {
             const response = await fetch(SUPABASE_URL + '/functions/v1/handler', {
@@ -47,6 +51,10 @@ export const chatService = {
     },
 
     async sendMessage(message: string): Promise<void> {
+        if (!SUPABASE_URL || !SUPABASE_KEY) {
+            console.warn('Supabase credentials missing, skipping sendMessage');
+            return;
+        }
         const uid = getSessionId();
         try {
             const response = await fetch(SUPABASE_URL + '/functions/v1/handler', {

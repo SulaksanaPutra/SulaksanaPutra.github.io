@@ -29,6 +29,7 @@
                     </router-link>
                     <div class="flex items-center gap-3">
                         <button
+                            v-if="isSupported"
                             type="button"
                             class="md:hidden flex items-center justify-center w-9 h-9 rounded-full bg-bg-muted border border-border-subtle transition-colors"
                             :class="{ 'text-accent-primary': isOpen }"
@@ -161,7 +162,7 @@ const isDev = import.meta.env.DEV;
 const page = useHeaderData();
 const router = useRouter();
 const { toggleDrawer } = useDrawerManagement();
-const { toggleChat, isOpen } = useChat();
+const { toggleChat, isOpen, isSupported } = useChat();
 
 const headerRef = ref<HTMLElement | null>(null);
 const searchInputRef = ref<HTMLInputElement | null>(null);
