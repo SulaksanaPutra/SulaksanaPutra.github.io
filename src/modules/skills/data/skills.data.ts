@@ -13,7 +13,7 @@ const SKILLS_BY_LOCALE: Record<'en' | 'id', Skills | null> = {
                 points: [
                     'Primary Stack: Go, PHP (Laravel), and Node.js for high-concurrency services.',
                     'Data & Caching: Expert usage of SQL and NoSQL; implementation of Redis for performance.',
-                    'Integration: Proficient in REST and GraphQL API design, including OpenAI API integration patterns.',
+                    'Integration: Proficient in REST and GraphQL API design.',
                     'Security: Implementation of multi-tenancy and complex auth flows (OAuth 2, JWT).',
                 ],
             },

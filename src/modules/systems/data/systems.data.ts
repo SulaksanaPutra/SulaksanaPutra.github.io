@@ -37,12 +37,12 @@ export const SYSTEMS_BY_LOCALE: Record<'en' | 'id', Systems> = {
             },
             glossary: [
                 {
-                    term: 'BFF Pattern',
+                    term: 'BFF',
                     definition:
                         'Backend-for-Frontend — an architectural pattern where a dedicated backend API is created specifically to serve the needs of a particular frontend application, improving security and performance.',
                 },
                 {
-                    term: 'Remix & SSR',
+                    term: 'Remix',
                     definition:
                         'A modern full-stack web framework that utilizes Server-Side Rendering (SSR) to render pages on the server before sending them to the client, greatly improving initial load times and SEO.',
                 },
