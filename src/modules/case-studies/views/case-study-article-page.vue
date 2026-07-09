@@ -61,9 +61,14 @@
                     :multiline="true"
                     :class="!isDev ? 'contents' : ''"
                 >
-                <p class="article-summary" :class="isDev ? 'mb-0' : ''" itemprop="description" role="doc-abstract">
-                    {{ isDev ? editableArticle?.highlight : article?.highlight }}
-                </p>
+                    <p
+                        class="article-summary"
+                        :class="isDev ? 'mb-0' : ''"
+                        itemprop="description"
+                        role="doc-abstract"
+                    >
+                        {{ isDev ? editableArticle?.highlight : article?.highlight }}
+                    </p>
                 </component>
 
                 <!-- Subtitle -->
@@ -137,11 +142,7 @@
                             </h3>
                         </component>
 
-                        <div
-                            v-if="section"
-                            class="space-y-6"
-                            :class="isDev ? 'mt-6' : ''"
-                        >
+                        <div v-if="section" class="space-y-6" :class="isDev ? 'mt-6' : ''">
                             <div
                                 v-for="(paragraph, pIndex) in section.paragraphs"
                                 :key="pIndex"
@@ -164,7 +165,13 @@
                                     <template #actions>
                                         <button
                                             v-if="isDev"
-                                            @click="removeRow(Number(sIndex), Number(pIndex), 'paragraphs')"
+                                            @click="
+                                                removeRow(
+                                                    Number(sIndex),
+                                                    Number(pIndex),
+                                                    'paragraphs',
+                                                )
+                                            "
                                             class="flex items-center justify-center p-1.5 bg-bg-main border border-border-subtle text-text-secondary rounded hover:text-white hover:bg-red-500 hover:border-red-500 transition-colors"
                                             title="Delete Row"
                                         >
@@ -188,9 +195,8 @@
                                 <component
                                     :is="isDev ? DevInlineEditor : 'div'"
                                     v-model="
-                                        (isDev ? editableArticle!.sections[sIndex] : section).items![
-                                            iIndex
-                                        ]
+                                        (isDev ? editableArticle!.sections[sIndex] : section)
+                                            .items![iIndex]
                                     "
                                     @save="saveArticleData"
                                     :is-saving="isSavingDraft"
@@ -203,7 +209,9 @@
                                     <template #actions>
                                         <button
                                             v-if="isDev"
-                                            @click="removeRow(Number(sIndex), Number(iIndex), 'items')"
+                                            @click="
+                                                removeRow(Number(sIndex), Number(iIndex), 'items')
+                                            "
                                             class="flex items-center justify-center p-1.5 bg-bg-main border border-border-subtle text-text-secondary rounded hover:text-white hover:bg-red-500 hover:border-red-500 transition-colors"
                                             title="Delete Item"
                                         >
@@ -272,7 +280,9 @@
 
                         <div class="grid gap-8">
                             <div
-                                v-for="(qna, index) in isDev ? editableArticle?.qnas : article?.qnas"
+                                v-for="(qna, index) in isDev
+                                    ? editableArticle?.qnas
+                                    : article?.qnas"
                                 :key="index"
                                 class="p-6 bg-bg-muted/50 rounded-2xl border border-border-subtle hover:border-accent-primary/30 transition-colors group/qna relative"
                             >
@@ -368,16 +378,16 @@
             </div>
         </section>
 
-        <LanguageFallback 
-            v-else-if="availability && availability.availableLocales.length > 0" 
+        <LanguageFallback
+            v-else-if="availability && availability.availableLocales.length > 0"
             :availability="availability.availableLocales"
             title="Article Not Available"
             description="This case study is not yet available in your currently selected language. You can read it in the available languages below:"
             :back-link="{ href: '/case-studies' }"
         />
 
-        <LanguageFallback 
-            v-else 
+        <LanguageFallback
+            v-else
             :availability="[]"
             title="Case study not found"
             description="The case study you are looking for does not exist or is no longer available."
@@ -596,9 +606,10 @@ useSeo(
 const structuredData = computed(() => {
     if (!article.value) return {};
 
-    const ogImage = typeof article.value.thumbnail === 'string' 
-        ? article.value.thumbnail 
-        : article.value.thumbnail?.light || '';
+    const ogImage =
+        typeof article.value.thumbnail === 'string'
+            ? article.value.thumbnail
+            : article.value.thumbnail?.light || '';
 
     const articleSchema = getArticleSchema({
         id: articleId,
@@ -606,7 +617,7 @@ const structuredData = computed(() => {
         description: article.value.highlight || article.value.subtitle || '',
         image: ogImage,
         keywords: article.value.keywords,
-        urlPath: `/case-studies/${route.params.systemId}/${articleId}`
+        urlPath: `/case-studies/${route.params.systemId}/${articleId}`,
     });
 
     const graph: any[] = [articleSchema];
@@ -617,7 +628,7 @@ const structuredData = computed(() => {
 
     return {
         '@context': 'https://schema.org',
-        '@graph': graph
+        '@graph': graph,
     };
 });
 

@@ -1,7 +1,9 @@
 <template>
     <div class="py-16 text-center">
         <div class="max-w-md mx-auto">
-            <div class="w-16 h-16 bg-bg-muted rounded-full flex items-center justify-center mx-auto mb-6">
+            <div
+                class="w-16 h-16 bg-bg-muted rounded-full flex items-center justify-center mx-auto mb-6"
+            >
                 <FileQuestion class="text-text-secondary" />
             </div>
             <h1 class="text-2xl text-text-primary mb-2 font-bold">
@@ -20,9 +22,9 @@
                     <Globe :size="14" />
                     {{ t.languagePrefix }}{{ t.languageNames[loc] || loc }}
                 </button>
-                <router-link 
-                    v-if="backLink" 
-                    :to="backLink.href" 
+                <router-link
+                    v-if="backLink"
+                    :to="backLink.href"
                     class="text-text-secondary hover:text-text-primary mt-2 text-sm underline underline-offset-4"
                 >
                     {{ getBackLinkLabel(backLink) }}

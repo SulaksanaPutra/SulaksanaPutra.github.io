@@ -17,7 +17,8 @@ export const SSE_FEEDBACK_ARTICLE_BY_LOCALE: Record<'en' | 'id', WritingArticle 
             'Solving the "Hit-and-Forget" gap in background jobs without the infrastructure overhead of WebSockets.',
         highlight:
             'Explore why Server-Sent Events (SSE) implementation is often the superior architectural choice for real-time monitoring of asynchronous systems.',
-        keywords: 'Server-Sent Events, SSE Implementation, Hit-and-Forget Gap, Real-Time Monitoring, Asynchronous Systems, WebSockets vs SSE, Pragmatic Architecture',
+        keywords:
+            'Server-Sent Events, SSE Implementation, Hit-and-Forget Gap, Real-Time Monitoring, Asynchronous Systems, WebSockets vs SSE, Pragmatic Architecture',
         thumbnail: {
             light: thumbnail,
             dark: thumbnailDark,

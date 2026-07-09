@@ -55,7 +55,7 @@ export function useDrawerManagement() {
         }
 
         // 1. Force hidden on articles (don't read from storage)
-        // We force it to false UI-only to satisfy "always false when the page opened" 
+        // We force it to false UI-only to satisfy "always false when the page opened"
         // without replacing persistent state.
         if (route.name === 'case-study-article' || route.name === 'writing-article') {
             isDrawerOpen.value = false;
@@ -65,10 +65,7 @@ export function useDrawerManagement() {
         // 2. Otherwise use the standard persistence logic
         const stored = localStorage.getItem(key);
 
-        if (
-            ['/systems', '/case-studies'].includes(route.path) &&
-            stored === null
-        ) {
+        if (['/systems', '/case-studies'].includes(route.path) && stored === null) {
             isDrawerOpen.value = true;
             localStorage.setItem(key, 'true');
         } else {

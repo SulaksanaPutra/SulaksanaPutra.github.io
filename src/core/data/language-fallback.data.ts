@@ -5,7 +5,8 @@ import { computed } from 'vue';
 const FALLBACK_BY_LOCALE: Record<'en' | 'id', LanguageFallbackData> = {
     en: {
         title: 'Language Not Available',
-        description: 'This page is not yet available in your currently selected language. You can view it in the available languages below:',
+        description:
+            'This page is not yet available in your currently selected language. You can view it in the available languages below:',
         languagePrefix: 'View in ',
         languageNames: {
             en: 'English',
@@ -20,7 +21,8 @@ const FALLBACK_BY_LOCALE: Record<'en' | 'id', LanguageFallbackData> = {
     },
     id: {
         title: 'Bahasa Tidak Tersedia',
-        description: 'Halaman ini belum tersedia dalam bahasa yang Anda pilih. Anda dapat melihatnya dalam bahasa yang tersedia di bawah ini:',
+        description:
+            'Halaman ini belum tersedia dalam bahasa yang Anda pilih. Anda dapat melihatnya dalam bahasa yang tersedia di bawah ini:',
         languagePrefix: 'Lihat dalam ',
         languageNames: {
             en: 'English',

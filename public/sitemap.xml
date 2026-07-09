@@ -46,7 +46,7 @@
   </url>
   <url>
     <loc>https://bayuaksana.com/writing/explicit-connection-pooling-go</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -56,7 +56,7 @@
   </url>
   <url>
     <loc>https://bayuaksana.com/writing/naive-state-reset-architectural-debt</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -66,7 +66,7 @@
   </url>
   <url>
     <loc>https://bayuaksana.com/writing/pragmatic-real-time-sse</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -76,7 +76,7 @@
   </url>
   <url>
     <loc>https://bayuaksana.com/writing/pragmatic-validation-service-layer</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -96,7 +96,7 @@
   </url>
   <url>
     <loc>https://bayuaksana.com/case-studies/system-twin-v2-wms/architectural-debt-wms-inventory</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
 
@@ -110,7 +110,7 @@
   </url>
   <url>
     <loc>https://bayuaksana.com/case-studies/system-twin-v2-fms/fms-uom-routing-abstraction</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
 
@@ -131,7 +131,7 @@
   </url>
   <url>
     <loc>https://bayuaksana.com/case-studies/system-twin-v1/optimizing-query-performance-in-a-monolithic-erp</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
 

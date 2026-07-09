@@ -15,7 +15,8 @@ export const TWIN_WMS_STOCK_CASE_BY_LOCALE: Record<'en' | 'id', CaseStudyArticle
         heading: 'WMS Architecture & Architectural Debt',
         highlight:
             'Solving ghost stock and race conditions by transitioning to an append-only transactional ledger architecture in WMS.',
-        keywords: 'Warehouse Management System Architecture, WMS, Architectural Debt, Append-only transactional ledger, Ghost Stock, Inventory Management, Logistics Technology',
+        keywords:
+            'Warehouse Management System Architecture, WMS, Architectural Debt, Append-only transactional ledger, Ghost Stock, Inventory Management, Logistics Technology',
         subtitle:
             'Transitioning from volatile dynamic stock calculations to a strict append-only transactional ledger, eliminating race conditions and reconciling digital inventory with physical warehouse logistics.',
         sections: [

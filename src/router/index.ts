@@ -6,6 +6,7 @@ const CaseStudiesPage = () => import('@/modules/case-studies/views/case-studies-
 const CaseStudyArticlePage = () =>
     import('@/modules/case-studies/views/case-study-article-page.vue');
 const WritingArticlePage = () => import('@/modules/writings/views/writing-article-page.vue');
+const ProjectArticlePage = () => import('@/modules/projects/views/project-article-page.vue');
 const SkillsPage = () => import('@/modules/skills/views/skills-page.vue');
 const ContactPage = () => import('@/modules/contact/views/contact-page.vue');
 const NotFoundPage = () => import('@/modules/error/views/NotFoundPage.vue');
@@ -70,6 +71,12 @@ const routes: RouteRecordRaw[] = [
         path: '/projects',
         name: 'projects',
         component: HomePage,
+        meta: { drawer: HomeDrawer },
+    },
+    {
+        path: '/projects/:articleId',
+        name: 'projects-article',
+        component: ProjectArticlePage,
         meta: { drawer: HomeDrawer },
     },
     {

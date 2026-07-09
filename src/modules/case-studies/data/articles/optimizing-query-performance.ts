@@ -16,7 +16,8 @@ export const OPTIMIZING_QUERY_PERFORMANCE_BY_LOCALE: Record<'en' | 'id', CaseStu
             heading: 'N+1 Query Performance Optimization',
             highlight:
                 'Stabilizing a monolithic Laravel ERP by untangling lazy loading and resolving N+1 query performance issues—a pragmatic exercise in treating symptoms without breaking production.',
-            keywords: 'Optimizing N+1 query performance, Monolithic ERP optimization, Master-Slave Database Replication, Lazy Loading Laravel, Database Performance Tuning, N+1 problem, Legacy ERP',
+            keywords:
+                'Optimizing N+1 query performance, Monolithic ERP optimization, Master-Slave Database Replication, Lazy Loading Laravel, Database Performance Tuning, N+1 problem, Legacy ERP',
             subtitle:
                 'Implementing tactical read optimizations and master-slave replication to protect core transactional flows from the performance bottlenecks of legacy architectural debt.',
             sections: [

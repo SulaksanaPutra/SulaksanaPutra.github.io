@@ -15,7 +15,8 @@ export const NAIVE_STATE_RESET_ARTICLE_BY_LOCALE: Record<'en' | 'id', WritingArt
             'Solving the "Naive State Reset" anti-pattern in resource management and high-traffic distributed systems.',
         highlight:
             "A technical autopsy of a common architectural failure where 'wipe-and-rewrite' logic undermines system integrity, creating architectural debt and physical discrepancies.",
-        keywords: 'Architectural Debt, Naive State Reset, Race Conditions, High-Concurrency Systems, Resource Management, Software Architecture, Pragmatic Architecture',
+        keywords:
+            'Architectural Debt, Naive State Reset, Race Conditions, High-Concurrency Systems, Resource Management, Software Architecture, Pragmatic Architecture',
         thumbnail: {
             light: thumbnail,
             dark: thumbnailDark,

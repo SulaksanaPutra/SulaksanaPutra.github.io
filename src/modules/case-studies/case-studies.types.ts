@@ -33,7 +33,7 @@ export interface CaseStudyArticle {
         codeBlock?: {
             language: string;
             code: string;
-            };
+        };
     }[];
     glossary?: GlossaryItem[];
     qnas?: {
@@ -48,5 +48,5 @@ export interface CaseStudiesDrawerItem extends DrawerItem {
 }
 export type CaseStudiesDrawer = CaseStudiesDrawerItem[];
 
-export interface CaseStudyArticleDrawerItem extends DrawerItem { }
+export interface CaseStudyArticleDrawerItem extends DrawerItem {}
 export type CaseStudyArticleDrawer = CaseStudyArticleDrawerItem[];

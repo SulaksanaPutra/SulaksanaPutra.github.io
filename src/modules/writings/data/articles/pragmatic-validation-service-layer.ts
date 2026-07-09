@@ -17,7 +17,8 @@ export const PRAGMATIC_VALIDATION_ARTICLE_BY_LOCALE: Record<'en' | 'id', Writing
             'Why stateful invariants belong inside the transaction, not a separate validation layer. Navigating Clean Architecture trade-offs.',
         highlight:
             'For small to medium applications, architectural "purity" often introduces race conditions and high boilerplate tax. Explore why pragmatic validation in the service layer helps avoid double-gatekeeping.',
-        keywords: 'Pragmatic Validation, Service Layer, Clean Architecture Trade-offs, Business Logic, Double-Gatekeeping, Atomic Execution, Boilerplate Tax, Software Design',
+        keywords:
+            'Pragmatic Validation, Service Layer, Clean Architecture Trade-offs, Business Logic, Double-Gatekeeping, Atomic Execution, Boilerplate Tax, Software Design',
         thumbnail: {
             light: thumbnail,
             dark: thumbnailDark,

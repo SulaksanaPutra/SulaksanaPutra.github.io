@@ -39,7 +39,7 @@ export const CASE_STUDIES_BY_LOCALE: Record<'en' | 'id', CaseStudies> = {
                     href: '/case-studies/' + systemId + '/' + article.id,
                     label: 'Read Case Study →',
                 },
-            }))
+            })),
         );
 });
 
@@ -79,17 +79,19 @@ export function useCaseStudyArticle(articleId: string) {
     });
 }
 
-export function useCaseStudiesAvailability(systemId?: string | import('vue').Ref<string | undefined>) {
+export function useCaseStudiesAvailability(
+    systemId?: string | import('vue').Ref<string | undefined>,
+) {
     return computed(() => {
         const availableLocales: ('en' | 'id')[] = [];
         const resolvedSystemId = unref(systemId);
 
         (['en', 'id'] as const).forEach((loc) => {
             const currentLocale = CASE_STUDIES_BY_LOCALE[loc] ?? [];
-            const hasData = resolvedSystemId 
-                ? currentLocale.some(cs => cs.systemId === resolvedSystemId)
+            const hasData = resolvedSystemId
+                ? currentLocale.some((cs) => cs.systemId === resolvedSystemId)
                 : currentLocale.length > 0;
-            
+
             if (hasData) availableLocales.push(loc);
         });
 
@@ -112,7 +114,7 @@ export function useCaseStudyArticleAvailability(articleId: string) {
 
         return {
             availableLocales,
-            fallbackArticle: articleMap.en || articleMap.id
+            fallbackArticle: articleMap.en || articleMap.id,
         };
     });
 }

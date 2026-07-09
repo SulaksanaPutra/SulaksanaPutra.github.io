@@ -11,7 +11,7 @@
                 >
                     {{ part.definition }}
                 </span>
-                
+
                 <!-- Mobile Backdrop & Tooltip (Teleported to avoid stacking context issues like z-[1] on article-body) -->
                 <teleport to="body">
                     <transition name="fade-backdrop">
@@ -21,14 +21,16 @@
                             @click="activeTooltipIndex = null"
                         ></div>
                     </transition>
-                    
+
                     <transition name="slide-up">
                         <div
                             v-if="activeTooltipIndex === index && part.definition"
                             class="glossary-tooltip md:hidden !flex flex-col is-active"
                         >
                             <div class="flex justify-between items-center mb-4">
-                                <span class="font-bold text-accent-primary uppercase tracking-widest text-[10px]">
+                                <span
+                                    class="font-bold text-accent-primary uppercase tracking-widest text-[10px]"
+                                >
                                     {{ part.text }}
                                 </span>
                                 <button

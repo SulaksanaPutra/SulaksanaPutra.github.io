@@ -8,20 +8,24 @@
                             <CookieIcon class="w-5 h-5 text-accent-primary" />
                         </div>
                         <p class="text-sm text-text-secondary leading-relaxed max-w-2xl">
-                            We use cookies to enhance your experience and analyze our traffic. 
-                            By clicking "Accept", you consent to our use of cookies.
-                            <router-link to="/privacy" class="underline hover:text-accent-primary ml-1">Learn more</router-link>.
+                            We use cookies to enhance your experience and analyze our traffic. By
+                            clicking "Accept", you consent to our use of cookies.
+                            <router-link
+                                to="/privacy"
+                                class="underline hover:text-accent-primary ml-1"
+                                >Learn more</router-link
+                            >.
                         </p>
                     </div>
                     <div class="flex items-center justify-end gap-8 px-2">
-                        <button 
-                            @click="decline" 
+                        <button
+                            @click="decline"
                             class="text-xs font-medium uppercase tracking-wider text-text-secondary hover:text-text-primary hover:underline transition-all"
                         >
                             Decline
                         </button>
-                        <button 
-                            @click="accept" 
+                        <button
+                            @click="accept"
                             class="text-xs font-bold uppercase tracking-wider text-accent-primary hover:underline transition-all"
                         >
                             Accept Cookies

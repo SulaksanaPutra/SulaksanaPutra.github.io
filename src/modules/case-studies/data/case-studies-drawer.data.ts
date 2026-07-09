@@ -110,9 +110,7 @@ const CASE_STUDIES_DRAWER_BY_LOCALE: Record<'en' | 'id', CaseStudiesDrawer> = {
 export function useCaseStudiesDrawerData() {
     const { locale } = useI18n();
 
-    return computed<CaseStudiesDrawer>(
-        () => CASE_STUDIES_DRAWER_BY_LOCALE[locale.value],
-    );
+    return computed<CaseStudiesDrawer>(() => CASE_STUDIES_DRAWER_BY_LOCALE[locale.value]);
 }
 
 export default CASE_STUDIES_DRAWER_BY_LOCALE.en;

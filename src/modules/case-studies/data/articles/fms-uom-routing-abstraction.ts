@@ -15,7 +15,8 @@ export const TWIN_FMS_ROUTING_CASE_BY_LOCALE: Record<'en' | 'id', CaseStudyArtic
         heading: 'FMS Routing & UOM Abstraction',
         highlight:
             'Twin FMS — Navigating the conflict between standardized volumetric routing and virtual Unit of Measure (UOM) abstraction.',
-        keywords: 'Fleet Management System, FMS, Routing Logic, Virtual Unit of Measure, UOM Abstraction, Logistics Automation, Vehicle Capacity Scheduling, Decoupled Priority Logic',
+        keywords:
+            'Fleet Management System, FMS, Routing Logic, Virtual Unit of Measure, UOM Abstraction, Logistics Automation, Vehicle Capacity Scheduling, Decoupled Priority Logic',
         subtitle:
             'Implementing a Fleet Management System (FMS) with virtual UOM abstraction and decoupled priority logic to enable automated scheduling without breaking operational workflows.',
         sections: [

@@ -118,7 +118,9 @@
                     v-if="isDev"
                     type="button"
                     class="hidden md:flex btn-icon ml-4 transition-colors"
-                    :class="isEditorActive ? 'text-accent-primary bg-bg-muted' : 'text-text-secondary'"
+                    :class="
+                        isEditorActive ? 'text-accent-primary bg-bg-muted' : 'text-text-secondary'
+                    "
                     aria-label="Toggle editor"
                     @click="isEditorActive = !isEditorActive"
                     title="Toggle Inline Editor"
@@ -149,7 +151,14 @@
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { Menu, MessageCircle, Moon, Search, Sun, X, Edit3 } from 'lucide-vue-next';
-import { headerComponentRef, isDark, isDrawerEmpty, language, scrollProgress, isEditorActive } from '@/store';
+import {
+    headerComponentRef,
+    isDark,
+    isDrawerEmpty,
+    language,
+    scrollProgress,
+    isEditorActive,
+} from '@/store';
 
 import { useHeaderData } from '@/core/data/header.data.ts';
 import { CASE_STUDIES_BY_LOCALE } from '@/modules/case-studies/data/case-studies.data.ts';

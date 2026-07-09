@@ -31,7 +31,8 @@ useSeo(
         const currentUrl = `${SITE_URL}${normalizedPath}/`;
         return {
             title: page.value?.title || 'Contact',
-            description: 'Get in touch for architectural consulting or software engineering inquiries.',
+            description:
+                'Get in touch for architectural consulting or software engineering inquiries.',
             ogUrl: currentUrl,
             canonical: currentUrl,
         };

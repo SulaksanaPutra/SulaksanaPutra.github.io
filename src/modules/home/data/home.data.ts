@@ -245,7 +245,6 @@ const PROJECTS_BY_LOCALE: Record<'en' | 'id', Projects> = {
         subtitle: 'Short ideas, experiments, and drafts',
         descriptions: [
             "A collection of short ideas, experiments, and drafts. These are projects that I've worked on to explore new technologies or to solve specific problems.",
-            'Coming soon!',
         ],
     },
     id: {
@@ -253,7 +252,6 @@ const PROJECTS_BY_LOCALE: Record<'en' | 'id', Projects> = {
         subtitle: 'Ide singkat, eksperimen, dan draf',
         descriptions: [
             'Kumpulan ide singkat, eksperimen, dan draf. Ini adalah project-project yang aku kerjakan untuk eksplorasi teknologi baru atau sekadar menyelesaikan masalah spesifik.',
-            'Coming soon!',
         ],
     },
 };

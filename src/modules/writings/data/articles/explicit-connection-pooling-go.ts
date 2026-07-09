@@ -15,7 +15,8 @@ export const EXPLICIT_POOLING_ARTICLE_BY_LOCALE: Record<'en' | 'id', WritingArti
             'A registry-driven approach to resolving race conditions and data leaks in high-concurrency Go SaaS applications.',
         highlight:
             'A deep dive into fixing cross-tenant data contamination in Go—using the Tenant Registry pattern to trade memory footprint for absolute system integrity.',
-        keywords: 'Explicit Connection Pooling, Go SaaS, Cross-Tenant Data Contamination, High-Concurrency Go, Database Management, Tenant Registry Pattern, Go Backend Engineering',
+        keywords:
+            'Explicit Connection Pooling, Go SaaS, Cross-Tenant Data Contamination, High-Concurrency Go, Database Management, Tenant Registry Pattern, Go Backend Engineering',
         thumbnail: {
             light: thumbnail,
             dark: thumbnailDark,

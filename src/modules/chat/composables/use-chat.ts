@@ -186,4 +186,3 @@ export function useChat() {
         disconnectRealtime,
     };
 }
-

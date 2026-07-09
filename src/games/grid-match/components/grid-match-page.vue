@@ -37,8 +37,11 @@
             </div>
 
             <!-- Score Area -->
-            <div class="mt-8 flex justify-center items-center text-text-secondary text-xs sm:text-sm font-medium uppercase tracking-widest">
-                score : <span class="text-text-primary font-bold ml-1 mr-2">{{ score }}</span> / high score : <span class="text-text-primary font-bold ml-1">{{ highScore }}</span>
+            <div
+                class="mt-8 flex justify-center items-center text-text-secondary text-xs sm:text-sm font-medium uppercase tracking-widest"
+            >
+                score : <span class="text-text-primary font-bold ml-1 mr-2">{{ score }}</span> /
+                high score : <span class="text-text-primary font-bold ml-1">{{ highScore }}</span>
             </div>
 
             <!-- Shapes Tray -->

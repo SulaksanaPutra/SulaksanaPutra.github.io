@@ -1,9 +1,12 @@
 <template>
     <div v-if="aboutData" class="prose-content">
         <section id="context" class="content-narrow">
-            <p v-for="(paragraph, index) in aboutData.intro" :key="index"
-               :itemprop="index === 0 ? 'description' : undefined"
-               :role="index === 0 ? 'doc-abstract' : undefined">
+            <p
+                v-for="(paragraph, index) in aboutData.intro"
+                :key="index"
+                :itemprop="index === 0 ? 'description' : undefined"
+                :role="index === 0 ? 'doc-abstract' : undefined"
+            >
                 <GlossaryText :text="paragraph" :items="glossaryItems" />
             </p>
         </section>

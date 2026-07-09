@@ -103,8 +103,15 @@
                             </li>
                         </ul>
 
-                        <div v-if="section.image" class="mt-8 mb-8 rounded-xl overflow-hidden border border-border-subtle shadow-md">
-                            <ThemeImage :src="section.image" :alt="section.label || 'Section image'" class="w-full h-auto" />
+                        <div
+                            v-if="section.image"
+                            class="mt-8 mb-8 rounded-xl overflow-hidden border border-border-subtle shadow-md"
+                        >
+                            <ThemeImage
+                                :src="section.image"
+                                :alt="section.label || 'Section image'"
+                                class="w-full h-auto"
+                            />
                         </div>
 
                         <div v-if="section.codeBlock" class="mt-6 mb-8 group">
@@ -176,16 +183,16 @@
             </div>
         </section>
 
-        <LanguageFallback 
-            v-else-if="availability && availability.availableLocales.length > 0" 
+        <LanguageFallback
+            v-else-if="availability && availability.availableLocales.length > 0"
             :availability="availability.availableLocales"
             title="Article Not Available"
             description="This writing is not yet available in your currently selected language. You can read it in the available languages below:"
             :back-link="{ href: '/writing' }"
         />
 
-        <LanguageFallback 
-            v-else 
+        <LanguageFallback
+            v-else
             :availability="[]"
             title="Article not found"
             description="The article you are looking for does not exist or is no longer available."
@@ -200,7 +207,10 @@
 import { computed, onMounted, onUnmounted, provide, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { useWindowScroll } from '@vueuse/core';
-import { useWritingArticle, useWritingArticleAvailability } from '@/modules/writings/data/writings.data';
+import {
+    useWritingArticle,
+    useWritingArticleAvailability,
+} from '@/modules/writings/data/writings.data';
 import { ArrowLeft, ArrowUp, Calendar, Clock, HelpCircle } from 'lucide-vue-next';
 import TextBlock from '@/core/components/text-block.vue';
 import CodeHighlighter from '@/core/components/code-highlighter.vue';
@@ -233,10 +243,11 @@ const currentActiveSection = ref<string>('');
 useSeo(
     computed(() => {
         if (!article.value) return null;
-        
-        const ogImage = typeof article.value.thumbnail === 'string' 
-            ? article.value.thumbnail 
-            : article.value.thumbnail?.light || '';
+
+        const ogImage =
+            typeof article.value.thumbnail === 'string'
+                ? article.value.thumbnail
+                : article.value.thumbnail?.light || '';
 
         const normalizedPath = route.path.replace(/\/$/, '');
         const currentUrl = `${SITE_URL}${normalizedPath}/`;
@@ -256,9 +267,10 @@ useSeo(
 const structuredData = computed(() => {
     if (!article.value) return {};
 
-    const ogImage = typeof article.value.thumbnail === 'string' 
-        ? article.value.thumbnail 
-        : article.value.thumbnail?.light || '';
+    const ogImage =
+        typeof article.value.thumbnail === 'string'
+            ? article.value.thumbnail
+            : article.value.thumbnail?.light || '';
 
     const articleSchema = getArticleSchema({
         id: articleId,
@@ -266,7 +278,7 @@ const structuredData = computed(() => {
         description: article.value.highlight,
         date: article.value.date,
         image: ogImage,
-        keywords: article.value.keywords
+        keywords: article.value.keywords,
     });
 
     const graph: any[] = [articleSchema];
@@ -277,7 +289,7 @@ const structuredData = computed(() => {
 
     return {
         '@context': 'https://schema.org',
-        '@graph': graph
+        '@graph': graph,
     };
 });
 

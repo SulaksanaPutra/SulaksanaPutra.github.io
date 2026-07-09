@@ -44,18 +44,16 @@ import { useAppLayout } from '@/core/composables/use-app-layout';
 // --- Redirection ---
 onMounted(() => {
     if (window.location.hostname === 'www.bayuaksana.com') {
-        window.location.replace('https://bayuaksana.com' + window.location.pathname + window.location.search);
+        window.location.replace(
+            'https://bayuaksana.com' + window.location.pathname + window.location.search,
+        );
     }
 });
 
 // --- Global Schema ---
 const globalSchema = computed(() => ({
     '@context': 'https://schema.org',
-    '@graph': [
-        getPersonSchema(),
-        getWebSiteSchema(),
-        getOrganizationSchema()
-    ]
+    '@graph': [getPersonSchema(), getWebSiteSchema(), getOrganizationSchema()],
 }));
 
 // --- Composables ---

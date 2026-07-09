@@ -1,29 +1,29 @@
-import { WritingArticle, Writings } from '@/modules/writings/writings.types.ts';
+import { ProjectArticle, Projects } from '@/modules/projects/projects.types.ts';
 import { useI18n } from '@/core/composables/use-i18n.ts';
 import { computed } from 'vue';
 
 const articleModules = import.meta.glob('./articles/*.ts', { eager: true });
 
-const articlesByLocale: Record<'en' | 'id', WritingArticle | null>[] = [];
+const articlesByLocale: Record<'en' | 'id', ProjectArticle | null>[] = [];
 
 for (const path in articleModules) {
     const mod = articleModules[path] as any;
     const localeMap = Object.values(mod).find(
         (val: any) => val && typeof val === 'object' && 'en' in val && 'id' in val,
-    ) as Record<'en' | 'id', WritingArticle | null> | undefined;
+    ) as Record<'en' | 'id', ProjectArticle | null> | undefined;
 
     if (localeMap) {
         articlesByLocale.push(localeMap);
     }
 }
 
-export function useWritingsData() {
+export function useProjectsData() {
     const { locale } = useI18n();
 
-    return computed<Writings>(() => {
+    return computed<Projects>(() => {
         return articlesByLocale
             .map((articleMap) => articleMap[locale.value] || articleMap.en || articleMap.id)
-            .filter((article): article is WritingArticle => !!article)
+            .filter((article): article is ProjectArticle => !!article)
             .map((article) => ({
                 id: article.id,
                 title: article.title,
@@ -31,21 +31,21 @@ export function useWritingsData() {
                 thumbnail: article.thumbnail,
                 date: article.date,
                 link: {
-                    id: 'read-' + article.id,
-                    href: '/writing/' + article.id,
-                    label: 'Read Article →',
+                    id: 'view-' + article.id,
+                    href: '/projects/' + article.id,
+                    label: 'View Project →',
                 },
             }));
     });
 }
 
-export function useWritingsDataStrict() {
+export function useProjectsDataStrict() {
     const { locale } = useI18n();
 
-    return computed<Writings>(() => {
+    return computed<Projects>(() => {
         return articlesByLocale
             .map((articleMap) => articleMap[locale.value])
-            .filter((article): article is WritingArticle => !!article)
+            .filter((article): article is ProjectArticle => !!article)
             .map((article) => ({
                 id: article.id,
                 title: article.title,
@@ -53,15 +53,15 @@ export function useWritingsDataStrict() {
                 thumbnail: article.thumbnail,
                 date: article.date,
                 link: {
-                    id: 'read-' + article.id,
-                    href: '/writing/' + article.id,
-                    label: 'Read Article →',
+                    id: 'view-' + article.id,
+                    href: '/projects/' + article.id,
+                    label: 'View Project →',
                 },
             }));
     });
 }
 
-export function useWritingsAvailability() {
+export function useProjectsAvailability() {
     return computed(() => {
         const counts: Record<'en' | 'id', number> = { en: 0, id: 0 };
         articlesByLocale.forEach((map) => {
@@ -72,10 +72,10 @@ export function useWritingsAvailability() {
     });
 }
 
-export function useWritingArticle(articleId: string) {
+export function useProjectArticle(articleId: string) {
     const { locale } = useI18n();
 
-    return computed<WritingArticle | null>(() => {
+    return computed<ProjectArticle | null>(() => {
         const articleMap = articlesByLocale.find((map) => {
             const article = map.en || map.id;
             return article?.id === articleId;
@@ -85,7 +85,7 @@ export function useWritingArticle(articleId: string) {
     });
 }
 
-export function useWritingArticleAvailability(articleId: string) {
+export function useProjectArticleAvailability(articleId: string) {
     return computed(() => {
         const articleMap = articlesByLocale.find((map) => {
             const article = map.en || map.id;
@@ -105,22 +105,22 @@ export function useWritingArticleAvailability(articleId: string) {
     });
 }
 
-export function useWritingBlendedFallbackData() {
+export function useProjectsBlendedFallbackData() {
     const { locale } = useI18n();
-    const availability = useWritingsAvailability();
-    const writings = useWritingsDataStrict();
+    const availability = useProjectsAvailability();
+    const projects = useProjectsDataStrict();
 
     return computed(() => {
         const isID = locale.value === 'id';
         const otherCount = isID
-            ? availability.value.en - writings.value.length
-            : availability.value.id - writings.value.length;
+            ? availability.value.en - projects.value.length
+            : availability.value.id - projects.value.length;
 
         return {
             otherCount,
             message: isID
-                ? `Terdapat ${otherCount} tulisan lainnya dalam Bahasa Inggris`
-                : `There are ${otherCount} other posts available in Indonesian`,
+                ? `Terdapat ${otherCount} project lainnya dalam Bahasa Inggris`
+                : `There are ${otherCount} other projects available in Indonesian`,
             submessage: isID
                 ? 'Beberapa konten mungkin belum diterjemahkan sepenuhnya.'
                 : 'Some content might not be fully translated yet.',
