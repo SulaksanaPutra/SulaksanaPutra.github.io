@@ -21,7 +21,6 @@ export const APP_TRAFFIC_CONTROLLER_ARTICLE_BY_LOCALE: Record<'en' | 'id', Proje
         ],
         deploymentStatus: "Architecture & Prototyping",
         thumbnail: thumbnail,
-        date: "2026-07-10",
         sections: [
             {
                 id: "the-vision",

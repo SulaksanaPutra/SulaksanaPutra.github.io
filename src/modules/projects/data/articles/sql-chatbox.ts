@@ -18,9 +18,8 @@ export const APP_NL2SQL_GATEWAY_ARTICLE_BY_LOCALE: Record<'en' | 'id', ProjectAr
             "Abstract Syntax Tree (AST) Parsers (sqlglot)",
             "Asynchronous Task Queues (Celery + Redis)"
         ],
-        deploymentStatus: "Production-Ready Architecture",
+        deploymentStatus: "Production Ready",
         thumbnail: thumbnail,
-        date: "2026-07-10",
         sections: [
             {
                 id: "the-vision",

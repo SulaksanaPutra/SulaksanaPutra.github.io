@@ -23,10 +23,6 @@
                 </router-link>
 
                 <div class="article-meta-row">
-                    <span class="flex items-center gap-1.5">
-                        <Calendar class="w-3.5 h-3.5" />
-                        {{ article.date }}
-                    </span>
                     <span class="w-1 h-1 rounded-full bg-border-subtle" />
                     <span class="flex items-center gap-1.5" title="Reading Time">
                         <Clock class="w-3.5 h-3.5" />

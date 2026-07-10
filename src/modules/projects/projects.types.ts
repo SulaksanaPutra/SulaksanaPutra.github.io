@@ -20,8 +20,7 @@ export interface ProjectArticle {
     hook: string;
     techStack: string[];
     deploymentStatus?: string;
-    thumbnail: string | { light: string; dark: string }; // Keep this one just for the index page card
-    date: string;
+    thumbnail: string | { light: string; dark: string };
     sections: {
         id: string;
         label?: string;

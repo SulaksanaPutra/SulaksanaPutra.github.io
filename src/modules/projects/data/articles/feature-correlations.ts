@@ -19,9 +19,8 @@ export const FEATURE_CORRELATIONS_ARTICLE_BY_LOCALE: Record<'en' | 'id', Project
             "Commander.js / Oclif",
             "Markdown Prompt Generation"
         ],
-        deploymentStatus: "Architecture & Concept",
+        deploymentStatus: "In Production",
         thumbnail: thumbnail,
-        date: "2026-07-10",
         sections: [
             {
                 id: "the-vision",

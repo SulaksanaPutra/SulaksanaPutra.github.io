@@ -21,7 +21,6 @@ export const CORE_EVENT_STREAM_ARTICLE_BY_LOCALE: Record<'en' | 'id', ProjectArt
         ],
         deploymentStatus: "Architecture & Prototyping",
         thumbnail: thumbnail,
-        date: "2026-07-10",
         sections: [
             {
                 id: "the-vision",

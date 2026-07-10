@@ -22,9 +22,8 @@ export const OFFLINE_FIRST_POS_ARTICLE_BY_LOCALE: Record<'en' | 'id', ProjectArt
             'Supabase',
             'Web Crypto API',
         ],
-        deploymentStatus: 'Production-Ready Architecture',
+        deploymentStatus: 'In Production',
         thumbnail: thumbnail,
-        date: '2026-07-09',
         sections: [
             {
                 id: 'the-paradigm-shift',

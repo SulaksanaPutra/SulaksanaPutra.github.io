@@ -32,14 +32,8 @@
                     />
                 </div>
                 <div class="space-y-2">
-                    <div
-                        class="flex items-center gap-2 text-[10px] font-mono text-text-secondary uppercase tracking-widest"
-                    >
-                        <Clock class="w-3 h-3" />
-                        {{ project.date }}
-                    </div>
                     <h3
-                        class="text-xl font-bold text-text-primary group-hover:text-accent-primary transition-colors"
+                        class="mb-0 text-xl font-bold text-text-primary group-hover:text-accent-primary transition-colors"
                     >
                         {{ project.title }}
                     </h3>
