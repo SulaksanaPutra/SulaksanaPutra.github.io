@@ -28,7 +28,6 @@ export interface ProjectArticle {
         variant?: 'standard' | 'trade-off' | 'deep-dive';
         paragraphs?: string[];
         items?: string[];
-        // image field successfully eradicated
         codeBlock?: {
             language: string;
             code: string;

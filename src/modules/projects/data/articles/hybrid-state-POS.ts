@@ -1,15 +1,15 @@
 import { ProjectArticle } from '../../projects.types';
-import thumbnail from '@/assets/images/articles/projects/offline-first-pos-architecture.webp';
+import thumbnail from '@/assets/images/articles/projects/hybrid-state-POS.webp';
 
 export const OFFLINE_FIRST_POS_ARTICLE_BY_LOCALE: Record<'en' | 'id', ProjectArticle | null> = {
     en: {
-        id: 'offline-first-pos-architecture',
+        id: 'hybrid-state-POS',
         backLink: {
             id: 'back-to-projects',
             label: 'Back to Projects',
             href: '/projects',
         },
-        title: 'Building a Bulletproof Offline-First POS System',
+        title: 'Hybrid State POS',
         subtitle:
             'How I engineered a web app to survive power cuts, internet drops, and data tampering.',
         hook: "Internet outages shouldn't stop commerce. Here is how I designed a Progressive Web App (PWA) Point-of-Sale that operates flawlessly offline, secures data cryptographically in the browser, and seamlessly syncs ledgers when the connection returns.",
@@ -90,8 +90,8 @@ export const OFFLINE_FIRST_POS_ARTICLE_BY_LOCALE: Record<'en' | 'id', ProjectArt
                 ],
             },
             {
-                id: 'schema-migrations',
-                label: 'The Schema Update Trapdoor',
+                id: "trade-offs",
+                label: "Architectural Trade-Offs",
                 variant: 'trade-off',
                 paragraphs: [
                     'The largest operational risk in offline-first systems is deploying software updates. If the backend API requires a new field, but a tablet has been offline for a week running the old code, its eventual sync attempt will fail, stranding the data.',
