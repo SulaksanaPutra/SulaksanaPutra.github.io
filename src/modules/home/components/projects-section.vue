@@ -80,7 +80,7 @@ import {
     useProjectsBlendedFallbackData,
     useProjectsDataStrict,
 } from '@/modules/projects/data/projects.data';
-import { Clock, Globe } from 'lucide-vue-next';
+import { Globe } from 'lucide-vue-next';
 import ThemeImage from '@/core/components/theme-image.vue';
 import { language } from '@/store';
 

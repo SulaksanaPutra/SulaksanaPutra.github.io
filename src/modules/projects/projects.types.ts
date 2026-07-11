@@ -6,7 +6,6 @@ export interface Project {
     title: string;
     subtitle: string;
     thumbnail: string | { light: string; dark: string };
-    date: string;
     link: Link;
 }
 

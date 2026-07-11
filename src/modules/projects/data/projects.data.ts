@@ -29,7 +29,6 @@ export function useProjectsData() {
                 title: article.title,
                 subtitle: article.subtitle || '',
                 thumbnail: article.thumbnail,
-                date: article.date,
                 link: {
                     id: 'view-' + article.id,
                     href: '/projects/' + article.id,
@@ -51,7 +50,6 @@ export function useProjectsDataStrict() {
                 title: article.title,
                 subtitle: article.subtitle || '',
                 thumbnail: article.thumbnail,
-                date: article.date,
                 link: {
                     id: 'view-' + article.id,
                     href: '/projects/' + article.id,

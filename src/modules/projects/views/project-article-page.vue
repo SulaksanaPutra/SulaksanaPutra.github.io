@@ -291,7 +291,7 @@ import {
     useProjectArticle,
     useProjectArticleAvailability,
 } from '@/modules/projects/data/projects.data';
-import { ArrowLeft, ArrowUp, Calendar, Clock } from 'lucide-vue-next';
+import { ArrowLeft, ArrowUp, Clock } from 'lucide-vue-next';
 import TextBlock from '@/core/components/text-block.vue';
 import CodeHighlighter from '@/core/components/code-highlighter.vue';
 import LanguageFallback from '@/core/components/language-fallback.vue';
@@ -355,7 +355,6 @@ const structuredData = computed(() => {
         id: articleId,
         title: article.value.title,
         description: article.value.hook,
-        date: article.value.date,
         image: ogImage,
         keywords: article.value.techStack?.join(', '),
         urlPath: `/projects/${articleId}`,
