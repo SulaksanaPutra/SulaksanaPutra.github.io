@@ -28,7 +28,7 @@ const HOME_DRAWER_BY_LOCALE: Record<'en' | 'id', HomeDrawer> = {
             id: 'projects',
             href: '/projects',
             label: 'Projects',
-            description: 'Short ideas, experiments, and drafts',
+            description: 'Short ideas, prototypes, and turnkey projects.',
         },
         {
             id: 'uses',
@@ -60,7 +60,7 @@ const HOME_DRAWER_BY_LOCALE: Record<'en' | 'id', HomeDrawer> = {
             id: 'projects',
             href: '/projects',
             label: 'Project',
-            description: 'Ide singkat, eksperimen, dan draf.',
+            description: 'Ide singkat, prototype, dan turnkey projects.',
         },
         {
             id: 'uses',
@@ -242,16 +242,16 @@ export function useWritingData() {
 const PROJECTS_BY_LOCALE: Record<'en' | 'id', Projects> = {
     en: {
         title: 'Projects',
-        subtitle: 'Short ideas, experiments, and drafts',
+        subtitle: 'Short ideas, prototypes, and turnkey projects.',
         descriptions: [
-            "A collection of short ideas, experiments, and drafts. These are projects that I've worked on to explore new technologies or to solve specific problems.",
+            "A collection of short ideas, prototypes, and turnkey projects. These are projects that I've worked on to explore new technologies or to solve specific problems.",
         ],
     },
     id: {
         title: 'Project',
-        subtitle: 'Ide singkat, eksperimen, dan draf',
+        subtitle: 'Ide singkat, prototype, dan turnkey projects.',
         descriptions: [
-            'Kumpulan ide singkat, eksperimen, dan draf. Ini adalah project-project yang aku kerjakan untuk eksplorasi teknologi baru atau sekadar menyelesaikan masalah spesifik.',
+            'Kumpulan ide singkat, prototypes dan turnkey projects. Ini adalah project-project yang aku kerjakan untuk eksplorasi teknologi baru atau sekadar menyelesaikan masalah spesifik.',
         ],
     },
 };
