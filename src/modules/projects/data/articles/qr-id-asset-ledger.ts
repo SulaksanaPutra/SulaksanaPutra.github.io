@@ -19,7 +19,7 @@ export const QR_ID_ASSET_LEDGER_ARTICLE_BY_LOCALE: Record<'en' | 'id', ProjectAr
             "Redis & BullMQ",
             "SQLite (Drift)"
         ],
-        deploymentStatus: "Production",
+        deploymentStatus: "In Production",
         thumbnail: thumbnail,
         sections: [
             {

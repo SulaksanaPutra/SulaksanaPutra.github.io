@@ -19,7 +19,7 @@ export const FEATURE_CORRELATIONS_ARTICLE_BY_LOCALE: Record<'en' | 'id', Project
             "Commander.js / Oclif",
             "Markdown Prompt Generation"
         ],
-        deploymentStatus: "In Production",
+        deploymentStatus: "Closed Beta",
         thumbnail: thumbnail,
         sections: [
             {
