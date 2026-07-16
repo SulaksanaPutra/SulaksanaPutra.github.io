@@ -104,6 +104,31 @@ if (fs.existsSync(caseStudyArticlesDir)) {
     });
 }
 
+// Scan for project articles
+const projectArticlesDir = path.resolve('src/modules/projects/data/articles');
+if (fs.existsSync(projectArticlesDir)) {
+    const projectFiles = fs.readdirSync(projectArticlesDir);
+    projectFiles.forEach((file) => {
+        if (file.endsWith('.ts')) {
+            const filePath = path.join(projectArticlesDir, file);
+            const content = fs.readFileSync(filePath, 'utf-8');
+            const stats = fs.statSync(filePath);
+            const lastmod = stats.mtime.toISOString().split('T')[0];
+
+            const idMatch = content.match(/en:\s*\{\s*id:\s*['"]([^'"]+)['"]/);
+            const articleId = idMatch ? idMatch[1] : null;
+
+            if (articleId) {
+                routes.push({
+                    path: `/projects/${articleId}`,
+                    priority: '0.8',
+                    lastmod,
+                });
+            }
+        }
+    });
+}
+
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"

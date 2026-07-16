@@ -4,42 +4,42 @@
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
     <loc>https://bayuaksana.com/</loc>
-    <lastmod>2026-07-11</lastmod>
+    <lastmod>2026-07-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
 
   </url>
   <url>
     <loc>https://bayuaksana.com/systems</loc>
-    <lastmod>2026-07-11</lastmod>
+    <lastmod>2026-07-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
 
   </url>
   <url>
     <loc>https://bayuaksana.com/case-studies</loc>
-    <lastmod>2026-07-11</lastmod>
+    <lastmod>2026-07-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
 
   </url>
   <url>
     <loc>https://bayuaksana.com/writing</loc>
-    <lastmod>2026-07-11</lastmod>
+    <lastmod>2026-07-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
 
   </url>
   <url>
     <loc>https://bayuaksana.com/skills</loc>
-    <lastmod>2026-07-11</lastmod>
+    <lastmod>2026-07-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
 
   </url>
   <url>
     <loc>https://bayuaksana.com/contact</loc>
-    <lastmod>2026-07-11</lastmod>
+    <lastmod>2026-07-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
 
@@ -174,6 +174,90 @@
   <url>
     <loc>https://bayuaksana.com/case-studies/system-twin-v1/handling-a-vat-increase-in-a-legacy-real-time-system</loc>
     <lastmod>2026-04-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+
+  </url>
+  <url>
+    <loc>https://bayuaksana.com/projects/cafe-kiosk-proxy</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+
+  </url>
+  <url>
+    <loc>https://bayuaksana.com/projects/commerce-aggregator</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+
+  </url>
+  <url>
+    <loc>https://bayuaksana.com/projects/app-level-traffic-controller</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+
+  </url>
+  <url>
+    <loc>https://bayuaksana.com/projects/core-event-stream</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+
+  </url>
+  <url>
+    <loc>https://bayuaksana.com/projects/cosmetic-forecasting-engine</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+
+  </url>
+  <url>
+    <loc>https://bayuaksana.com/projects/feature-correlations</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+
+  </url>
+  <url>
+    <loc>https://bayuaksana.com/projects/hybrid-state-POS</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+
+  </url>
+  <url>
+    <loc>https://bayuaksana.com/projects/kinetic-pricing-engine</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+
+  </url>
+  <url>
+    <loc>https://bayuaksana.com/projects/qr-id-asset-ledger</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+
+  </url>
+  <url>
+    <loc>https://bayuaksana.com/projects/social-radar</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+
+  </url>
+  <url>
+    <loc>https://bayuaksana.com/projects/enterprise-nl2sql-gateway</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+
+  </url>
+  <url>
+    <loc>https://bayuaksana.com/projects/telecom-support-orchestrator</loc>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
 
