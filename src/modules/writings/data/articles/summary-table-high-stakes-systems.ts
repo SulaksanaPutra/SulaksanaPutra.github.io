@@ -14,9 +14,9 @@ export const SUMMARY_TABLE_ARTICLE_BY_LOCALE: Record<'en' | 'id', WritingArticle
         },
         title: 'Why I’m Killing the "Summary Table" in High-Stakes Systems',
         subtitle:
-            'Moving from state-based duality to Head-Pointer Snapshotting for data integrity.',
+            'Moving from state-based duality to Head-Pointer Snapshotting and Optimistic Concurrency Control for data integrity.',
         highlight:
-            'In ERP and WMS architectures, summary tables are often factories for "Ghost Stock." Explore why transaction ledgers should be the sole source of truth.',
+            'In ERP and WMS architectures, summary tables are often factories for "Ghost Stock." Explore why transaction ledgers should be the sole source of truth and how to safeguard them.',
         thumbnail: {
             light: thumbnail,
             dark: thumbnailDark,
@@ -36,15 +36,15 @@ export const SUMMARY_TABLE_ARTICLE_BY_LOCALE: Record<'en' | 'id', WritingArticle
                 label: 'The Pattern: Head-Pointer Snapshotting',
                 paragraphs: [
                     'Instead of managing two "sources of truth," I’ve adopted Head-Pointer Snapshotting. This bridges the gap between event-based logic and query efficiency.',
-                    'Every movement is recorded as an immutable row in an append-only ledger. The latest transaction for a specific SKU is marked with a "Current_State" flag. This flag acts as the "Head" of the ledger, similar to a pointer in Git.',
+                    'Every movement is recorded as an immutable row in an append-only ledger, and the latest transaction for a specific SKU is marked with a "Current_State" flag. This flag acts as the "Head" of the ledger, similar to a pointer in Git.',
                 ],
             },
             {
                 id: 'contention-tax',
-                label: 'The Contention Tax',
+                label: 'The Contention Tax & The Database Fail-Safe',
                 paragraphs: [
-                    'A common argument is that ACID transactions can keep both tables in sync. However, this fails under high-frequency stress due to row-level contention.',
-                    'Updating a single "Summary Row" requires a lock that forces concurrent processes to wait. An append-only ledger allows for "blind writes," significantly increasing throughput while remaining correct by design.',
+                    'Updating a single "Summary Row" requires a lock that forces concurrent processes to wait. An append-only ledger bypasses this contention tax, but it requires strict concurrency control to avoid race conditions when moving the "Head" flag.',
+                    'To solve this, each new transaction must explicitly declare its parent state (`prev_id`). This introduces a Compare-and-Swap (CAS) mechanism natively into the relational model. If two concurrent requests try to append to the exact same previous state, the database constraint instantly rejects the stale one. The application handles the retry queue, but the schema acts as the ultimate fail-safe.',
                 ],
             },
             {
@@ -90,22 +90,27 @@ export const SUMMARY_TABLE_ARTICLE_BY_LOCALE: Record<'en' | 'id', WritingArticle
             {
                 term: 'Current_State flag',
                 definition:
-                    'A marker used in Head-Pointer Snapshotting to identify the latest entry in the ledger, acting similarly to a pointer in Git.',
+                    'A marker used in Head-Pointer Snapshotting to identify the latest entry in the ledger, allowing for rapid O(1) reads without traversing the entire history.',
+            },
+            {
+                term: 'prev_id',
+                definition:
+                    'A reference to the specific ledger row that a new transaction believes is the current state. This creates an unbroken chain of events and validates data integrity on insertion.',
+            },
+            {
+                term: 'Compare-and-Swap',
+                definition:
+                    'A concurrency control mechanism where a new write is only accepted by the database if the underlying state (the prev_id) has not changed since it was last read.',
+            },
+            {
+                term: 'Optimistic Concurrency Control',
+                definition:
+                    'A method for handling concurrent transactions that avoids upfront row-locking. It assumes conflicts are rare and uses constraints to reject invalid writes at the time of insertion.',
             },
             {
                 term: 'Contention Tax',
                 definition:
                     'The performance penalty incurred when multiple concurrent processes try to lock and update the same summary row at the same time.',
-            },
-            {
-                term: 'Row-level contention',
-                definition:
-                    'A database bottleneck where high-frequency updates to a single row force other transactions to wait, significantly slowing down system throughput.',
-            },
-            {
-                term: 'Blind writes',
-                definition:
-                    'Write operations that append new data to a ledger without needing to lock or wait for a specific summary row, allowing for much higher performance.',
             },
             {
                 term: 'Materialized views',
