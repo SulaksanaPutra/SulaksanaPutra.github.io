@@ -22,7 +22,7 @@ export const INTEGRATION_STRATEGY_CASE_BY_LOCALE: Record<'en' | 'id', CaseStudyA
                 id: 'context-and-scale',
                 label: 'Context and Scale',
                 paragraphs: [
-                    'Twin v1 was our monolithic distributor system handling everything from sales to warehouse management and delivery. When the business split its operations into separate warehouse and delivery entities, our tech company saw an opportunity. We decided to build a multi-tenant SaaS Warehouse Management System (WMS) and Fleet Management System (FMS) as isolated "miniservices."',
+                    'Twin v1 was our monolithic distributor system handling everything from sales to warehouse management and delivery. When the business split its operations into separate warehouse and delivery entities, our tech company saw an opportunity. We decided to build a multi-tenant SaaS Warehouse Management System (WMS) and Fleet Management System (FMS) as isolated "miniservices." Unlike microservices, which share an internal ecosystem, these were designed as completely self-contained applications with zero out-of-the-box knowledge of each other, ensuring they could be sold independently.',
                     'The idea was to use our internal distributor as a test run—migrating operational flows out of Twin v1 and into these new SaaS products, while keeping Twin v1 as the core sales and finance point. To make this work, we needed seamless data synchronization across all three systems, handling hundreds of daily data points for an initial rollout of over 100 users.',
                 ],
             },
@@ -30,7 +30,7 @@ export const INTEGRATION_STRATEGY_CASE_BY_LOCALE: Record<'en' | 'id', CaseStudyA
                 id: 'problem',
                 label: 'Problem',
                 paragraphs: [
-                    'Because the WMS and FMS were designed to eventually be sold as independent SaaS products, they were strictly encapsulated. To keep them synced with Twin v1, the initial integration was rushed: we relied heavily on direct Point-to-Point (P2P) API calls and webhooks.',
+                    'Because the WMS and FMS were designed to eventually be sold as independent SaaS products, they were strictly encapsulated. We were handed a paradox: design these systems as completely isolated, standalone products for future external sales, but make them act like a single, perfectly synchronized monolithic system for our internal operations by tomorrow. To keep them synced with Twin v1, the initial integration was rushed: we relied heavily on direct Point-to-Point (P2P) API calls and webhooks.',
                     "This approach worked in theory, but in reality, it created a fragile, tangled chain of data. A flow wasn't just moving from A to B; it could jump from Sales to Warehouse, Warehouse to Delivery, and then back to Sales. If a network blip or logical error broke the chain at any point, the failure was silent. To find where the data was lost, we had to manually trace and cross-reference logs across three entirely separate applications. Debugging became a complex, time-consuming nightmare.",
                 ],
             },
@@ -46,7 +46,7 @@ export const INTEGRATION_STRATEGY_CASE_BY_LOCALE: Record<'en' | 'id', CaseStudyA
                 id: 'proposed-blueprint',
                 label: 'Proposed Blueprint',
                 paragraphs: [
-                    'To fix the root cause, I designed a blueprint for a Centralized Integration Service—a Hub-and-Spoke orchestrator. Instead of direct communication between each app, every system would communicate strictly with this central proxy.',
+                    'To fix the root cause, I designed a blueprint for a Centralized Integration Service—a Hub-and-Spoke orchestrator. Instead of direct communication between each app, every system would communicate strictly with this central proxy. Crucially, this Hub would sit entirely outside the WMS and FMS infrastructure. By treating the integration as an external, third-party concern, we could preserve the "clean" boundaries of the SaaS products while the Hub handled the messy, company-specific translation logic.',
                     'This service would act as a single source of truth for the integration, handling centralized logging, queueing, and automated retry mechanisms. If an application went down or a request failed, the hub would gracefully hold the state rather than silently dropping the data. It was a clean, scalable way to decouple the systems.',
                 ],
             },
