@@ -1,0 +1,9 @@
+node_modules
+dist
+dist-node
+.git
+.github
+.npm-cache
+playwright-report
+test-results
+.DS_Store
