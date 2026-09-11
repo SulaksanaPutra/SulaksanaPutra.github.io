@@ -4,42 +4,42 @@
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
     <loc>https://bayuaksana.com/</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
 
   </url>
   <url>
     <loc>https://bayuaksana.com/systems</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
 
   </url>
   <url>
     <loc>https://bayuaksana.com/case-studies</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
 
   </url>
   <url>
     <loc>https://bayuaksana.com/writing</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
 
   </url>
   <url>
     <loc>https://bayuaksana.com/skills</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
 
   </url>
   <url>
     <loc>https://bayuaksana.com/contact</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
 
@@ -72,6 +72,16 @@
     <image:image>
       <image:loc>https://bayuaksana.com/assets/images/articles/writings/pragmatic-real-time-sse.jpg</image:loc>
       <image:title>pragmatic real time sse</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://bayuaksana.com/writing/pragmatic-system-design-experience</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://bayuaksana.com/assets/images/articles/writings/pragmatic-system-design-experience.jpg</image:loc>
+      <image:title>pragmatic system design experience</image:title>
     </image:image>
   </url>
   <url>
