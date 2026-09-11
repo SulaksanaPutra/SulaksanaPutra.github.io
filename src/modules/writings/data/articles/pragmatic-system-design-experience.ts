@@ -51,18 +51,18 @@ export const PRAGMATIC_SYSTEM_DESIGN_EXPERIENCE_BY_LOCALE: Record<
                 id: 'rethinking-repositories',
                 label: 'Rethinking Repositories',
                 paragraphs: [
-                    "When it comes to repositories, my rule is pretty strict now: a repository only talks to one entity, or a very tight cluster of tables that absolutely have to act as a 'single package'.",
-                    'I also stopped treating the Service layer as a generic dumping ground for business logic. Take an `Order` and `Order_Details` for example. A lot of devs will just build one massive `OrderService` to handle both. I used to do that too, but now I split them up.',
-                    "Why? Because of real-world use cases. If I need to write a background cron job that just bulk-updates 1,000 order statuses to 'Shipped', I want a lightweight service that only touches the `orders` table. Forcing everything through one massive, unified service means I'm pulling unnecessary detail logic into memory. It makes testing a massive headache and slows everything down. Keeping it granular gives you actual control.",
+                    "When it comes to repositories, my rule is practical: a repository handles one domain entity, or a tight cluster of tables that must act as a 'single package'.",
+                    "Take `Order` and `Order_Details`, for example. A domain entity does not always map to just one table. If the system is relatively small and these tables fundamentally operate together as a unit, it makes perfect sense to treat them as a single entity under one unified repository.",
+                    "However, as a system scales and table behaviors diverge, you have to adapt. If I need a background cron job to bulk-update 1,000 order statuses to 'Shipped', I don't want to load a massive unified `Order` entity that pulls unnecessary detail logic into memory. In that scenario, it is much more efficient to separate them and use a lightweight service that strictly touches the `orders` table. Keeping layers standardized is important, but true pragmatism is defining your domain units based on context, scale, and performance.",
                 ],
             },
             {
-                id: 'bending-ddd-rules',
-                label: 'Bending Rules',
+                id: 'pragmatic-reads',
+                label: 'Dedicated Read Models',
                 paragraphs: [
-                    "I'm super strict about write operations, but when it comes to reading data? You honestly have to toss the textbook out the window sometimes to survive in production.",
-                    "Look at something like an 'Invoice' feature. To generate one, you usually need data from `orders`, `order_details`, and `users`. If you follow strict Domain-Driven Design, you're supposed to politely ask the Order Service for data, then ask the User Service, and then manually stitch it all together in your application logic. In the real world, this is a fantastic way to blow up your memory and cause horrific N+1 query issues.",
-                    "So I cheat. I treat the 'Invoice' as its own dedicated thing. I write an `InvoiceRepository` that executes one blazing fast, highly optimized SQL `JOIN` across all those tables to return exactly what the frontend needs. Technically, it breaks domain boundaries. But the performance gain is non-negotiable. Textbooks like to call this CQRS, but for me, it was just common sense to keep the server from crashing.",
+                    "I am highly strict about write operations, but reading data requires a completely different mindset. Domain-Driven Design principles are primarily focused on maintaining strict boundaries and consistency when mutating state. Forcing those exact same boundaries onto read models is a very common pitfall.",
+                    "Take an 'Invoice' feature, for instance. To generate one, you typically need combined data from `orders`, `order_details`, and `users`. If you rigidly apply write-domain boundaries, you might be tempted to fetch data through the Order Service, then the User Service, and manually stitch it all together. In production, this is a fantastic way to bloat memory and trigger horrific N+1 query issues.",
+                    "Instead, I treat the 'Invoice' as its own dedicated read entity. I create an `InvoiceRepository` that executes a blazing fast, highly optimized SQL `JOIN` across those tables to return exactly what the frontend needs. By treating this joined data as a standalone entity—much like a database view—we keep our layers standardized and pattern-consistent. This approach naturally aligns with CQRS principles, delivering high performance without muddying the core write domains.",
                 ],
             },
             {
